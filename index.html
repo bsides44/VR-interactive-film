@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <title>Maddy's Brain</title>
+        <meta name="description" content="Interactive 360 video in web vr using a frame for webxr">
+        <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+        <script src="./play-on-click.js"></script>
+        <!-- <script src="./hide-on-play.js"></script> -->
+    </head>
+    <style>
+      .a-loader-title {
+        color: white;
+        background-color: white;
+      }
+    </style>
+    <body>
+        <a-scene loading-screen="dotsColor: black; backgroundColor: white">
+            <a-assets>
+              <img id="play-icon" src="./play.png">
+              <img id="pause-icon" src="./pause.png">
+              <video id="monoPico" 
+                     preload="auto"
+                     src="./Mono_Pico.mp4"
+                     autoplay="false" loop="false"
+                     crossOrigin="anonymous"></video>
+              <!-- <video id="houseVideo" preload="auto"
+                     src="./VIDEO_5591.mp4"
+                     loop="false"
+                     crossOrigin="anonymous"></video> -->
+            </a-assets>
+            <a-videosphere
+              id="video"
+              rotation="0 -90 0"
+              src="#monoPico"
+              visible="false"
+              >
+              <!-- play-on-click -->
+          </a-videosphere>
+            <a-camera>
+              <!-- <a-image id="play" src="#play-icon" position="0 0 -1.5" width="0.2" height="0.2"></a-image> -->
+              <!-- <a-image id="pause" src="#pause-icon" visible="false" position="0 0 -1.5" width="0.21" height="0.21"></a-image> -->
+                <!-- <a-entity
+                  id="clickToPlay"
+                  position="0 0 -1.5"
+                  text="align: left;
+                        width: 6;
+                        wrapCount: 100;
+                        color: black;
+                        value: Click to Play"
+                   >
+                </a-entity> -->
+              </a-camera>
+        </a-scene>
+        <img id="startButton" src="./play.png" style="left: 48%;
+                                    top: 46%;
+                                    height: 40px;
+                                    width: 42px;
+                                    position: absolute;
+                                    visibility:hidden
+                                    " >
+        <img id="playButton" src="./play.png" style="left: 20px;
+                                    top: 20px;
+                                    height: 40px;
+                                    width: 42px;
+                                    position: absolute;
+                                    visibility:hidden
+                                    " >
+        <img id="pauseButton" src="./pause.png" style="left: 18px;
+                                    top: 19px;
+                                    height: 43px;
+                                    width: 45px;
+                                    position: absolute;
+                                    visibility:hidden
+                                    ">
+    </body>
+    <script>
+      var start = document.getElementById("startButton")
+      var play = document.getElementById("playButton")
+      var pause = document.getElementById("pauseButton")
+      var video = document.getElementById("video")
+      var toPlay = false
+
+      start.addEventListener("click", onClickStart)
+      play.addEventListener("click", onClick)
+      pause.addEventListener("click", onClick)
+
+      document.querySelector('a-scene').addEventListener('loaded', function () {
+        start.style.visibility = "visible"
+      })
+
+      function onClickStart(e){
+        e.preventDefault()
+        if (video) {
+          video.object3D.visible = true;
+          start.style.display = "none" 
+          pause.style.visibility = "visible" 
+        }
+        else return
+      }
+
+      function onClick(e){
+        e.preventDefault()
+
+          if (toPlay) {
+            video.components.material.material.map.image.play();
+            play.style.visibility = "hidden"
+            pause.style.visibility = "visible"
+            toPlay = !toPlay
+          } else {
+            video.components.material.material.map.image.pause();
+            play.style.visibility = "visible" 
+            pause.style.visibility = "hidden"
+            toPlay = !toPlay
+          }       
+        }
+
+    </script>
+</html>
