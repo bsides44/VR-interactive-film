@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>PageTwo</title>
+    <meta name="description" content="Interactive 360 video in web vr using a frame for webxr">
+    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+    <script src="../play-on-click.js"></script>
+    <script src="../cursor-listener.js"></script>
+</head>
+<style>
+    .a-loader-title {
+        color: white;
+        background-color: white;
+    }
+</style>
+
+<body>
+    <a-scene loading-screen="dotsColor: black; backgroundColor: white">
+        <a-assets>
+            <img id="play-icon" src="../play.png">
+            <img id="pause-icon" src="../pause.png">
+            <video id="houseVideo" preload="auto" src="../VIDEO_5591.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
+        </a-assets>
+
+        <a-videosphere id="video" rotation="0 -90 0" src="#houseVideo" visible="false" play-on-click>
+        </a-videosphere>
+
+        <a-entity camera look-controls>
+            <a-image id="play" src="#play-icon" position="0 1 -1.5" width="0.2" height="0.2"></a-image>
+            <a-image id="pause" src="#pause-icon" visible="false" position="0 1 -1.5" width="0.21" height="0.21"></a-image>
+
+            <!-- CONTROLS -->
+            <a-entity cursor="fuse: true; fuseTimeout: 500" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="color: black; shader: flat">
+            </a-entity>
+        </a-entity>
+    </a-scene>
+</body>
+
+</html>
