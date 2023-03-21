@@ -4,8 +4,11 @@
         <title>Maddy's Brain</title>
         <meta name="description" content="Interactive 360 video in web vr using a frame for webxr">
         <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
-        <script src="./play-on-click.js"></script>
-        <!-- <script src="./hide-on-play.js"></script> -->
+        <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+        <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
+        <!-- <script src="./play-on-click.js"></script> -->
+        <script src="./button-listener.js"></script>
+
     </head>
     <style>
       .a-loader-title {
@@ -32,17 +35,20 @@
               id="video"
               rotation="0 -90 0"
               src="#monoPico"
-              visible="false"
+              visible="true"
               >
-              <!-- play-on-click -->
+              <!--play-on-click  -->
           </a-videosphere>
+          <a-entity laser-controls="hand: right" raycaster="objects: .collidable"></a-entity>
+          <a-entity laser-controls="hand: left" raycaster="objects: .collidable"></a-entity>
+          <a-box id="theBox" color="blue" position="0 0 -2" scale="1 1 1" class="collidable" button-listener></a-box>
             <a-camera>
-              <!-- <a-image id="play" src="#play-icon" position="0 0 -1.5" width="0.2" height="0.2"></a-image> -->
-              <!-- <a-image id="pause" src="#pause-icon" visible="false" position="0 0 -1.5" width="0.21" height="0.21"></a-image> -->
+              <!-- <a-image id="play" src="#play-icon" position="0 0 -1.5" width="0.2" height="0.2" play-on-click></a-image> -->
+              <!-- <a-image id="pause" src="#pause-icon" visible="false" position="0 0 -1.5" width="0.21" height="0.21" button-listener></a-image> -->
                 <!-- <a-entity
                   id="clickToPlay"
                   position="0 0 -1.5"
-                  text="align: left;
+                  text="align: center;
                         width: 6;
                         wrapCount: 100;
                         color: black;
@@ -51,7 +57,7 @@
                 </a-entity> -->
               </a-camera>
         </a-scene>
-        <img id="startButton" src="./play.png" style="left: 48%;
+        <!-- <img id="startButton" src="./play.png" style="left: 48%;
                                     top: 46%;
                                     height: 40px;
                                     width: 42px;
@@ -71,9 +77,9 @@
                                     width: 45px;
                                     position: absolute;
                                     visibility:hidden
-                                    ">
+                                    "> -->
     </body>
-    <script>
+    <!-- <script>
       var start = document.getElementById("startButton")
       var play = document.getElementById("playButton")
       var pause = document.getElementById("pauseButton")
@@ -98,6 +104,7 @@
         else return
       }
 
+
       function onClick(e){
         e.preventDefault()
 
@@ -114,5 +121,9 @@
           }       
         }
 
-    </script>
+        // at video end
+        if (document.querySelector("#antarctica").components.material.data.src.currentTime = 23) {
+
+        }
+    </script> -->
 </html>
