@@ -6,9 +6,7 @@
   <meta name="description" content="Interactive 360 video in web vr using a frame for webxr">
   <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
   <script src="./play-on-click.js"></script>
-  <script src="./cursor-listener.js"></script>
-
-  <!-- <script src="./hide-on-play.js"></script> -->
+  <script src="./xbutton-listener.js"></script>
 </head>
 <style>
   .a-loader-title {
@@ -18,28 +16,36 @@
 </style>
 
 <body>
-  <a-scene loading-screen="dotsColor: black; backgroundColor: white">
+  <a-scene loading-screen="dotsColor: black; backgroundColor: white"  xbutton-listener renderer="antialias: true"
+  webxr="referenceSpaceType: local">
     <a-assets>
-      <img id="play-icon" src="./play.png">
-      <img id="pause-icon" src="./pause.png">
       <video id="monoPico" preload="auto" src="./Mono_Pico.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
       <video id="houseVideo" preload="auto" src="./VIDEO_5591.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
     </a-assets>
 
-    <a-videosphere id="video" rotation="0 -90 0" src="#monoPico" visible="false" play-on-click>
+    <!-- VIDEOS -->
+    <a-videosphere id="video" rotation="0 -90 0" src="#monoPico" visible="true">
     </a-videosphere>
     <a-videosphere id="secondVideo" rotation="0 -90 0" src="#houseVideo" visible="false">
     </a-videosphere>
 
-    <a-triangle color="blue" rotation="0 0 40" scale="0.2 0.2 0.2" position="-1 0 -1.5" visible="false" cursor-listener></a-triangle>
+    <!-- BUTTON -->
+    <a-triangle id="nextVideoButton" color="blue" rotation="0 0 40" scale="0.2 0.2 0.2" position="-1 0 -1.5" visible="false" >
+    </a-triangle>
+    <a-text id="nextText" value="Next \n Movie" width="1.5" height="1.5" color="black" align="center" position="-1 -0.2 -1.5" visible="false"></a-text>
+    
+    <!-- CONTROLS -->
+    <a-entity id="leftHand" laser-controls="hand: left" raycaster="objects: #nextVideoButton"></a-entity>
+    <a-entity id="rightHand" laser-controls="hand: right" raycaster="objects: #nextVideoButton" line="color: #118A7E"></a-entity>
 
-    <a-entity camera look-controls>
-      <a-image id="play" src="#play-icon" position="0 1 -1.5" width="0.2" height="0.2"></a-image>
-      <a-image id="pause" src="#pause-icon" visible="false" position="0 1 -1.5" width="0.21" height="0.21"></a-image>
+    <a-entity camera  >
+      <a-text id="debugger" value="Enter VR \n Press Button to Play" width="1.5" height="1.5" color="black" align="center" position="0 0 -1.5" play-on-click></a-text> 
 
       <!-- CONTROLS -->
-      <a-entity cursor="fuse: true; fuseTimeout: 500" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="color: black; shader: flat">
-      </a-entity>
+      <!-- <a-entity cursor="fuse: true; fuseTimeout: 500" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="color: black; shader: flat">
+      </a-entity> -->
+     
+
     </a-entity>
   </a-scene>
 </body>
