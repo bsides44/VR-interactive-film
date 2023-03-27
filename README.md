@@ -3,10 +3,13 @@ Using A-frame to make a VR film interactive
 
 Local server:
 npm i
+npm i -g five-server@latest && five-server --port=8000  
 npm start
 
 Build:
 npm run dist
+
+
 
 To view local server on Quest:
 adb devices

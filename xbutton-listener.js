@@ -22,7 +22,7 @@ AFRAME.registerComponent('xbutton-listener', {
       document.querySelector("#debugger").object3D.visible = false;
     } )
 
-    // change colour of button on hover 
+    // change colour of button on controller hover 
     triangle.addEventListener('raycaster-intersected', function () {
       triangle.setAttribute('material', 'color', 'green');
       text.setAttribute('color', 'green');
@@ -52,26 +52,31 @@ AFRAME.registerComponent('xbutton-listener', {
     var videoEl = document.querySelector("#video")
     var triangle = document.querySelector("#nextVideoButton")
     var text = document.querySelector("#nextText")
+    var meModel = document.querySelector("#animModel")
+    var currentTime = videoEl.components.material.data.src.currentTime
 
     // Make 3D model invisible when chacters walk 'in front' of it
-    if (videoEl.components.material.data.src.currentTime >= 7.5 && videoEl.components.material.data.src.currentTime <= 9.6) {
-        document.querySelector("#animModel").object3D.visible = false;
+    if (currentTime >= 0.6 && currentTime <= 1.2) {
+        meModel.object3D.visible = false;
+     }
+    if (currentTime >= 7.3 && currentTime <= 9.5) {
+       meModel.object3D.visible = false;
     }
-    if (videoEl.components.material.data.src.currentTime >= 20.3 && videoEl.components.material.data.src.currentTime <= 20.8) {
-      document.querySelector("#animModel").object3D.visible = false;
+    if (currentTime >= 20.1 && currentTime <= 20.8) {
+        meModel.object3D.visible = false;
     }
-    if (videoEl.components.material.data.src.currentTime >= 9.6 && videoEl.components.material.data.src.currentTime <= 20.3 || videoEl.components.material.data.src.currentTime >= 20.8 ) {
-      document.querySelector("#animModel").object3D.visible = true;
+    if (currentTime >= 1.3 || currentTime >= 9.6 && currentTime <= 20 || currentTime >= 20.9 ) {
+        meModel.object3D.visible = true;
     }
 
     // Make triangle button appear when video playback is at 5 of 23 seconds
-    if (videoEl.components.material.data.src.currentTime >= 5) {
+    if (currentTime >= 5) {
         triangle.object3D.visible = true;
         text.object3D.visible = true;
     }
 
     // autoplay next video at end of first video
-    if (videoEl.components.material.data.src.currentTime >= 23) {
+    if (currentTime >= 23) {
       this.playNextVideo()
   }
 }

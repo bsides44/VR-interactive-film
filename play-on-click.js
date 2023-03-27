@@ -6,12 +6,14 @@ AFRAME.registerComponent('play-on-click', {
   },
   onClick: function () {
     var videoEl = document.querySelector("#video").getAttribute('material').src;
-    var text = document.querySelector("#debugger")
+    var meModel = document.querySelector("#animModel")
+
     // var videoEl = document.querySelector("#monoPico").components.material.material.map.image;
     if (videoEl) {
       videoEl.play()
-      text.object3D.visible = false;
+      meModel.setAttribute('animation-mixer',"loop:repeat");
       window.removeEventListener('click', this.onClick);
+      
     }
     else return
   },
