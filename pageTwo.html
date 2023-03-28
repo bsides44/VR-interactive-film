@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>PageTwo</title>
+    <meta name="description" content="Interactive 360 video in web vr using a frame for webxr">
+    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+    <script src="./disappear-on-complete.js"></script>
+</head>
+<style>
+    .a-loader-title {
+        color: white;
+        background-color: white;
+    }
+</style>
+
+<body>
+    <a-scene loading-screen="dotsColor: black; backgroundColor: white"  shadow="enabled; autoUpdate: true" renderer="antialias: true"
+    webxr="referenceSpaceType: local">
+      <a-assets>
+          <video id="houseVideo" preload="auto" src="./VIDEO_5591.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
+          <a-asset-item id="plane" src="./plane.glb" response-type="arraybuffer"></a-asset-item>
+      </a-assets>
+  
+      <!-- VIDEO -->
+      <a-videosphere id="secondVideo" rotation="0 -90 0" src="#houseVideo" visible="true">
+      </a-videosphere>
+  
+      <!-- CONTROLS -->
+      <a-entity cursor="rayOrigin: mouse" raycaster="objects: .cursor-listener"></a-entity>
+      <a-entity id="rightHand", laser-controls="hand: right'" ></a-entity>
+      <a-entity id="rightHand", laser-controls="hand: right'" ></a-entity>
+  
+      <!-- ANIMATED MODEL -->
+      <a-entity
+          id="secondModel"
+          gltf-model="#plane"	
+          position="-30 7 -8" 
+          rotation="0 90 0"
+          scale="0.1 0.1 0.1"
+          animation="property: position; to: 40 10 -8; dur: 16500; easing: linear; loop: false"
+          disappear-on-complete
+      ></a-entity>
+    </a-scene>
+  </body>
+
+</html>

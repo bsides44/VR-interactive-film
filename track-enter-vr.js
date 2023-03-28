@@ -16,12 +16,24 @@ AFRAME.registerComponent('track-enter-vr', {
 
             sceneEl.appendChild(rightHand);
 
-            sceneEl.setAttribute('xbutton-listener')
+            var triangle = document.querySelector("#nextVideoButton")
+            var text = document.querySelector("#nextText")
+            var portal = document.querySelector("#portal")
+            var portalLander = document.querySelector("#portalLander")
+
+            portal.setAttribute('position', "-1 0 -1" )
+            portalLander.setAttribute('position', "-1 0 -0.9" )
+            triangle.setAttribute('position', "1 0.3 -1" )
+            text.setAttribute('position', "1 0 -1" )
         });
-        
         this.el.addEventListener('exit-vr', () => {
             leftHand.parentNode.removeChild(leftHand);
             rightHand.parentNode.removeChild(rightHand);
+
+            portal.setAttribute('position', "-1 1 -1" )
+            portalLander.setAttribute('position', "-1 1 -0.9" )
+            triangle.setAttribute('position', "-1 1.3 -1" )
+            text.setAttribute('position', "1 1 -1" )
         });
     }
 });
