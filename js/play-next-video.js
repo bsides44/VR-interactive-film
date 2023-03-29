@@ -34,6 +34,7 @@ AFRAME.registerComponent('play-next-video', {
         triangle.object3D.visible = false;
         document.querySelector("#nextText").object3D.visible = false
         document.querySelector("#portal").object3D.visible = false
+        document.querySelector("#portalVR").object3D.visible = false 
         
         // remove listeners
         var vrPortal = document.querySelector("#portalVR")

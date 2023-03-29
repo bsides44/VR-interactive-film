@@ -10,8 +10,6 @@ AFRAME.registerComponent('portal-scaler', {
 
         window.addEventListener('enter-vr', () => {
             var vrPortal = document.querySelector("#portalVR")
-            
-            console.log('enter vr for scaler')
 
             // Peek portal on A button hover 
             window.addEventListener('abuttondown', function() {
