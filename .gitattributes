@@ -1,4 +1,0 @@
-*.mp4 filter=lfs diff=lfs merge=lfs -text
-assets/Mono_Pico.mp4 filter=lfs diff=lfs merge=lfs -text
-assets/VIDEO_5591.mp4 filter=lfs diff=lfs merge=lfs -text
-assets/temple.mp4 filter=lfs diff=lfs merge=lfs -text
