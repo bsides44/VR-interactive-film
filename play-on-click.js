@@ -9,11 +9,15 @@ AFRAME.registerComponent('play-on-click', {
   onClick: function () {
     var videoEl = document.querySelector("#video").getAttribute('material').src;
     var planeModel = document.querySelector("#animModel")
+    var text = document.querySelector("#welcomeText")
 
-    // var videoEl = document.querySelector("#monoPico").components.material.material.map.image;
+    if (text) text.parentNode.removeChild(text);
     if (videoEl) {
       videoEl.play()
-      if (planeModel) planeModel.emit(`startanim001`, null, false);
+      if (planeModel) {
+        planeModel.emit(`startanim001`, null, false);
+        planeModel.components.sound.playSound();
+      }
       window.removeEventListener('click', this.onClick);
     }
     else return

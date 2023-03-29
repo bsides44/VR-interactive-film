@@ -18,12 +18,13 @@
     <a-scene loading-screen="dotsColor: black; backgroundColor: white"  shadow="enabled; autoUpdate: true" renderer="antialias: true"
     webxr="referenceSpaceType: local">
       <a-assets>
-          <video id="houseVideo" preload="auto" src="./VIDEO_5591.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
+          <video id="houseVideo" preload="auto" src="./temple.mp4" autoplay="true" loop="true" crossOrigin="anonymous" muted></video>
           <a-asset-item id="plane" src="./plane.glb" response-type="arraybuffer"></a-asset-item>
+          <audio id="planeSound" src="./planeSound.wav" preload="auto"></audio>
       </a-assets>
   
       <!-- VIDEO -->
-      <a-videosphere id="secondVideo" rotation="0 -90 0" src="#houseVideo" visible="true">
+      <a-videosphere id="portalVideo" rotation="0 -90 0" src="#houseVideo" visible="true" play-on-load>
       </a-videosphere>
   
       <!-- CONTROLS -->
@@ -31,17 +32,24 @@
       <a-entity id="rightHand", laser-controls="hand: right'" ></a-entity>
       <a-entity id="rightHand", laser-controls="hand: right'" ></a-entity>
   
-      <!-- ANIMATED MODEL -->
+      <!-- PORTAL -->
       <a-entity
-          id="secondModel"
+          id="portalModel"
           gltf-model="#plane"	
-          position="-30 7 -8" 
+          position="-30 13 -10" 
           rotation="0 90 0"
           scale="0.1 0.1 0.1"
-          animation="property: position; to: 40 10 -8; dur: 16500; easing: linear; loop: false"
+          animation="property: position; to: 60 11 -10; dur: 23000; easing: linear; loop: false"
           disappear-on-complete
+          sound="src: #planeSound; volume: 0.4; autoplay: true"
       ></a-entity>
     </a-scene>
   </body>
-
+  <script>
+    AFRAME.registerComponent('play-on-load', {
+        init: function () {
+            document.querySelector("#portalVideo").getAttribute('material').src.play()
+        }
+        });
+  </script>
 </html>
