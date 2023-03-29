@@ -6,10 +6,17 @@
   <meta name="description" content="Interactive 360 video in web vr using a frame for webxr">
   <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-  <script src="./play-on-click.js"></script>
-  <script src="./xbutton-listener.js"></script>
-  <script src="./track-enter-vr.js"></script>
-  <script src="./disappear-on-complete.js"></script>
+  <script src="./js/button-hover.js"></script>
+  <script src="./js/button-visibility.js"></script>
+  <script src="./js/play-on-click.js"></script>
+  <script src="./js/play-in-vr.js"></script>
+  <script src="./js/add-vr-controls.js"></script>
+  <script src="./js/portal-controller.js"></script>
+  <script src="./js/portal-visibility.js"></script>
+  <script src="./js/portal-scaler.js"></script>
+  <script src="./js/move-into-vr-view.js"></script>
+  <script src="./js/play-next-video.js"></script>
+  <script src="./js/disappear-on-complete.js"></script>
 
 </head>
 <style>
@@ -20,16 +27,23 @@
 </style>
 
 <body>
-  <a-scene loading-screen="dotsColor: black; backgroundColor: white"  shadow="enabled; autoUpdate: true" xbutton-listener track-enter-vr renderer="antialias: true"
-  webxr="referenceSpaceType: local" play-on-click>
+  <a-scene loading-screen="dotsColor: black; backgroundColor: white"  shadow="enabled; autoUpdate: true" renderer="antialias: true"
+  webxr="referenceSpaceType: local"  
+  play-on-click 
+  play-in-vr
+  add-vr-controls
+  portal-visibility 
+  move-into-vr-view
+  button-visibility
+  >
     <a-assets>
-        <video id="monoPico" preload="auto" src="./Mono_Pico.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
-        <video id="houseVideo" preload="auto" src="./VIDEO_5591.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
-        <video id="templeVideo" preload="auto" src="./temple.mp4" autoplay="false" loop="true" crossOrigin="anonymous" muted></video>
-        <img id="house" src="./temple.jpeg">
-        <a-asset-item id="plane" src="./plane.glb" response-type="arraybuffer"></a-asset-item>
-        <audio id="planeSound" src="./planeSound.wav" preload="auto"></audio>
-        <audio id="bing" src="./magic-idea.mp3" preload="auto"></audio>
+        <video id="monoPico" preload="auto" src="./assets/Mono_Pico.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
+        <video id="houseVideo" preload="auto" src="./assets/VIDEO_5591.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
+        <video id="templeVideo" preload="auto" src="./assets/temple.mp4" autoplay="false" loop="true" crossOrigin="anonymous" muted></video>
+        <img id="house" src="./assets/temple.jpeg">
+        <a-asset-item id="plane" src="./assets/plane.glb" response-type="arraybuffer"></a-asset-item>
+        <audio id="planeSound" src="./assets/planeSound.wav" preload="auto"></audio>
+        <audio id="bing" src="./assets/magic-idea.mp3" preload="auto"></audio>
     </a-assets>
 
     <!-- VIDEOS -->
@@ -41,13 +55,20 @@
     </a-videosphere>
 
     <!-- BUTTON -->
-    <a-triangle id="nextVideoButton" color="blue" rotation="5 0 40" scale="0.3 0.3 0.3" position="1 1.3 -1" visible="false" class="cursor-listener" sound="src: #bing; volume: 0.4">
+    <a-triangle id="nextVideoButton" color="blue" rotation="5 0 40" scale="0.3 0.3 0.3" position="1 1.3 -1" visible="false" class="cursor-listener" sound="src: #bing; volume: 0.4"
+    button-hover
+    play-next-video
+    
+    >
     </a-triangle>
     <a-text id="nextText" value="Play \n Next" width="1.2" height="1.2" color="white" align="center" rotation="0 -25 0" position="1 1 -1" visible="false"></a-text>
 
     <!-- PORTAL -->
     <a-link id="portal" href="pageTwo.html" title="Magic Portal" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 1 -1" class="cursor-listener" visible="false"></a-link>
-    <a-link id="portalVR" href="pageTwo.html" title="Press X for \n Magic Portal" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 0 -1" class="cursor-listener" visible="false"></a-link>
+    <a-link id="portalVR" href="pageTwo.html" title="Press X for \n Magic Portal" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 0 -1" class="cursor-listener" visible="false"
+    portal-controller
+    portal-scaler
+    ></a-link>
 
     <!-- CONTROLS -->
     <a-entity cursor="rayOrigin: mouse" raycaster="objects: .cursor-listener"></a-entity>
@@ -61,7 +82,7 @@
         scale="0.1 0.1 0.1"
         animation="property: position; to: -50 2 -10; dur: 30000; easing: linear; loop: false; startEvents: startanim001; pauseEvents: stopanim001"
         disappear-on-complete
-        sound="src: #planeSound; volume: 0.6"
+        sound="src: #planeSound; volume: 0.6; poolSize: 5"
     ></a-entity>
     <a-entity
       id="secondModel"
@@ -88,7 +109,7 @@
 
     <!-- OPENING TEXT -->
     <a-text id="welcomeText"
-    value="Sound on\n\nPhone/ Computer:\nClick or press\nto start\n\nFor VR\nClick VR\nThen press any button"
+    value="Sound on\n\nPhone/ Computer:\nDrag to explore\nClick or press\nto start\n\nFor VR\nClick VR\nThen press any button"
     position= "0.45 1.5 -1"
     align= "center"
     color= "#A10AE2"
