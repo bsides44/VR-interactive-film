@@ -15,41 +15,32 @@
 </style>
 
 <body>
-    <a-scene loading-screen="dotsColor: black; backgroundColor: white"  shadow="enabled; autoUpdate: true" renderer="antialias: true"
-    webxr="referenceSpaceType: local">
-      <a-assets>
-          <video id="houseVideo" preload="auto" src="./assets/temple.mp4" autoplay="true" loop="true" crossOrigin="anonymous" muted></video>
-          <a-asset-item id="plane" src="./assets/plane.glb" response-type="arraybuffer"></a-asset-item>
-          <audio id="planeSound" src="./assets/planeSound.wav" preload="auto"></audio>
-      </a-assets>
-  
-      <!-- VIDEO -->
-      <a-videosphere id="portalVideo" rotation="0 -90 0" src="#houseVideo" visible="true" play-on-load>
-      </a-videosphere>
-  
-      <!-- CONTROLS -->
-      <a-entity cursor="rayOrigin: mouse" raycaster="objects: .cursor-listener"></a-entity>
-      <a-entity id="rightHand", laser-controls="hand: right'" ></a-entity>
-      <a-entity id="rightHand", laser-controls="hand: right'" ></a-entity>
-  
-      <!-- PORTAL -->
-      <a-entity
-          id="portalModel"
-          gltf-model="#plane"	
-          position="-30 13 -10" 
-          rotation="0 90 0"
-          scale="0.1 0.1 0.1"
-          animation="property: position; to: 60 11 -10; dur: 23000; easing: linear; loop: false"
-          disappear-on-complete
-          sound="src: #planeSound; volume: 0.4; autoplay: true"
-      ></a-entity>
+    <a-scene loading-screen="dotsColor: black; backgroundColor: white" shadow="enabled; autoUpdate: true" renderer="antialias: true" webxr="referenceSpaceType: local">
+        <a-assets>
+            <video id="houseVideo" preload="auto" src="https://cdn.tangerinium.nz/temple.mp4" autoplay="true" loop="true" crossOrigin="anonymous" muted></video>
+            <a-asset-item id="plane" src="./assets/plane.glb" response-type="arraybuffer"></a-asset-item>
+            <audio id="planeSound" src="./assets/planeSound.wav" preload="auto"></audio>
+        </a-assets>
+
+        <!-- VIDEO -->
+        <a-videosphere id="portalVideo" rotation="0 -90 0" src="#houseVideo" visible="true" play-on-load>
+        </a-videosphere>
+
+        <!-- CONTROLS -->
+        <a-entity cursor="rayOrigin: mouse" raycaster="objects: .cursor-listener"></a-entity>
+        <a-entity id="rightHand" , laser-controls="hand: right'"></a-entity>
+        <a-entity id="rightHand" , laser-controls="hand: right'"></a-entity>
+
+        <!-- PORTAL -->
+        <a-entity id="portalModel" gltf-model="#plane" position="-30 13 -10" rotation="0 90 0" scale="0.1 0.1 0.1" animation="property: position; to: 60 11 -10; dur: 23000; easing: linear; loop: false" disappear-on-complete sound="src: #planeSound; volume: 0.4; autoplay: true"></a-entity>
     </a-scene>
-  </body>
-  <script>
+</body>
+<script>
     AFRAME.registerComponent('play-on-load', {
         init: function () {
             document.querySelector("#portalVideo").getAttribute('material').src.play()
         }
-        });
-  </script>
+    });
+</script>
+
 </html>
