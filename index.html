@@ -12,16 +12,19 @@
   <link rel="icon" href="./assets/favicon-128.png" sizes="128x128">
   <link rel="icon" href="./assets/favicon-192.png" sizes="192x192">
   <link rel="apple-touch-icon" href="./assets/favicon-180.png">
-  <script src="./js/button-hover.js"></script>
+  <script src="./js/button-one-hover.js"></script>
+  <script src="./js/button-two-hover.js"></script>
+  <script src="./js/button-three-hover.js"></script>
+  <script src="./js/play-video-two.js"></script>
+  <script src="./js/play-video-three.js"></script>
+  <script src="./js/portal-controller.js"></script>
+  <script src="./js/portal-scaler.js"></script>
+  <script src="./js/second-button-visibility.js"></script>
   <script src="./js/button-visibility.js"></script>
   <script src="./js/play-on-click.js"></script>
   <script src="./js/play-in-vr.js"></script>
   <script src="./js/add-vr-controls.js"></script>
-  <script src="./js/portal-controller.js"></script>
-  <script src="./js/portal-visibility.js"></script>
-  <script src="./js/portal-scaler.js"></script>
   <script src="./js/move-into-vr-view.js"></script>
-  <script src="./js/play-next-video.js"></script>
   <script src="./js/disappear-on-complete.js"></script>
 
 </head>
@@ -38,39 +41,68 @@
   play-on-click 
   play-in-vr
   add-vr-controls
-  portal-visibility 
   move-into-vr-view
   button-visibility
+  second-button-visibility
   >
     <a-assets>
-        <video id="monoPico" preload="auto" src="./assets/Mono_Pico.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
-        <video id="houseVideo" preload="auto" src="./assets/VIDEO_5591.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
-        <video id="templeVideo" preload="auto" src="./assets/temple.mp4" autoplay="false" loop="true" crossOrigin="anonymous" muted></video>
+        <video id="cheers" preload="auto" src="./assets/cheers.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
+        <video id="eeindoor" preload="auto" src="./assets/ee-indoor.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
+        <video id="eeoutdoor" preload="auto" src="./assets/ee-outdoor.mp4" autoplay="false" loop="true" crossOrigin="anonymous"></video>
+        <video id="articulate" preload="auto" src="./assets/articulate.mp4" autoplay="false" loop="true" crossOrigin="anonymous"></video>
+        <video id="singing" preload="auto" src="./assets/singing.mp4" autoplay="false" loop="true" crossOrigin="anonymous"></video>
         <img id="house" src="./assets/temple.jpeg">
-        <a-asset-item id="plane" src="./assets/plane.glb" response-type="arraybuffer"></a-asset-item>
-        <audio id="planeSound" src="./assets/planeSound.wav" preload="auto"></audio>
+        <!-- <a-asset-item id="plane" src="./assets/plane.glb" response-type="arraybuffer"></a-asset-item>
+        <audio id="planeSound" src="./assets/planeSound.wav" preload="auto"></audio> -->
         <audio id="bing" src="./assets/magic-idea.mp3" preload="auto"></audio>
     </a-assets>
 
     <!-- VIDEOS -->
-    <a-videosphere id="video" rotation="0 -90 0" src="#monoPico" visible="true">
+    <a-videosphere id="video" rotation="0 -90 0" src="#cheers" visible="true">
     </a-videosphere>
-    <a-videosphere id="secondVideo" rotation="0 -90 0" src="#houseVideo" visible="false">
+    <a-videosphere id="secondVideo" rotation="0 -90 0" src="#eeoutdoor" visible="false">
     </a-videosphere>
-    <a-videosphere id="portalVideo" rotation="0 -90 0" src="#templeVideo" visible="false" >
+    <a-videosphere id="thirdVideo" rotation="0 -90 0" src="#singing" visible="false" >
+    </a-videosphere>
+    <a-videosphere id="fourthVideo" rotation="0 -90 0" src="#eeindoor" visible="false" >
+    </a-videosphere>
+    <a-videosphere id="fifthVideo" rotation="0 -90 0" src="#articulate" visible="false" >
     </a-videosphere>
 
-    <!-- BUTTON -->
-    <a-triangle id="nextVideoButton" color="blue" rotation="5 0 40" scale="0.3 0.3 0.3" position="1 1.3 -1" visible="false" class="cursor-listener" sound="src: #bing; volume: 0.4"
-    button-hover
-    play-next-video
+    <!-- FIRST BUTTONS -->
+    <a-box id="buttonOne" color="blue" scale="0.3 0.3 0" width="1.4"
+    position="-0.3 1.6 -1" visible="false" class="cursor-listener" sound="src: #bing; volume: 0.4"
+    button-one-hover
+    play-video-two
     >
-    </a-triangle>
-    <a-text id="nextText" value="Play \n Next" width="1.2" height="1.2" color="white" align="center" rotation="0 -25 0" position="1 1 -1" visible="false"></a-text>
+    <a-text id="textOne" value="Easter Egg\nHunt?" color="white" align="center" position="0 0 1" visible="false"></a-text>
+    </a-box>
+    <a-box id="buttonTwo" color="red" scale="0.3 0.3 0"  width="1.4"
+    position="0.3 1.6 -1" visible="false" class="cursor-listener" sound="src: #bing; volume: 0.4"
+    button-two-hover
+    play-video-three
+    >
+    <a-text id="textTwo" value="Karaoke?" color="white" align="center" position="0 0 1" visible="false"></a-text>
+    </a-box>
+    <!-- BOARD GAME BUTTON -->
+    <a-box id="buttonThree" color="blue" scale="0.3 0.3 0"  width="1.4"
+    position="-0.3 1.6 -1" visible="false" class="cursor-listener" sound="src: #bing; volume: 0.4"
+    button-three-hover
+    play-video-five
+    >
+    <a-text id="textThree" value="Board\nGame?" color="white" align="center" position="0 0 1" visible="false"></a-text>
+    </a-box>
 
-    <!-- PORTAL -->
-    <a-link id="portal" href="pageTwo.html" title="Magic Portal" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 1 -1" class="cursor-listener" visible="false"></a-link>
-    <a-link id="portalVR" href="pageTwo.html" title="Press X for \n Magic Portal" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 0 -1" class="cursor-listener" visible="false"
+    <!-- EGG PORTAL --> 
+    <a-link id="portal" href="pageTwo.html" title="Jump inside!" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 1 -1" class="cursor-listener" visible="false"></a-link>
+    <a-link id="portalVR" href="pageTwo.html" title="Press X to \n Jump inside!" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 0 -1" class="cursor-listener" visible="false"
+    portal-controller
+    portal-scaler
+    ></a-link>
+
+    <!-- KARAOKE PORTAL --> 
+    <a-link id="karaokePortal" href="pageThree.html" title="Karaoke!" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 1 -1" class="cursor-listener" visible="false"></a-link>
+    <a-link id="karaokePortalVR" href="pageThree.html" title="Press X to \n Karaoke!" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 0 -1" class="cursor-listener" visible="false"
     portal-controller
     portal-scaler
     ></a-link>
@@ -79,7 +111,7 @@
     <a-entity cursor="rayOrigin: mouse" raycaster="objects: .cursor-listener"></a-entity>
 
     <!-- ANIMATED MODEL -->
-    <a-entity
+    <!-- <a-entity
         id="animModel"
         gltf-model="#plane"	
         position="13 5 -4" 
@@ -88,29 +120,7 @@
         animation="property: position; to: -50 2 -10; dur: 30000; easing: linear; loop: false; startEvents: startanim001; pauseEvents: stopanim001"
         disappear-on-complete
         sound="src: #planeSound; volume: 0.6; poolSize: 5"
-    ></a-entity>
-    <a-entity
-      id="secondModel"
-      gltf-model="#plane"	
-      position="-30 7 -10" 
-      rotation="0 90 0"
-      scale="0.1 0.1 0.1"
-      visible="false"
-      animation="property: position; to: 60 10 -12; dur: 16500; easing: linear; loop: false; startEvents: startanim002"
-      disappear-on-complete
-      sound="src: #planeSound; volume: 0.4"
-></a-entity>
-    <a-entity
-      id="portalModel"
-      gltf-model="#plane"	
-      position="-30 13 -10" 
-      rotation="0 90 0"
-      scale="0.1 0.1 0.1"
-      visible="false"
-      animation="property: position; to: 60 11 -10; dur: 23000; easing: linear; loop: false; startEvents: startanim003"
-      disappear-on-complete
-      sound="src: #planeSound;"
-    ></a-entity>
+    ></a-entity> -->
 
     <!-- OPENING TEXT -->
     <a-text id="welcomeText"
