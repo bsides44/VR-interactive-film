@@ -3,14 +3,16 @@ AFRAME.registerComponent('play-video-five', {
       once: {default: true},
     },
     init: function () {
+        console.log('articulate go')
+
         this.playNextVideo = this.playNextVideo.bind(this);
-        this.tick = this.tick.bind(this);
         var button = document.querySelector("#buttonThree")
 
         button.addEventListener('click', this.playNextVideo);
     },
     playNextVideo: function() {
         // ARTICULATE video
+        console.log('play next go')
 
         // remove video 
         var videoEl = document.querySelector("#fourthVideo")
@@ -38,23 +40,15 @@ AFRAME.registerComponent('play-video-five', {
         
         // remove listeners
         button.removeEventListener('click', this.playNextVideo);
-    },
-    tick: function () {  
-        var videoEl = document.querySelector("#fifthVideo")
-        var videoVisible = videoEl.getAttribute('visible')
-        // currenttime not working
-        var currentTime = videoEl.components.material.data.src.currentTime
-        console.log('currentTime', currentTime)
 
+        // set timer
         var portal = document.querySelector("#karaokePortal")
 
-        // Make portal  appear when video playback is at 8
-        if (videoVisible && currentTime >= 8 && this.data.once) {
-        console.log('go')
-
+        setTimeout(() => {
+            console.log('go')
             portal.object3D.visible = true;
             portal.components.sound.playSound();
             this.data.once= false
-        }
-      }
+        }, 8000);
+    },
   })

@@ -4,11 +4,15 @@ AFRAME.registerComponent('play-video-two', {
     },
     init: function () {
         this.playNextVideo = this.playNextVideo.bind(this);
-        this.tick = this.tick.bind(this);
+        this.appearPortal = this.appearPortal.bind(this);
 
         var button = document.querySelector("#buttonOne")
 
         button.addEventListener('click', this.playNextVideo);
+
+        setTimeout(() => {
+            this.appearPortal()
+        }, 3000);
     },
     playNextVideo: function() {
         // OUTDOOR video
@@ -33,13 +37,11 @@ AFRAME.registerComponent('play-video-two', {
         // remove listeners
         button.removeEventListener('click', this.playNextVideo);
     },
-    tick: function () {  
+    appearPortal: function () {  
         var videoEl = document.querySelector("#secondVideo")
-        var currentTime = videoEl.components.material.data.src.currentTime
+        var portal = document.querySelector("#portal")
 
         // make portal appear 3 seconds in to second next video
-        if (videoEl && currentTime >= 3 && this.data.once) {
-            portal.object3D.visible = true;
-        }
+        if (videoEl) portal.object3D.visible = true;
     }
   })

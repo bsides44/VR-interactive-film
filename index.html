@@ -26,7 +26,8 @@
   <script src="./js/add-vr-controls.js"></script>
   <script src="./js/move-into-vr-view.js"></script>
   <script src="./js/disappear-on-complete.js"></script>
-
+  <script src="./js/play-last-video.js"></script>
+  
 </head>
 <style>
   .a-loader-title {
@@ -62,11 +63,13 @@
     </a-videosphere>
     <a-videosphere id="secondVideo" rotation="0 -90 0" src="#eeoutdoor" visible="false">
     </a-videosphere>
-    <a-videosphere id="thirdVideo" rotation="0 -90 0" src="#singing" visible="false" >
+    <a-videosphere id="thirdVideo" rotation="0 -90 0" src="#singing" visible="false" play-last-video>
     </a-videosphere>
     <a-videosphere id="fourthVideo" rotation="0 -90 0" src="#eeindoor" visible="false" >
     </a-videosphere>
     <a-videosphere id="fifthVideo" rotation="0 -90 0" src="#articulate" visible="false" >
+    </a-videosphere>
+    <a-videosphere id="lastVideo" rotation="0 -90 0" src="#cheers" visible="false">
     </a-videosphere>
 
     <!-- FIRST BUTTONS -->

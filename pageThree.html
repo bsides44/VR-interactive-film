@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>PageTwo</title>
+    <meta name="description" content="Interactive 360 video in web vr using a frame for webxr">
+    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+    <script src="./js/play-last-video.js"></script>
+</head>
+<style>
+    .a-loader-title {
+        color: white;
+        background-color: white;
+    }
+</style>
+
+<body>
+    <a-scene play-last-video loading-screen="dotsColor: black; backgroundColor: white"  shadow="enabled; autoUpdate: true" renderer="antialias: true"
+    webxr="referenceSpaceType: local">
+        <a-assets>
+            <video id="singing" preload="auto" src="./assets/singing.mp4" autoplay="false" loop="true" crossOrigin="anonymous"></video>
+            <video id="cheers" preload="auto" src="./assets/cheers.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
+        </a-assets>
+    
+        <!-- VIDEO -->
+        <a-videosphere id="thirdVideo" rotation="0 -90 0" src="#singing" visible="true" >
+        </a-videosphere>
+        <a-videosphere id="lastVideo" rotation="0 -90 0" src="#cheers" visible="false">
+        </a-videosphere>
+    
+        <!-- CONTROLS -->
+        <a-entity cursor="rayOrigin: mouse" raycaster="objects: .cursor-listener"></a-entity>  
+    </a-scene>
+  </body>
+  <script>
+    AFRAME.registerComponent('play-on-load', {
+        init: function () {
+            document.querySelector("#thirdVideo").getAttribute('material').src.play()
+        }
+        });
+  </script>
+</html>

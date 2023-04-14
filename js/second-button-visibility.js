@@ -4,42 +4,38 @@ AFRAME.registerComponent('second-button-visibility', {
         fourthOnce: {default: true},
       },
     init: function () {
-      this.tick = this.tick.bind(this);
+      this.appearPortals = this.appearPortals.bind(this);
       document.querySelector("#fifthVideo").getAttribute('material').src.pause()
+      setTimeout(() => {
+        this.appearPortals
+      }, 8000);
 
     },
-    tick: function () {  
+    appearPortals: function () {  
       var portalVid = document.querySelector("#portalVideo")
       var fourthVid = document.querySelector("#fourthVideo")
-
+      var fourthVidVisible = false
       var buttonTwo = document.querySelector("#buttonTwo")
       var textTwo = document.querySelector("#textTwo")
       var buttonThree = document.querySelector("#buttonThree")
       var textThree = document.querySelector("#textThree")
-      if (portalVid){
-        var portalVidPlayback = portalVid.components.material.data.src.currentTime
-      }
-      if (fourthVid){
-        var fourthVidPlayback = fourthVid.components.material.data.src.currentTime
-        var fourthVidVisible = fourthVid.getAttribute('visible')
-      }
+
+      if (fourthVid) fourthVidVisible = fourthVid.getAttribute('visible')
   
       // Make buttons appear when video playback is at 8
-      if (portalVid && portalVidPlayback >= 8 && this.data.portalOnce) {
+      if (portalVid) {
           buttonTwo.object3D.visible = true;
           textTwo.object3D.visible = true;
           buttonThree.object3D.visible = true;
           buttonThree.components.sound.playSound();
           textThree.object3D.visible = true;
-          this.data.portalOnce= false
       }
-      if (fourthVid && fourthVidVisible && fourthVidPlayback >= 8 && this.data.once) {
+      if (fourthVid && fourthVidVisible) {
         buttonTwo.object3D.visible = true;
         textTwo.object3D.visible = true;
         buttonThree.object3D.visible = true;
         buttonThree.components.sound.playSound();
         textThree.object3D.visible = true;
-        this.data.fourthOnce= false
-    }
+      }
     }
 })
