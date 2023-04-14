@@ -52,7 +52,8 @@
         <video id="articulate" preload="true" src="./assets/articulate.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
         <video id="singing" preload="true" src="./assets/singCheers.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
         <video id="cheers" preload="true" src="./assets/cheers.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
-        <img id="house" src="./assets/temple.jpeg">
+        <img id="singStill" src="./assets/singStill.jpg">
+        <img id="indoorStill" src="./assets/indoorStill.jpg">
         <!-- <a-asset-item id="plane" src="./assets/plane.glb" response-type="arraybuffer"></a-asset-item>
         <audio id="planeSound" src="./assets/planeSound.wav" preload="auto"></audio> -->
         <audio id="bing" src="./assets/magic-idea.mp3" preload="auto"></audio>
@@ -91,8 +92,8 @@
 
     <!-- EGG PORTAL --> 
     <!-- During EE Hunt, portal appears to go inside [pageTwo]-->
-    <a-link id="portal" href="pageTwo.html" title="Jump inside!" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 1 -1" class="cursor-listener" visible="false"></a-link>
-    <a-link id="portalVR" href="pageTwo.html" title="Press X to \n Jump inside!" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 0 -1" class="cursor-listener" visible="false"
+    <a-link id="portal" href="pageTwo.html" title="Jump inside!" image="#indoorStill" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 1 -1" class="cursor-listener" visible="false"></a-link>
+    <a-link id="portalVR" href="pageTwo.html" title="Press X to \n Jump inside!" image="#indoorStill" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 0 -1" class="cursor-listener" visible="false"
       portal-controller
       portal-scaler
     ></a-link>
@@ -109,8 +110,8 @@
 
     <!-- KARAOKE PORTAL --> 
     <!-- After board game, portal appears for karaoke [pageThree]-->
-    <a-link id="karaokePortal" href="pageThree.html" title="Karaoke!" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 1 -1" class="cursor-listener" visible="false"></a-link>
-    <a-link id="karaokePortalVR" href="pageThree.html" title="Press X to \n Karaoke!" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 0 -1" class="cursor-listener" visible="false"
+    <a-link id="karaokePortal" href="pageThree.html" title="Karaoke!" image="#singStill" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 1 -1" class="cursor-listener" visible="false"></a-link>
+    <a-link id="karaokePortalVR" href="pageThree.html" title="Press X to \n Karaoke!" image="#singStill" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 0 -1" class="cursor-listener" visible="false"
       portal-controller
       portal-scaler
     ></a-link>
