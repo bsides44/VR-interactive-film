@@ -9,10 +9,6 @@ AFRAME.registerComponent('play-video-two', {
         var button = document.querySelector("#buttonOne")
 
         button.addEventListener('click', this.playNextVideo);
-
-        setTimeout(() => {
-            this.appearPortal()
-        }, 3000);
     },
     playNextVideo: function() {
         // OUTDOOR video
@@ -27,21 +23,23 @@ AFRAME.registerComponent('play-video-two', {
         secVideoEl.getAttribute('material').src.play()
         secVideoEl.object3D.visible = true;
   
-        // make triangle and portal disappear
+        // make button disappear
         var button = document.querySelector("#buttonOne")
         button.object3D.visible = false;
         document.querySelector("#textOne").object3D.visible = false
         document.querySelector("#buttonTwo").object3D.visible = false
         document.querySelector("#textTwo").object3D.visible = false 
+
+        // set portal to appear
+        setTimeout(() => {
+            this.appearPortal()
+        }, 4000);
         
         // remove listeners
         button.removeEventListener('click', this.playNextVideo);
     },
     appearPortal: function () {  
-        var videoEl = document.querySelector("#secondVideo")
         var portal = document.querySelector("#portal")
-
-        // make portal appear 3 seconds in to second next video
-        if (videoEl) portal.object3D.visible = true;
+       portal.object3D.visible = true;
     }
   })

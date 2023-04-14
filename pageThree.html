@@ -2,10 +2,12 @@
 
 <head>
     <meta charset="utf-8">
-    <title>PageTwo</title>
+    <title>Maddy's Easter Game</title>
     <meta name="description" content="Interactive 360 video in web vr using a frame for webxr">
     <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+    <script src="./js/escape-button-hover.js"></script>
     <script src="./js/play-last-video.js"></script>
+
 </head>
 <style>
     .a-loader-title {
@@ -15,18 +17,28 @@
 </style>
 
 <body>
-    <a-scene play-last-video loading-screen="dotsColor: black; backgroundColor: white"  shadow="enabled; autoUpdate: true" renderer="antialias: true"
+    <a-scene loading-screen="dotsColor: black; backgroundColor: white"  shadow="enabled; autoUpdate: true" renderer="antialias: true"
     webxr="referenceSpaceType: local">
         <a-assets>
-            <video id="singing" preload="auto" src="./assets/singing.mp4" autoplay="false" loop="true" crossOrigin="anonymous"></video>
+            <video id="singing" preload="auto" src="./assets/singCheers.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
             <video id="cheers" preload="auto" src="./assets/cheers.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
         </a-assets>
     
         <!-- VIDEO -->
+        <!-- After play board game, portal takes us to karaoke [pageThree]-->
         <a-videosphere id="thirdVideo" rotation="0 -90 0" src="#singing" visible="true" >
         </a-videosphere>
-        <a-videosphere id="lastVideo" rotation="0 -90 0" src="#cheers" visible="false">
+        <a-videosphere id="lastVideo" rotation="0 120 0" src="#cheers" visible="false" >
         </a-videosphere>
+
+        <!-- BUTTONS -->
+        <a-box id="escapeButton" color="teal" scale="1.5 1.5 0" rotation="0 -77 0" 
+        position="8 7.9 1.5" visible="true" class="cursor-listener" sound="src: #bing; volume: 0.4"
+        escape-button-hover
+        play-last-video
+        >
+        <a-text id="textTwo" value="Get me\noutta\nhere!" color="white" align="center" position="0 0 0" visible="true"></a-text>
+        </a-box>
     
         <!-- CONTROLS -->
         <a-entity cursor="rayOrigin: mouse" raycaster="objects: .cursor-listener"></a-entity>  

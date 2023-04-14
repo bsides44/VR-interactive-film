@@ -4,7 +4,7 @@ AFRAME.registerComponent('portal-visibility', {
         inVR: {default: false}
       },
     init: function() {
-        this.appearPortal = this.appearPortal.bind(this);
+        // this.appearPortal = this.appearPortal.bind(this);
 
         var videoEl = document.querySelector("#video")
         var firstVideoVisible = videoEl.getAttribute('visible')
@@ -24,24 +24,24 @@ AFRAME.registerComponent('portal-visibility', {
             }
         });
 
-        setTimeout(() => {
-            this.appearPortal()
-        }, 8000);
+        // setTimeout(() => {
+        //     this.appearPortal()
+        // }, 8000);
     },
-    appearPortal: function() {
-        var firstVideoVisible = document.querySelector("#video").getAttribute('visible')
-        var portal = document.querySelector("#portal")
-        var vrPortal = document.querySelector("#portalVR")
+    // appearPortal: function() {
+    //     var firstVideoVisible = document.querySelector("#video").getAttribute('visible')
+    //     var portal = document.querySelector("#portal")
+    //     var vrPortal = document.querySelector("#portalVR")
 
-        // appear portal at 8 seconds out of VR
-        if (!this.data.inVR && firstVideoVisible) {
-            portal.object3D.visible = true;
-        }
+    //     // appear portal at 8 seconds out of VR
+    //     if (!this.data.inVR && firstVideoVisible) {
+    //         portal.object3D.visible = true;
+    //     }
 
-        // appear VRportal at 8 seconds in VR
-        if (this.data.inVR && firstVideoVisible) {
-            vrPortal.object3D.visible = true;
-        }
-        this.data.portalsVisible = true
-    }
+    //     // appear VRportal at 8 seconds in VR
+    //     if (this.data.inVR && firstVideoVisible) {
+    //         vrPortal.object3D.visible = true;
+    //     }
+    //     this.data.portalsVisible = true
+    // }
 });

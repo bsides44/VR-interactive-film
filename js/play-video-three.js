@@ -13,7 +13,7 @@ AFRAME.registerComponent('play-video-three', {
 
         // remove video 
         var videoEl = document.querySelector("#video")
-        var portalVid = document.querySelector("#portalideo")
+        var portalVid = document.querySelector("#portalVideo")
         if (videoEl){
             videoEl.getAttribute('material').src.pause()
             videoEl.object3D.visible = false;
@@ -44,6 +44,9 @@ AFRAME.registerComponent('play-video-three', {
             document.querySelector("#textThree").object3D.visible = false
         }
         
+        // make escape button appear
+        document.querySelector("#escapeButton").object3D.visible = true;
+
         // remove listeners
         button.removeEventListener('click', this.playNextVideo);
     }

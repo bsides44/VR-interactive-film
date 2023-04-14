@@ -2,8 +2,8 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Maddy's Interactve WebVR Demo</title>
-  <meta name="description" content="Interactive 360 video in web vr using a frame for webxr">
+  <title>Maddy's Easter Game</title>
+  <meta name="description" content="Interactive 360 video-based Easter egg game in web vr using aframe for webxr">
   <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
   <link rel="icon" href="./assets/favicon-16.png" sizes="16x16">
@@ -20,12 +20,12 @@
   <script src="./js/portal-controller.js"></script>
   <script src="./js/portal-scaler.js"></script>
   <script src="./js/second-button-visibility.js"></script>
-  <script src="./js/button-visibility.js"></script>
-  <script src="./js/play-on-click.js"></script>
+  <script src="./js/init-scene-one.js"></script>
   <script src="./js/play-in-vr.js"></script>
   <script src="./js/add-vr-controls.js"></script>
   <script src="./js/move-into-vr-view.js"></script>
   <script src="./js/disappear-on-complete.js"></script>
+  <script src="./js/escape-button-hover.js"></script>
   <script src="./js/play-last-video.js"></script>
   
 </head>
@@ -39,19 +39,19 @@
 <body>
   <a-scene loading-screen="dotsColor: black; backgroundColor: white"  shadow="enabled; autoUpdate: true" renderer="antialias: true"
   webxr="referenceSpaceType: local"  
-  play-on-click 
-  play-in-vr
-  add-vr-controls
-  move-into-vr-view
-  button-visibility
-  second-button-visibility
+    init-scene-one 
+    play-in-vr
+    add-vr-controls
+    move-into-vr-view
+    second-button-visibility
   >
     <a-assets>
-        <video id="cheers" preload="auto" src="./assets/cheers.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
-        <video id="eeindoor" preload="auto" src="./assets/ee-indoor.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
-        <video id="eeoutdoor" preload="auto" src="./assets/ee-outdoor.mp4" autoplay="false" loop="true" crossOrigin="anonymous"></video>
-        <video id="articulate" preload="auto" src="./assets/articulate.mp4" autoplay="false" loop="true" crossOrigin="anonymous"></video>
-        <video id="singing" preload="auto" src="./assets/singing.mp4" autoplay="false" loop="true" crossOrigin="anonymous"></video>
+        <video id="intro" preload="true" src="./assets/intro.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
+        <video id="eeindoor" preload="true" src="./assets/eeIndoor.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
+        <video id="eeoutdoor" preload="true" src="./assets/eeOutdoor.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
+        <video id="articulate" preload="true" src="./assets/articulate.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
+        <video id="singing" preload="true" src="./assets/singCheers.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
+        <video id="cheers" preload="true" src="./assets/cheers.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
         <img id="house" src="./assets/temple.jpeg">
         <!-- <a-asset-item id="plane" src="./assets/plane.glb" response-type="arraybuffer"></a-asset-item>
         <audio id="planeSound" src="./assets/planeSound.wav" preload="auto"></audio> -->
@@ -59,56 +59,71 @@
     </a-assets>
 
     <!-- VIDEOS -->
-    <a-videosphere id="video" rotation="0 -90 0" src="#cheers" visible="true">
+    <a-videosphere id="video" rotation="0 -90 0" src="#intro" visible="true">
     </a-videosphere>
     <a-videosphere id="secondVideo" rotation="0 -90 0" src="#eeoutdoor" visible="false">
     </a-videosphere>
-    <a-videosphere id="thirdVideo" rotation="0 -90 0" src="#singing" visible="false" play-last-video>
+    <a-videosphere id="thirdVideo" rotation="0 -90 0" src="#singing" visible="false">
     </a-videosphere>
     <a-videosphere id="fourthVideo" rotation="0 -90 0" src="#eeindoor" visible="false" >
     </a-videosphere>
     <a-videosphere id="fifthVideo" rotation="0 -90 0" src="#articulate" visible="false" >
     </a-videosphere>
-    <a-videosphere id="lastVideo" rotation="0 -90 0" src="#cheers" visible="false">
+    <a-videosphere id="lastVideo" rotation="0 120 0" src="#cheers" visible="false" >
     </a-videosphere>
 
     <!-- FIRST BUTTONS -->
+    <!-- Watching Intro, opetions to EE Hunt or Karaoke -->
     <a-box id="buttonOne" color="blue" scale="0.3 0.3 0" width="1.4"
     position="-0.3 1.6 -1" visible="false" class="cursor-listener" sound="src: #bing; volume: 0.4"
-    button-one-hover
-    play-video-two
+      button-one-hover
+      play-video-two
     >
     <a-text id="textOne" value="Easter Egg\nHunt?" color="white" align="center" position="0 0 1" visible="false"></a-text>
     </a-box>
     <a-box id="buttonTwo" color="red" scale="0.3 0.3 0"  width="1.4"
     position="0.3 1.6 -1" visible="false" class="cursor-listener" sound="src: #bing; volume: 0.4"
-    button-two-hover
-    play-video-three
+      button-two-hover
+      play-video-three
     >
     <a-text id="textTwo" value="Karaoke?" color="white" align="center" position="0 0 1" visible="false"></a-text>
     </a-box>
+
+    <!-- EGG PORTAL --> 
+    <!-- During EE Hunt, portal appears to go inside [pageTwo]-->
+    <a-link id="portal" href="pageTwo.html" title="Jump inside!" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 1 -1" class="cursor-listener" visible="false"></a-link>
+    <a-link id="portalVR" href="pageTwo.html" title="Press X to \n Jump inside!" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 0 -1" class="cursor-listener" visible="false"
+      portal-controller
+      portal-scaler
+    ></a-link>
+
     <!-- BOARD GAME BUTTON -->
+    <!-- After indoor EE hunt, buttons appear to play board game or karaoke -->
     <a-box id="buttonThree" color="blue" scale="0.3 0.3 0"  width="1.4"
     position="-0.3 1.6 -1" visible="false" class="cursor-listener" sound="src: #bing; volume: 0.4"
-    button-three-hover
-    play-video-five
+      button-three-hover
+      play-video-five
     >
     <a-text id="textThree" value="Board\nGame?" color="white" align="center" position="0 0 1" visible="false"></a-text>
     </a-box>
 
-    <!-- EGG PORTAL --> 
-    <a-link id="portal" href="pageTwo.html" title="Jump inside!" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 1 -1" class="cursor-listener" visible="false"></a-link>
-    <a-link id="portalVR" href="pageTwo.html" title="Press X to \n Jump inside!" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 0 -1" class="cursor-listener" visible="false"
-    portal-controller
-    portal-scaler
-    ></a-link>
-
     <!-- KARAOKE PORTAL --> 
+    <!-- After board game, portal appears for karaoke [pageThree]-->
     <a-link id="karaokePortal" href="pageThree.html" title="Karaoke!" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 1 -1" class="cursor-listener" visible="false"></a-link>
     <a-link id="karaokePortalVR" href="pageThree.html" title="Press X to \n Karaoke!" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 0 -1" class="cursor-listener" visible="false"
-    portal-controller
-    portal-scaler
+      portal-controller
+      portal-scaler
     ></a-link>
+
+    <!-- ESCAPE BUTTON --> 
+    <!-- To escape early from karaoke to final scene -->
+    <a-box id="escapeButton" color="teal" scale="1.5 1.5 0" rotation="0 -77 0" 
+    position="8 7.9 1.5" visible="false" class="cursor-listener" sound="src: #bing; volume: 0.4"
+    escape-button-hover
+    play-last-video
+    >
+    <a-text id="textTwo" value="Get me\noutta\nhere!" color="white" align="center" position="0 0 0" visible="true"></a-text>
+    </a-box>
 
     <!-- CONTROLS -->
     <a-entity cursor="rayOrigin: mouse" raycaster="objects: .cursor-listener"></a-entity>
@@ -127,13 +142,13 @@
 
     <!-- OPENING TEXT -->
     <a-text id="welcomeText"
-    value="Sound on\nWait for background\nimage to load\n\nPhone/ Computer:\nDrag to explore\nClick or press\nto start\n\nFor VR\nClick VR\nThen press any button"
-    position= "0.45 1.6 -1"
-    align= "center"
-    color= "#A10AE2"
-    font= "dejavu"
-    width= "2.4"
-    lineHeight="0.1"
+      value="Sound on\nWait for background\nimage to load\n\nPhone/ Computer:\nDrag to explore\nClick or press\nto start\n\nFor VR\nClick VR\nThen press any button"
+      position= "0.45 1.6 -1"
+      align= "center"
+      color= "#A10AE2"
+      font= "dejavu"
+      width= "2.4"
+      lineHeight="0.1"
     ></a-text>
   </a-scene>
 </body>

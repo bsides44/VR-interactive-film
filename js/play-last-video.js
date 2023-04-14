@@ -1,11 +1,11 @@
 AFRAME.registerComponent('play-last-video', {
     init: function () {
-        console.log('play last video init')
-        this.playLastVid = this.playLastVid.bind(this);
+        document.querySelector("#lastVideo").getAttribute('material').src.pause()
 
-        setTimeout(() => {
-            this.playLastVid()
-        }, 12000);
+        this.playLastVid = this.playLastVid.bind(this);
+        var button = document.querySelector("#escapeButton")
+
+        button.addEventListener('click', this.playLastVid);
     },
     playLastVid: function() {
         // CHEERS video
@@ -14,6 +14,9 @@ AFRAME.registerComponent('play-last-video', {
         var videoEl = document.querySelector("#thirdVideo")
         videoEl.getAttribute('material').src.pause()
         videoEl.object3D.visible = false;
+
+        //remove button
+        document.querySelector("#escapeButton").object3D.visible = false;
   
         // make last video appear
         var secVideoEl = document.querySelector("#lastVideo")

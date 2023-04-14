@@ -1,13 +1,13 @@
-AFRAME.registerComponent('portal-scaler', {
+AFRAME.registerComponent('karaoke-portal-scaler', {
     init: function() {
         // Peek portal on mouse hover 
-        var portal = document.querySelector("#portal")
+        var portal = document.querySelector("#karaokePortal")
 
         portal.addEventListener('raycaster-intersected', function () {
             portal.setAttribute('scale', '1 1 1')
         })
         portal.addEventListener('raycaster-intersected-cleared', function () { 
-        portal.setAttribute('scale', "0.2 0.2 0.2")
+            portal.setAttribute('scale', "0.4 0.4 0.4")
         })
 
         window.addEventListener('enter-vr', () => {
@@ -20,7 +20,7 @@ AFRAME.registerComponent('portal-scaler', {
             })
             window.addEventListener('abuttonup', function() {
                 var vrPortalVisible = vrPortal.getAttribute('visible')
-                if (vrPortalVisible) vrPortal.setAttribute('scale', '0.2 0.2 0.2')
+                if (vrPortalVisible) vrPortal.setAttribute('scale', '0.4 0.4 0.4')
             })
 
         });
@@ -29,7 +29,7 @@ AFRAME.registerComponent('portal-scaler', {
                 vrPortal.setAttribute('scale', '1 1 1')
             })
             window.removeEventListener('abuttonup', function() {
-                vrPortal.setAttribute('scale', '0.2 0.2 0.2')
+                vrPortal.setAttribute('scale', '0.4 0.4 0.4')
             })
         });
     }

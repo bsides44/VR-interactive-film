@@ -2,17 +2,17 @@
 
 <head>
     <meta charset="utf-8">
-    <title>PageTwo</title>
+    <title>Maddy's Easter Game</title>
     <meta name="description" content="Interactive 360 video in web vr using a frame for webxr">
     <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
     <script src="./js/disappear-on-complete.js"></script>
-    <script src="./js/second-button-visibility.js"></script>
+    <script src="./js/init-page-two.js"></script>
     <script src="./js/button-three-hover.js"></script>
     <script src="./js/button-two-hover.js"></script>
     <script src="./js/play-video-three.js"></script>
     <script src="./js/play-video-five.js"></script>
-    <script src="./js/portal-controller.js"></script>
-    <script src="./js/portal-scaler.js"></script>
+    <script src="./js/karaoke-portal-controller.js"></script>
+    <script src="./js/karaoke-portal-scaler.js"></script>
 </head>
 <style>
     .a-loader-title {
@@ -22,18 +22,18 @@
 </style>
 
 <body>
-    <a-scene second-button-visibility loading-screen="dotsColor: black; backgroundColor: white"  shadow="enabled; autoUpdate: true" renderer="antialias: true"
+    <a-scene init-page-two loading-screen="dotsColor: black; backgroundColor: white"  shadow="enabled; autoUpdate: true" renderer="antialias: true"
     webxr="referenceSpaceType: local">
         <a-assets>
-            <video id="houseVideo" preload="auto" src="./assets/ee-indoor.mp4" autoplay="false" loop="true" crossOrigin="anonymous"></video>
-            <video id="articulate" preload="auto" src="./assets/articulate.mp4" autoplay="false" loop="true" crossOrigin="anonymous"></video>
-            <video id="singing" preload="auto" src="./assets/singing.mp4" autoplay="false" loop="true" crossOrigin="anonymous"></video>
+            <video id="eeIndoor" preload="auto" src="./assets/eeIndoor.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
+            <video id="articulate" preload="auto" src="./assets/articulate.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
+            <video id="singing" preload="auto" src="./assets/singCheers.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
             <audio id="bing" src="./assets/magic-idea.mp3" preload="auto"></audio>
             <img id="house" src="./assets/temple.jpeg">
         </a-assets>
     
         <!-- VIDEO -->
-        <a-videosphere id="portalVideo" rotation="0 -90 0" src="#houseVideo" visible="true" play-on-load>
+        <a-videosphere id="portalVideo" rotation="0 -90 0" src="#eeIndoor" visible="true" play-on-load>
         </a-videosphere>
         <a-videosphere id="thirdVideo" rotation="0 -90 0" src="#singing" visible="false" >
         </a-videosphere>
@@ -41,6 +41,8 @@
         </a-videosphere>
 
         <!-- BUTTONS -->
+        <!-- Portal has taken us inside from outdoor EE hunt.
+        After indoor EE hunt, buttons appear to play board game or karaoke -->
         <a-box id="buttonTwo" color="red" scale="0.3 0.3 0"  width="1.4"
         position="0.3 1.6 -1" visible="false" class="cursor-listener" sound="src: #bing; volume: 0.4"
         button-two-hover
@@ -57,10 +59,13 @@
         </a-box>
 
         <!-- KARAOKE PORTAL --> 
-        <a-link id="karaokePortal" href="pageThree.html" title="Karaoke!" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 1 -1" class="cursor-listener" visible="false" sound="src: #bing; volume: 0.4"></a-link>
-        <a-link id="karaokePortalVR" href="pageThree.html" title="Press X to \n Karaoke!" image="#house" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 0 -1" class="cursor-listener" visible="false" sound="src: #bing; volume: 0.4"
-            portal-controller
-            portal-scaler
+        <!-- After board game, portal appears for karaoke [pageThree]-->
+        <!-- Title missing?-->
+        <a-link id="karaokePortal" href="pageThree.html" title="Karaoke!" image="#house" scale="0.4 0.4 0.4" rotation="0 57 0" 
+        position="-1.8 1.5 0" class="cursor-listener" visible="false" sound="src: #bing; volume: 0.4"></a-link>
+        <a-link id="karaokePortalVR" href="pageThree.html" title="Press X to\nKaraoke!" image="#house" scale="0.4 0.4 0.4" rotation="0 53 0" position="-1.8 1.5 0" class="cursor-listener" visible="false" sound="src: #bing; volume: 0.4"
+            karaoke-portal-controller
+            karaoke-portal-scaler
         ></a-link>
     
         <!-- CONTROLS -->
