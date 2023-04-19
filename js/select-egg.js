@@ -15,21 +15,26 @@ AFRAME.registerComponent('select-egg', {
           })
         egg.addEventListener('raycaster-intersected-cleared', function () { 
             egg.setAttribute('scale', '0.05 0.05 0.05');
-          })
+        })
     },
     addToCount: function() {
         this.data.count = this.data.count + 1
         var eggText = document.querySelector("#eggCount")
         var egg = document.querySelector(this.data.eggId)
-
         eggText.setAttribute('text', {value: this.data.count})
         eggText.components.sound.playSound();
 
-        // this.el.removeEventListener('click', this.addToCount);
-        // egg.removeEventListener('raycaster-intersected', function () {
-        //     egg.setAttribute('scale', '0.1 0.1 0.1');})
-        // egg.removeEventListener('raycaster-intersected-cleared', function () { 
-        //     egg.setAttribute('scale', '0.05 0.05 0.05');})
         egg.object3D.visible = false;
+        
+        var eggIconOne = document.querySelector("#eggIconOne")
+        var oneOpacity = eggIconOne.getAttribute('opacity')
+        var eggIconTwo = document.querySelector("#eggIconTwo")
+        var twoOpacity = eggIconTwo.getAttribute('opacity')
+        var eggIconThree = document.querySelector("#eggIconThree")
+        var threeOpacity= eggIconThree.getAttribute('opacity')
+
+        if (oneOpacity != 1 && twoOpacity != 1 && threeOpacity != 1) eggIconOne.setAttribute('opacity', 1)
+        else if (oneOpacity == 1 && twoOpacity  != 1 && threeOpacity != 1) eggIconTwo.setAttribute('opacity', 1)
+        else if (oneOpacity == 1&& twoOpacity == 1&& threeOpacity  != 1) eggIconThree.setAttribute('opacity', 1)
     }
 })

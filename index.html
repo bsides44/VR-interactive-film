@@ -55,8 +55,13 @@
                           muted loop="false" crossOrigin="anonymous"></video>
         <video id="cheers" preload="false" src="./assets/cheers.mp4" 
                           autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
-        <img id="singStill" src="./assets/singStill.jpg">
+        
+		<img id="singStill" src="./assets/singStill.jpg">
         <img id="indoorStill" src="./assets/indoorStill.jpg">
+        <img id="eggStill" src="./assets/favicon-192.png">
+        <img id="redEggStill" src="./assets/redEggIcon.png">
+
+
         <a-asset-item id="oneEgg" src="./assets/egg/mono/scene.gltf" response-type="arraybuffer"></a-asset-item>
 		<a-asset-item id="twoEgg" src="./assets/egg/spiral/scene.gltf" response-type="arraybuffer"></a-asset-item>
 		<a-asset-item id="threeEgg" src="./assets/egg/spot/scene.gltf" response-type="arraybuffer"></a-asset-item>
@@ -105,15 +110,56 @@
     ></a-text>
 
 	<!-- EGG COUNTER -->
-	<a-entity id="eggCount" text="value:0;
-	align: center;
-	color: pink;
-	font: dejavu;"
-	position= "1 2.2 -1"
-	visible= "false"
-	scale="4 4 0"
-	sound="src: #bing; volume: 0.6; poolSize: 5"
-></a-entity>
+	<!-- Icons not appearing one at a time -->
+	<a-camera>
+		<a-image id="eggIconOne" src="#eggStill"
+		position="-0.135 1.098 -1.5"
+		visible= "false"
+		scale="0.15 0.15 0.15"
+		opacity="0.4"
+		></a-image>
+		<a-image id="eggIconTwo" src="#eggStill"
+		position="-0.275 1.098 -1.5"
+		visible= "false"
+		scale="0.15 0.15 0.15"
+		opacity="0.4"
+		></a-image>
+		<a-image id="eggIconThree" src="#eggStill"
+		position="-0.415 1.098 -1.5"
+		visible= "false"
+		scale="0.15 0.15 0.15"
+		opacity="0.4"
+		></a-image>
+		<a-image id="bonusIconOne" src="#redEggStill"
+		position="-0.555 1.098 -1.5"
+		visible= "false"
+		scale="0.15 0.15 0.15"
+		opacity="0.4"
+		></a-image>
+		<a-image id="bonusIconTwo" src="#redEggStill"
+		position="-0.695 1.098 -1.5"
+		visible= "false"
+		scale="0.15 0.15 0.15"
+		opacity="0.4"
+		></a-image>
+		<a-image id="bonusIconThree" src="#redEggStill"
+		position="-0.835 1.098 -1.5"
+		visible= "false"
+		scale="0.15 0.15 0.15"
+		opacity="0.4"
+		></a-image>
+		<a-entity id="eggCount" text="value:0;
+		align: center;
+		width:3;
+		color: pink;
+		font: dejavu;"
+		position="0 1.1 -1.5"
+		visible= "false"
+		sound="src: #bing; volume: 0.6; poolSize: 5"
+		></a-entity>
+	</a-camera>
+
+
 
 	<!-- CHALLENGE TEXT -->
 	<a-entity id="challengeText" text="
@@ -157,6 +203,7 @@
 	></a-entity>
 
 	<!-- EGG MODELS -->
+	<!-- not disappearing when selected -->
 	<a-entity
 		id="eggOne"
 		gltf-model="#oneEgg"	
@@ -166,10 +213,10 @@
 		sound="src: #bing; volume: 0.6; poolSize: 10"
 		visible="false"
 		class= "cursor-listener"
-		select-egg="eggId:#eggOne"
+		select-egg="eggId: #eggOne"
 		egg-appear
 	></a-entity>
-	<a-entity
+	<!-- <a-entity
         id="eggTwo"
         gltf-model="#twoEgg"	
         position="1 0 -1" 
@@ -178,8 +225,7 @@
         sound="src: #bing; volume: 0.6; poolSize: 10"
 		visible="false"
 		class= "cursor-listener"
-		select-egg="eggId:#eggTwo"
-		egg-appear
+		select-egg="eggId: #eggTwo"
     ></a-entity>
 	<a-entity
         id="eggThree"
@@ -190,8 +236,7 @@
         sound="src: #bing; volume: 0.6; poolSize: 10"
 		visible="false"
 		class= "cursor-listener"
-		select-egg="eggId:#eggThree"
-		egg-appear
+		select-egg="eggId: #eggThree"
     ></a-entity>
 	<a-entity
         id="eggSeven"
@@ -202,8 +247,7 @@
         sound="src: #bing; volume: 0.6; poolSize: 10"
 		visible="false"
 		class= "cursor-listener"
-		select-egg="eggId:#eggSeven"
-		egg-appear
+		select-egg="eggId: #eggSeven"
     ></a-entity>
 	<a-entity
         id="eggEight"
@@ -214,8 +258,7 @@
         sound="src: #bing; volume: 0.6; poolSize: 10"
 		visible="false"
 		class= "cursor-listener"
-		select-egg="eggId:#eggEight"
-		egg-appear
+		select-egg="eggId: #eggEight"
     ></a-entity>
 	<a-entity
         id="eggNine"
@@ -226,9 +269,8 @@
         sound="src: #bing; volume: 0.6; poolSize: 10"
 		visible="false"
 		class= "cursor-listener"
-		select-egg="eggId:#eggNine"
-		egg-appear
-    ></a-entity>
+		select-egg="eggId: #eggNine"
+    ></a-entity> -->
   </a-scene>
 </body>
 </html>
