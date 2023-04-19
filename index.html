@@ -17,6 +17,8 @@
   <script src="./js/button-hover.js"></script>
   <script src="./js/play-video.js"></script>
   <script src="./js/on-click-end.js"></script>
+  <script src="./js/select-egg.js"></script>
+  <script src="./js/egg-appear.js"></script>
 
   
 </head>
@@ -55,8 +57,15 @@
                           autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
         <img id="singStill" src="./assets/singStill.jpg">
         <img id="indoorStill" src="./assets/indoorStill.jpg">
-        <!-- <a-asset-item id="plane" src="./assets/plane.glb" response-type="arraybuffer"></a-asset-item>
-        <audio id="planeSound" src="./assets/planeSound.wav" preload="auto"></audio> -->
+        <a-asset-item id="oneEgg" src="./assets/egg/mono/scene.gltf" response-type="arraybuffer"></a-asset-item>
+		<a-asset-item id="twoEgg" src="./assets/egg/spiral/scene.gltf" response-type="arraybuffer"></a-asset-item>
+		<a-asset-item id="threeEgg" src="./assets/egg/spot/scene.gltf" response-type="arraybuffer"></a-asset-item>
+		<a-asset-item id="fourEgg" src="./assets/egg/stripe/scene.gltf" response-type="arraybuffer"></a-asset-item>
+		<a-asset-item id="fiveEgg" src="./assets/egg/tone/scene.gltf" response-type="arraybuffer"></a-asset-item>
+		<a-asset-item id="sixEgg" src="./assets/egg/zigzag/scene.gltf" response-type="arraybuffer"></a-asset-item>
+		<a-asset-item id="sevenEgg" src="./assets/egg/danny/scene.gltf" response-type="arraybuffer"></a-asset-item>
+		<a-asset-item id="eightEgg" src="./assets/egg/glow/scene.gltf" response-type="arraybuffer"></a-asset-item>
+		<a-asset-item id="nineEgg" src="./assets/egg/russia/scene.gltf" response-type="arraybuffer"></a-asset-item>
         <audio id="bing" src="./assets/magic-idea.mp3" preload="auto"></audio>
     </a-assets>
 
@@ -70,7 +79,6 @@
       button-hover="button: #prevButton; text: #prevText"
       play-video="currentEvent: 1"
       >
-
     <a-text id="prevText" value="Back?" color="white" align="center" position="0 0 1" visible="true" ></a-text>
     </a-box>
     <!-- NEXT BUTTON -->
@@ -85,18 +93,6 @@
     <!-- CONTROLS -->
     <a-entity cursor="rayOrigin: mouse" raycaster="objects: .cursor-listener"></a-entity>
 
-    <!-- ANIMATED MODEL -->
-    <!-- <a-entity
-        id="animModel"
-        gltf-model="#plane"	
-        position="13 5 -4" 
-        rotation="0 -90 0"
-        scale="0.1 0.1 0.1"
-        animation="property: position; to: -50 2 -10; dur: 30000; easing: linear; loop: false; startEvents: startanim001; pauseEvents: stopanim001"
-        disappear-on-complete
-        sound="src: #planeSound; volume: 0.6; poolSize: 5"
-    ></a-entity> -->
-
     <!-- OPENING TEXT -->
     <a-text id="welcomeText"
       value="Sound on\nWait for background\nimage to load\n\nPhone/ Computer:\nDrag to explore\nClick or press\nto start\n\nFor VR\nClick VR\nThen press any button"
@@ -107,6 +103,17 @@
       width= "2.4"
       lineHeight="0.1"
     ></a-text>
+
+	<!-- EGG COUNTER -->
+	<a-entity id="eggCount" text="value:0;
+	align: center;
+	color: pink;
+	font: dejavu;"
+	position= "1 2.2 -1"
+	visible= "false"
+	scale="4 4 0"
+	sound="src: #bing; volume: 0.6; poolSize: 5"
+></a-entity>
 
 	<!-- CHALLENGE TEXT -->
 	<a-entity id="challengeText" text="
@@ -148,6 +155,80 @@
 		class= "cursor-listener" visible= "false"
 		on-click-end
 	></a-entity>
+
+	<!-- EGG MODELS -->
+	<a-entity
+		id="eggOne"
+		gltf-model="#oneEgg"	
+		position="1 1 -1" 
+		scale="0.05 0.05 0.05"
+		animation="property: rotation; to: 0 0 20; dur: 200; easing: easeInOutElastic; loop: true"
+		sound="src: #bing; volume: 0.6; poolSize: 10"
+		visible="false"
+		class= "cursor-listener"
+		select-egg="eggId:#eggOne"
+		egg-appear
+	></a-entity>
+	<a-entity
+        id="eggTwo"
+        gltf-model="#twoEgg"	
+        position="1 0 -1" 
+        scale="0.05 0.05 0.05"
+        animation="property: rotation; to: 0 0 20; dur: 200; easing: easeInOutElastic; loop: true"
+        sound="src: #bing; volume: 0.6; poolSize: 10"
+		visible="false"
+		class= "cursor-listener"
+		select-egg="eggId:#eggTwo"
+		egg-appear
+    ></a-entity>
+	<a-entity
+        id="eggThree"
+        gltf-model="#threeEgg"	
+        position="2 1 -1" 
+        scale="0.05 0.05 0.05"
+        animation="property: rotation; to: 0 0 20; dur: 200; easing: easeInOutElastic; loop: true"
+        sound="src: #bing; volume: 0.6; poolSize: 10"
+		visible="false"
+		class= "cursor-listener"
+		select-egg="eggId:#eggThree"
+		egg-appear
+    ></a-entity>
+	<a-entity
+        id="eggSeven"
+        gltf-model="#sevenEgg"	
+        position="1 1 -1" 
+        scale="0.07 0.07 0.07"
+        animation="property: rotation; to: 0 0 20; dur: 200; easing: easeInOutElastic; loop: true"
+        sound="src: #bing; volume: 0.6; poolSize: 10"
+		visible="false"
+		class= "cursor-listener"
+		select-egg="eggId:#eggSeven"
+		egg-appear
+    ></a-entity>
+	<a-entity
+        id="eggEight"
+        gltf-model="#eightEgg"	
+        position="1 1 -2" 
+        scale="0.05 0.05 0.05"
+        animation="property: rotation; to: 0 0 20; dur: 200; easing: easeInOutElastic; loop: true"
+        sound="src: #bing; volume: 0.6; poolSize: 10"
+		visible="false"
+		class= "cursor-listener"
+		select-egg="eggId:#eggEight"
+		egg-appear
+    ></a-entity>
+	<a-entity
+        id="eggNine"
+        gltf-model="#nineEgg"	
+        position="2 1 1" 
+        scale="0.05 0.05 0.05"
+        animation="property: rotation; to: 0 0 20; dur: 200; easing: easeInOutElastic; loop: true"
+        sound="src: #bing; volume: 0.6; poolSize: 10"
+		visible="false"
+		class= "cursor-listener"
+		select-egg="eggId:#eggNine"
+		egg-appear
+    ></a-entity>
   </a-scene>
 </body>
 </html>
