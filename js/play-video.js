@@ -23,6 +23,10 @@ AFRAME.registerComponent('play-video', {
 		]
 		var event = events[this.data.currentEvent]
 		
+		// emit playing event - not working
+		var scene = document.querySelector("a-scene")
+		scene.emit('videoChanged');
+
         // replace video source
         var videoPlayer = document.querySelector("#videoPlayer")
 		videoPlayer.getAttribute('material').src.pause()
