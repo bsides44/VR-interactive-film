@@ -12,21 +12,12 @@
   <link rel="icon" href="./assets/favicon-128.png" sizes="128x128">
   <link rel="icon" href="./assets/favicon-192.png" sizes="192x192">
   <link rel="apple-touch-icon" href="./assets/favicon-180.png">
-  <script src="./js/button-one-hover.js"></script>
-  <script src="./js/button-two-hover.js"></script>
-  <script src="./js/button-three-hover.js"></script>
-  <script src="./js/play-video-two.js"></script>
-  <script src="./js/play-video-three.js"></script>
-  <script src="./js/portal-controller.js"></script>
-  <script src="./js/portal-scaler.js"></script>
-  <script src="./js/second-button-visibility.js"></script>
   <script src="./js/init-scene-one.js"></script>
-  <script src="./js/play-in-vr.js"></script>
-  <script src="./js/add-vr-controls.js"></script>
-  <script src="./js/move-into-vr-view.js"></script>
-  <script src="./js/disappear-on-complete.js"></script>
-  <script src="./js/escape-button-hover.js"></script>
-  <script src="./js/play-last-video.js"></script>
+  <script src="./js/on-click-accept.js"></script>
+  <script src="./js/button-hover.js"></script>
+  <script src="./js/play-video.js"></script>
+  <script src="./js/on-click-end.js"></script>
+
   
 </head>
 <style>
@@ -39,19 +30,29 @@
 <body>
   <a-scene loading-screen="dotsColor: black; backgroundColor: white"  shadow="enabled; autoUpdate: true" renderer="antialias: true"
   webxr="referenceSpaceType: local"  
-    init-scene-one 
-    play-in-vr
-    add-vr-controls
-    move-into-vr-view
-    second-button-visibility
+  init-scene-one
   >
     <a-assets>
-        <video id="intro" preload="true" src="./assets/intro.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
-        <video id="eeindoor" preload="true" src="./assets/eeIndoor.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
-        <video id="eeoutdoor" preload="true" src="./assets/eeOutdoor.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
-        <video id="articulate" preload="true" src="./assets/articulate.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
-        <video id="singing" preload="true" src="./assets/singCheers.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
-        <video id="cheers" preload="true" src="./assets/cheers.mp4" autoplay="false" loop="false" crossOrigin="anonymous"></video>
+        <video id="intro" preload="true" src="./assets/intro.mp4" autoplay="false" 
+                          muted loop="false" crossOrigin="anonymous"></video>
+        <video id="eeOutdoor" preload="true" src="./assets/ee1.mp4" autoplay="false" 
+                          muted loop="false" crossOrigin="anonymous"></video>
+        <video id="sing1" preload="false" src="./assets/sing1.mp4" autoplay="false" 
+                          muted loop="false" crossOrigin="anonymous"></video>
+        <video id="eeIndoorOne" preload="true" src="./assets/ee2_1.mp4" 
+                          autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
+        <video id="sing2" preload="false" src="./assets/sing2.mp4" autoplay="false" 
+                          muted loop="false" crossOrigin="anonymous"></video>
+        <video id="articulate" preload="false" src="./assets/articulate.mp4" 
+                          autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
+        <video id="sing3" preload="false" src="./assets/sing3.mp4" autoplay="false" 
+                          muted loop="false" crossOrigin="anonymous"></video>
+        <video id="eeIndoorTwo" preload="false" src="./assets/ee2_2.mp4" 
+                          autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
+        <video id="sing4" preload="false" src="./assets/sing4.mp4" autoplay="false" 
+                          muted loop="false" crossOrigin="anonymous"></video>
+        <video id="cheers" preload="false" src="./assets/cheers.mp4" 
+                          autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
         <img id="singStill" src="./assets/singStill.jpg">
         <img id="indoorStill" src="./assets/indoorStill.jpg">
         <!-- <a-asset-item id="plane" src="./assets/plane.glb" response-type="arraybuffer"></a-asset-item>
@@ -60,70 +61,25 @@
     </a-assets>
 
     <!-- VIDEOS -->
-    <a-videosphere id="video" rotation="0 -90 0" src="#intro" visible="true">
-    </a-videosphere>
-    <a-videosphere id="secondVideo" rotation="0 -90 0" src="#eeoutdoor" visible="false">
-    </a-videosphere>
-    <a-videosphere id="thirdVideo" rotation="0 -90 0" src="#singing" visible="false">
-    </a-videosphere>
-    <a-videosphere id="fourthVideo" rotation="0 -90 0" src="#eeindoor" visible="false" >
-    </a-videosphere>
-    <a-videosphere id="fifthVideo" rotation="0 -90 0" src="#articulate" visible="false" >
-    </a-videosphere>
-    <a-videosphere id="lastVideo" rotation="0 120 0" src="#cheers" visible="false" >
+    <a-videosphere id="videoPlayer" rotation="0 -70 0" src="#intro" visible="true">
     </a-videosphere>
 
-    <!-- FIRST BUTTONS -->
-    <!-- Watching Intro, opetions to EE Hunt or Karaoke -->
-    <a-box id="buttonOne" color="blue" scale="0.3 0.3 0" width="1.4"
+    <!-- PREVIOUS BUTTON -->
+    <a-box id="prevButton" color="blue" scale="0.3 0.3 0" width="1.4"
     position="-0.3 1.6 -1" visible="false" class="cursor-listener" sound="src: #bing; volume: 0.4"
-      button-one-hover
-      play-video-two
-    >
-    <a-text id="textOne" value="Easter Egg\nHunt?" color="white" align="center" position="0 0 1" visible="false"></a-text>
+      button-hover="button: #prevButton; text: #prevText"
+      play-video="currentEvent: 1"
+      >
+
+    <a-text id="prevText" value="Back?" color="white" align="center" position="0 0 1" visible="true" ></a-text>
     </a-box>
-    <a-box id="buttonTwo" color="red" scale="0.3 0.3 0"  width="1.4"
+    <!-- NEXT BUTTON -->
+    <a-box id="nextButton" color="red" scale="0.3 0.3 0"  width="1.4"
     position="0.3 1.6 -1" visible="false" class="cursor-listener" sound="src: #bing; volume: 0.4"
-      button-two-hover
-      play-video-three
+      button-hover="button: #nextButton; text: #nextText"
+      play-video="currentEvent: 2"
     >
-    <a-text id="textTwo" value="Karaoke?" color="white" align="center" position="0 0 1" visible="false"></a-text>
-    </a-box>
-
-    <!-- EGG PORTAL --> 
-    <!-- During EE Hunt, portal appears to go inside [pageTwo]-->
-    <a-link id="portal" href="pageTwo.html" title="Jump inside!" image="#indoorStill" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 1 -1" class="cursor-listener" visible="false"></a-link>
-    <a-link id="portalVR" href="pageTwo.html" title="Press X to \n Jump inside!" image="#indoorStill" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 0 -1" class="cursor-listener" visible="false"
-      portal-controller
-      portal-scaler
-    ></a-link>
-
-    <!-- BOARD GAME BUTTON -->
-    <!-- After indoor EE hunt, buttons appear to play board game or karaoke -->
-    <a-box id="buttonThree" color="blue" scale="0.3 0.3 0"  width="1.4"
-    position="-0.3 1.6 -1" visible="false" class="cursor-listener" sound="src: #bing; volume: 0.4"
-      button-three-hover
-      play-video-five
-    >
-    <a-text id="textThree" value="Board\nGame?" color="white" align="center" position="0 0 1" visible="false"></a-text>
-    </a-box>
-
-    <!-- KARAOKE PORTAL --> 
-    <!-- After board game, portal appears for karaoke [pageThree]-->
-    <a-link id="karaokePortal" href="pageThree.html" title="Karaoke!" image="#singStill" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 1 -1" class="cursor-listener" visible="false"></a-link>
-    <a-link id="karaokePortalVR" href="pageThree.html" title="Press X to \n Karaoke!" image="#singStill" scale="0.2 0.2 0.2" rotation="0 25 0" position="-1 0 -1" class="cursor-listener" visible="false"
-      portal-controller
-      portal-scaler
-    ></a-link>
-
-    <!-- ESCAPE BUTTON --> 
-    <!-- To escape early from karaoke to final scene -->
-    <a-box id="escapeButton" color="teal" scale="1.5 1.5 0" rotation="0 -77 0" 
-    position="8 7.9 1.5" visible="false" class="cursor-listener" sound="src: #bing; volume: 0.4"
-    escape-button-hover
-    play-last-video
-    >
-    <a-text id="textTwo" value="Get me\noutta\nhere!" color="white" align="center" position="0 0 0" visible="true"></a-text>
+    <a-text id="nextText" value="Go Sing?" color="white" align="center" position="0 0 1" visible="true"></a-text>
     </a-box>
 
     <!-- CONTROLS -->
@@ -151,6 +107,47 @@
       width= "2.4"
       lineHeight="0.1"
     ></a-text>
+
+	<!-- CHALLENGE TEXT -->
+	<a-entity id="challengeText" text="
+		value: YOUR MISSION:\nFIND THE\nHIDDEN\nEASTER EGGS\n\n\n& make Alice's\nchildhood dreams\ncome true;
+		align: center;
+		color: teal;
+		font: monoid;"
+		position= "0.45 1.6 -1"
+		geometry="primitive: plane; width: auto; height: 0.6"
+		material="color: black"
+		visible= "false"
+		class= "cursor-listener"
+	></a-entity>
+	<a-entity id="acceptButton" text="
+		value: ACCEPT; font: monoid; color: red; align: center;" position= "0.45 1.2 -1" 
+		geometry="primitive: plane; width: auto; height: 0.2"
+		material="color: black"
+		class= "cursor-listener" visible= "false"
+		on-click-accept
+	></a-entity>
+
+	<!-- VICTORY TEXT -->
+	<a-entity id="victoryText" text="
+		value: CONGRATULATIONS\nYOU FOUND\nALL 21 EGGS\nAND THE 3 SECRET\nHIDDEN BONUS EGGS;
+		align: center;
+		color: teal;
+		font: monoid;"
+		position= "0.45 1.6 -1"
+		geometry="primitive: plane; width: auto; height: 0.6"
+		material="color: black"
+		visible= "false"
+		class= "cursor-listener"
+	></a-entity>
+	<a-entity id="friendsButton" text="
+		value: BUT THE REAL FIND WAS THE FRIENDS YOU MADE ALONG THE WAY; 
+		font: monoid; color: red; align: center;" position= "0.45 1.2 -1" 
+		geometry="primitive: plane; width: auto; height: 0.2"
+		material="color: black"
+		class= "cursor-listener" visible= "false"
+		on-click-end
+	></a-entity>
   </a-scene>
 </body>
 </html>
