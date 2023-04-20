@@ -1,6 +1,6 @@
 AFRAME.registerComponent('egg-appear', {
     schema: {
-        eggTimeout: {}
+        eggTimeouts: {type: 'array', default: []}
     },
     init: function () {
         this.appearEgg = this.appearEgg.bind(this);
@@ -91,7 +91,7 @@ AFRAME.registerComponent('egg-appear', {
         document.querySelector("#bonusIconOne").object3D.visible = false
         document.querySelector("#bonusIconTwo").object3D.visible = false
         document.querySelector("#bonusIconThree").object3D.visible = false
-        clearTimeout(this.data.eggTimeout);
+        this.data.eggTimeouts.forEach(timeout => clearTimeout(timeout))
     },
     eggCountIcon: function(numberOfEggs) {
         if (numberOfEggs === 1 ) this.setOpacity("#eggIconOne")
@@ -125,7 +125,7 @@ AFRAME.registerComponent('egg-appear', {
         icon.object3D.visible = true
     },
     setEggTimer: function (id, time) {
-        this.data.eggTimeout = setTimeout(() => { this.appearEgg(id)}, time);
+        this.data.eggTimeouts.push(setTimeout(() => { this.appearEgg(id)}, time))
     },
     appearEgg: function(id) {
         var egg = document.querySelector(id)
@@ -189,7 +189,8 @@ AFRAME.registerComponent('egg-appear', {
         }
     },
     readyLastScene: function() {
-        clearTimeout(this.data.eggTimeout)
+        this.data.eggTimeouts.forEach(timeout => clearTimeout(timeout))
+
         document.querySelector("#eggOne").object3D.visible = false
         document.querySelector("#eggTwo").object3D.visible = false
         document.querySelector("#eggThree").object3D.visible = false
