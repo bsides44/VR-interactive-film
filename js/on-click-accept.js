@@ -14,6 +14,9 @@ AFRAME.registerComponent('on-click-accept', {
         vidSource.muted = false
         vidSource.play()
   
+        // emit playing event
+		this.el.emit('videoChanged', {id: "#eeOutdoor"});
+
         // make challenge disappear
         document.querySelector("#challengeText").object3D.visible = false
         document.querySelector("#acceptButton").object3D.visible = false

@@ -11,21 +11,21 @@ AFRAME.registerComponent('play-video', {
     playNextVideo: function() {
 		var events = [
 			{index: 0, id: "#intro", numberOfEggs: 0, buttonTimer: 0, buttonPrev: null, buttonNext: null, rotation:"0 -70 0" },
-			{index: 1, id: "#eeOutdoor", numberOfEggs: 3, bonusEggs: 3, bonusTimer: 15000, buttonTimer: 10000, buttonPrev: null, buttonNext: "Go sing" , rotation:"0 -90 0" },
-			{index: 2, id: "#sing1", numberOfEggs: 3, buttonTimer: 10000, buttonPrev: "Go back\noutside", buttonNext: "Go hunt\ninside" , rotation:"0 -90 25" },
-			{index: 3, id: "#eeIndoorOne", numberOfEggs: 3, buttonTimer: 8000, buttonPrev: "Go back to\nsinging?", buttonNext: "Go do more\nsinging" , rotation:"-20 50 -20" },
-			{index: 4, id: "#sing2", numberOfEggs: 3, buttonTimer: 6000, buttonPrev: "Go back\ninside", buttonNext: "Board game" , rotation:"0 -90 0" },
-			{index: 5, id: "#articulate", numberOfEggs: 3, buttonTimer: 4000, buttonPrev: "Go back to\nsinging?", buttonNext: "Go sing\nsome more", rotation:"0 70 0" },
-			{index: 6, id: "#sing3", numberOfEggs: 3, buttonTimer: 3000, buttonPrev: "Back to\nBoard game", buttonNext: "Look inside\nagain" , rotation:"0 70 0" },
-			{index: 7, id: "#eeIndoorTwo", numberOfEggs: 3, buttonTimer: 3000, buttonPrev: "Return to\nsinging?", buttonNext: "Maybe sing\nsome more" , rotation:"-10 210 0" },
-			{index: 8, id: "#sing4", numberOfEggs: 3, buttonTimer: 3000, buttonPrev: "Return\nindoors", buttonNext: "End", rotation:"0 115 -15" },
+			{index: 1, id: "#eeOutdoor", numberOfEggs: 3, bonusEggs: 3, bonusTimer: 15000, buttonTimer: 10000, buttonPrev: null, buttonNext: "Time To\nSing" , rotation:"0 -90 0" },
+			{index: 2, id: "#sing1", numberOfEggs: 3, buttonTimer: 10000, buttonPrev: "Go Back\nOutside", buttonNext: "Hunt\nInside" , rotation:"0 -90 0" },
+			{index: 3, id: "#eeIndoorOne", numberOfEggs: 3, buttonTimer: 8000, buttonPrev: "Go Back To\nSinging", buttonNext: "Sing A\nNew Song" , rotation:"0 -90 0" },
+			{index: 4, id: "#sing2", numberOfEggs: 3, buttonTimer: 6000, buttonPrev: "Search Inside\nAgain", buttonNext: "Board Game" , rotation:"0 -90 0" },
+			{index: 5, id: "#articulate", numberOfEggs: 3, buttonTimer: 4000, buttonPrev: "Go Back To\nSinging", buttonNext: "Sing Some\nMore", rotation:"0 70 0" },
+			{index: 6, id: "#sing3", numberOfEggs: 3, buttonTimer: 3000, buttonPrev: "Back To\nBoard Game", buttonNext: "Look Inside\nAgain" , rotation:"0 70 0" },
+			{index: 7, id: "#eeIndoorTwo", numberOfEggs: 3, buttonTimer: 3000, buttonPrev: "Return To\nSinging", buttonNext: "One More\nSong" , rotation:"-10 210 0" },
+			{index: 8, id: "#sing4", numberOfEggs: 3, buttonTimer: 4000, buttonPrev: "Look Indoors\nAgain", buttonNext: "End", rotation:"0 115 0" },
 			{index: 9, id: "#cheers", numberOfEggs: 0, buttonTimer: 0, buttonPrev: null, buttonNext: null, rotation:"0 160 0" },
 		]
+		//NB: #eeOutdoor handled from on-click-accept
 		var event = events[this.data.currentEvent]
 		
-		// emit playing event - not working
-		var scene = document.querySelector("a-scene")
-		scene.emit('videoChanged');
+		// emit playing event
+		this.el.emit('videoChanged', {id: event.id});
 
         // replace video source
         var videoPlayer = document.querySelector("#videoPlayer")
@@ -37,7 +37,8 @@ AFRAME.registerComponent('play-video', {
         // play video
         var vidSource = document.querySelector(event.id)
         vidSource.muted = false
-		// appear congrats text on last video
+
+		// last video handler
 		if (event.index === 9) {
 			document.querySelector("#victoryText").object3D.visible = true
 			setTimeout(() => {
