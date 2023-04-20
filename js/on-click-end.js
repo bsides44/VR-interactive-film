@@ -13,6 +13,8 @@ AFRAME.registerComponent('on-click-end', {
         document.querySelector("#victoryText").object3D.visible = false
         document.querySelector("#friendsButton").object3D.visible = false
 
+        var sceneEl = document.querySelector("a-scene")
+        sceneEl.emit('removeListeners')
         // remove listeners
         this.el.removeEventListener('click', this.playLastVideo);
     }

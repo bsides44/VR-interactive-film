@@ -7,6 +7,11 @@ AFRAME.registerComponent('play-video', {
         this.appearButtons = this.appearButtons.bind(this);
 
         this.el.addEventListener('click', this.playNextVideo);
+		this.el.addEventListener('abuttondown', this.playNextVideo);
+        this.el.addEventListener('triggerdown', this.playNextVideo);
+        this.el.addEventListener('gripdown', this.playNextVideo);
+        this.el.addEventListener('xbuttondown', this.playNextVideo);
+		this.el.addEventListener('removeListeners', this.removeListeners)
     },
     playNextVideo: function() {
 		var events = [
@@ -79,6 +84,15 @@ AFRAME.registerComponent('play-video', {
           document.querySelector("#nextText").setAttribute('value', event.buttonNext)
           nextButton.setAttribute("play-video", {currentEvent: event.index + 1})
           nextButton.object3D.visible = true;
+		  nextButton.components.sound.playSound();
         }
+    },
+	removeListeners: function() {
+        this.el.addEventListener('click', this.playNextVideo);
+		this.el.addEventListener('abuttondown', this.playNextVideo);
+        this.el.addEventListener('triggerdown', this.playNextVideo);
+        this.el.addEventListener('gripdown', this.playNextVideo);
+        this.el.addEventListener('xbuttondown', this.playNextVideo);
+		this.el.addEventListener('removeListeners', this.removeListeners)
     }
   })

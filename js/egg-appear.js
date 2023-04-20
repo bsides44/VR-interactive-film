@@ -202,5 +202,8 @@ AFRAME.registerComponent('egg-appear', {
         document.querySelector("#eggNine").object3D.visible = false
         // make egg counter disappear
 		document.querySelector("#eggCount").object3D.visible = false
+        // remove listeners
+        var sceneEl = document.querySelector("a-scene")
+        sceneEl.removeEventListener('videoChanged', this.selectScene);
     }
   })

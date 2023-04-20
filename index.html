@@ -19,8 +19,8 @@
   <script src="./js/on-click-end.js"></script>
   <script src="./js/select-egg.js"></script>
   <script src="./js/egg-appear.js"></script>
+  <script src="./js/move-into-vr.js"></script>
 
-  
 </head>
 <style>
   .a-loader-title {
@@ -32,16 +32,17 @@
 <body>
   <a-scene loading-screen="dotsColor: black; backgroundColor: white"  shadow="enabled; autoUpdate: true" renderer="antialias: true"
   webxr="referenceSpaceType: local"  
+  move-into-vr
   init-scene-one
   >
-    <a-assets>
+    <a-assets >
         <video id="intro" preload="true" src="./assets/intro.mp4" autoplay="false" 
                           muted loop="false" crossOrigin="anonymous"></video>
-        <video id="eeOutdoor" preload="true" src="./assets/ee1.mp4" autoplay="false" 
+        <video id="eeOutdoor" preload="false" src="./assets/ee1.mp4" autoplay="false" 
                           muted loop="false" crossOrigin="anonymous"></video>
         <video id="sing1" preload="false" src="./assets/sing1.mp4" autoplay="false" 
                           muted loop="false" crossOrigin="anonymous"></video>
-        <video id="eeIndoorOne" preload="true" src="./assets/ee2_1.mp4" 
+        <video id="eeIndoorOne" preload="false" src="./assets/ee2_1.mp4" 
                           autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
         <video id="sing2" preload="false" src="./assets/sing2.mp4" autoplay="false" 
                           muted loop="false" crossOrigin="anonymous"></video>
@@ -56,31 +57,32 @@
         <video id="cheers" preload="false" src="./assets/cheers.mp4" 
                           autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
         
-		<img id="singStill" src="./assets/singStill.jpg">
-        <img id="indoorStill" src="./assets/indoorStill.jpg">
         <img id="eggStill" src="./assets/favicon-192.png">
         <img id="redEggStill" src="./assets/redEggIcon.png">
-
 
         <a-asset-item id="oneEgg" src="./assets/egg/mono/scene.gltf" response-type="arraybuffer"></a-asset-item>
 		<a-asset-item id="twoEgg" src="./assets/egg/spiral/scene.gltf" response-type="arraybuffer"></a-asset-item>
 		<a-asset-item id="threeEgg" src="./assets/egg/spot/scene.gltf" response-type="arraybuffer"></a-asset-item>
 		<a-asset-item id="fourEgg" src="./assets/egg/stripe/scene.gltf" response-type="arraybuffer"></a-asset-item>
-		<a-asset-item id="fiveEgg" src="./assets/egg/tone/scene.gltf" response-type="arraybuffer"></a-asset-item>
+		<!-- <a-asset-item id="fiveEgg" src="./assets/egg/tone/scene.gltf" response-type="arraybuffer"></a-asset-item>
 		<a-asset-item id="sixEgg" src="./assets/egg/zigzag/scene.gltf" response-type="arraybuffer"></a-asset-item>
 		<a-asset-item id="sevenEgg" src="./assets/egg/danny/scene.gltf" response-type="arraybuffer"></a-asset-item>
 		<a-asset-item id="eightEgg" src="./assets/egg/glow/scene.gltf" response-type="arraybuffer"></a-asset-item>
-		<a-asset-item id="nineEgg" src="./assets/egg/russia/scene.gltf" response-type="arraybuffer"></a-asset-item>
+		<a-asset-item id="nineEgg" src="./assets/egg/russia/scene.gltf" response-type="arraybuffer"></a-asset-item> -->
+
         <audio id="bing" src="./assets/magic-idea.mp3" preload="auto"></audio>
+        <audio id="ping" src="./assets/magic-acquire.mp3" preload="auto"></audio>
+        <audio id="purr" src="./assets/purr-appear.mp3" preload="auto"></audio>
+
     </a-assets>
 
     <!-- VIDEOS -->
     <a-videosphere id="videoPlayer" rotation="0 -70 0" src="#intro" visible="true">
     </a-videosphere>
-
+	<a-loader-progress-bar></a-loader-progress-bar>
     <!-- PREVIOUS BUTTON -->
     <a-box id="prevButton" color="blue" scale="0.3 0.3 0" width="1.4"
-    position="-0.3 1.6 -1" visible="false" class="cursor-listener" sound="src: #bing; volume: 0.4"
+    position="-0.3 1.6 -1" visible="false" class="cursor-listener" sound="src: #purr; volume: 0.4"
       button-hover="button: #prevButton; text: #prevText"
       play-video="currentEvent: 1"
       >
@@ -88,9 +90,9 @@
     </a-box>
     <!-- NEXT BUTTON -->
     <a-box id="nextButton" color="red" scale="0.3 0.3 0"  width="1.4"
-    position="0.3 1.6 -1" visible="false" class="cursor-listener" sound="src: #bing; volume: 0.4"
+    position="0.3 1.6 -1" visible="false" class="cursor-listener" sound="src: #purr; volume: 0.4"
       button-hover="button: #nextButton; text: #nextText"
-      play-video="currentEvent: 9"
+      play-video="currentEvent: 2"
     >
     <a-text id="nextText" value="Go Sing?" color="white" align="center" position="0 0 1" visible="true"></a-text>
     </a-box>
@@ -100,17 +102,20 @@
 
     <!-- OPENING TEXT -->
     <a-text id="welcomeText"
-      value="Sound on\nWait for background\nimage to load\n\nPhone/ Computer:\nDrag to explore\nClick or press\nto start\n\nFor VR\nClick VR\nThen press any button"
-      position= "0.45 1.6 -1"
-      align= "center"
-      color= "#A10AE2"
-      font= "dejavu"
-      width= "2.4"
-      lineHeight="0.1"
+		value="Sound on\nWait for load\n\nPhone/ Computer:\nDrag to explore\nClick or press\nto start\n\nFor VR\nClick VR\nThen press any button"
+		position= "0 1.6 -1"
+		align= "center"
+		color= "grey"
+		font= "dejavu"
+		width= "2.4"
+		lineHeight="0.1"
+		geometry="primitive: circle; radius: 1; segments: 64; thetaStart: 90; thetaLength:0"
+		animation="property: geometry.thetaLength; to: 60; dur: 500; easing: linear; loop: false"
+		animation__loaded="property: geometry.thetaLength; to: 360; dur: 500; easing: linear; loop: false; startEvents: firstVideoLoaded"
+		material="side: double; color: white"
     ></a-text>
 
 	<!-- EGG COUNTER -->
-	<!-- Icons not appearing one at a time -->
 	<a-camera>
 		<a-image id="eggIconOne" src="#eggStill"
 		position="-0.135 1.098 -1.5"
@@ -166,25 +171,25 @@
 		></a-entity>
 	</a-camera>
 
-
-
 	<!-- CHALLENGE TEXT -->
 	<a-entity id="challengeText" text="
 		value: YOUR MISSION:\nFIND THE\nHIDDEN\nEASTER EGGS\n\n\n& make Alice's\nchildhood dreams\ncome true;
 		align: center;
 		color: teal;
 		font: monoid;"
-		position= "0.45 1.6 -1"
+		position= "0 1.6 -1"
 		geometry="primitive: plane; width: 1; height: 0.6"
 		material="color: black"
 		visible= "false"
 		class= "cursor-listener"
+		on-click-accept
 	></a-entity>
 	<a-entity id="acceptButton" text="
-		value: ACCEPT; font: monoid; color: red; align: center;" position= "0.45 1.2 -1" 
+		value: ACCEPT; font: monoid; color: red; align: center;" position= "0 1.2 -1" 
 		geometry="primitive: plane; width: 1; height: 0.2"
 		material="color: black"
-		class= "cursor-listener" visible= "false"
+		class= "cursor-listener" 
+		visible= "false"
 		on-click-accept
 	></a-entity>
 
@@ -194,7 +199,7 @@
 		align: center;
 		color: teal;
 		font: monoid;"
-		position= "0.45 1.8 -1"
+		position= "0 1.8 -1"
 		geometry="primitive: plane; width: 1; height: 0.6"
 		material="color: black"
 		visible= "false"
@@ -203,7 +208,7 @@
 	></a-entity>
 	<a-entity id="friendsButton" text="
 		value: BUT THE REAL FIND\nWAS THE FRIENDS YOU MADE\nALONG THE WAY; 
-		font: monoid; color: red; align: center;" position= "0.45 1.4 -1" 
+		font: monoid; color: red; align: center;" position= "0 1.4 -1" 
 		geometry="primitive: plane; width: 1; height: 0.3"
 		material="color: black"
 		class= "cursor-listener" visible= "false"
@@ -219,7 +224,7 @@
 		animation="property: rotation; to: 0 0 20; dur: 200; easing: easeInOutElastic; loop: true"
 		animation__hover="property: scale; to: 0.075 0.075 0.075; startEvents: raycaster-intersected; dur: 1"
 		animation__endhover="property: scale; to: 0.05 0.05 0.05; startEvents: raycaster-intersected-cleared; dur: 1"
-		sound="src: #bing; volume: 0.6; poolSize: 10"
+		sound="src: #ping; volume: 0.6; poolSize: 10"
 		visible="false"
 		class= "cursor-listener"
 		select-egg
@@ -233,7 +238,7 @@
         animation="property: rotation; to: 0 0 20; dur: 400; easing: easeInOutElastic; loop: true"
 		animation__hover="property: scale; to: 0.2 0.2 0.2; startEvents: raycaster-intersected; dur: 1"
 		animation__endhover="property: scale; to: 0.0.1 0.1 0.1; startEvents: raycaster-intersected-cleared; dur: 1"
-        sound="src: #bing; volume: 0.6; poolSize: 10"
+        sound="src: #ping; volume: 0.6; poolSize: 10"
 		visible="false"
 		class= "cursor-listener"
 		select-egg
@@ -246,7 +251,7 @@
         animation="property: rotation; to: 0 0 20; dur: 600; easing: easeInOutElastic; loop: true"
 		animation__hover="property: scale; to: 0.075 0.075 0.075; startEvents: raycaster-intersected; dur: 1"
 		animation__endhover="property: scale; to: 0.05 0.05 0.05; startEvents: raycaster-intersected-cleared; dur: 1"
-        sound="src: #bing; volume: 0.6; poolSize: 10"
+        sound="src: #ping; volume: 0.6; poolSize: 10"
 		visible="false"
 		class= "cursor-listener"
 		select-egg
@@ -259,12 +264,12 @@
 		animation="property: rotation; to: 0 0 20; dur: 600; easing: easeInOutElastic; loop: true"
 		animation__hover="property: scale; to: 0.15 0.15 0.15; startEvents: raycaster-intersected; dur: 1"
 		animation__endhover="property: scale; to: 0.1 0.1 0.1; startEvents: raycaster-intersected-cleared; dur: 1"
-		sound="src: #bing; volume: 0.6; poolSize: 10"
+		sound="src: #ping; volume: 0.6; poolSize: 10"
 		visible="false"
 		class= "cursor-listener"
 		select-egg
 	></a-entity>
-	<a-entity
+	<!-- <a-entity
 		id="eggFive"
 		gltf-model="#fiveEgg"	
 		position="-4 3 1" 
@@ -272,7 +277,7 @@
 		animation="property: rotation; to: 0 0 20; dur: 600; easing: easeInOutElastic; loop: true"
 		animation__hover="property: scale; to: 0.15 0.15 0.15; startEvents: raycaster-intersected; dur: 1"
 		animation__endhover="property: scale; to: 0.1 0.1 0.1; startEvents: raycaster-intersected-cleared; dur: 1"
-		sound="src: #bing; volume: 0.6; poolSize: 10"
+		sound="src: #ping; volume: 0.6; poolSize: 10"
 		visible="false"
 		class= "cursor-listener"
 		select-egg
@@ -285,7 +290,7 @@
 		animation="property: rotation; to: 0 0 20; dur: 600; easing: easeInOutElastic; loop: true"
 		animation__hover="property: scale; to: 0.3 0.3 0.3; startEvents: raycaster-intersected; dur: 1"
 		animation__endhover="property: scale; to: 0.075 0.075 0.075; startEvents: raycaster-intersected-cleared; dur: 1"
-		sound="src: #bing; volume: 0.6; poolSize: 10"
+		sound="src: #ping; volume: 0.6; poolSize: 10"
 		visible="false"
 		class= "cursor-listener"
 		select-egg
@@ -299,7 +304,7 @@
         animation="property: position; to: -0.8 1.81 -1; dur: 300; easing: easeInOutElastic; loop: true"
 		animation__hover="property: scale; to: 8 8 8; startEvents: raycaster-intersected; dur: 1"
 		animation__endhover="property: scale; to: 4 4 4; startEvents: raycaster-intersected-cleared; dur: 1"
-        sound="src: #bing; volume: 0.6; poolSize: 10"
+        sound="src: #ping; volume: 0.6; poolSize: 10"
 		visible="false"
 		class= "cursor-listener"
 		select-egg
@@ -312,7 +317,7 @@
         animation="property: position; to: -3 2.05 4; dur: 750; easing: easeInOutElastic; loop: true; elasticity: 1000"
 		animation__hover="property: scale; to: 0.005 0.005 0.005; startEvents: raycaster-intersected; dur: 1"
 		animation__endhover="property: scale; to: 0.002 0.002 0.002; startEvents: raycaster-intersected-cleared; dur: 1"
-        sound="src: #bing; volume: 0.6; poolSize: 10"
+        sound="src: #ping; volume: 0.6; poolSize: 10"
 		visible="false"
 		class= "cursor-listener"
 		select-egg
@@ -326,11 +331,11 @@
         animation="property: rotation; to: 0 0 0; dur: 3000; easing: easeInOutElastic; loop: true"
 		animation__hover="property: scale; to: 0.6 0.6 0.6; startEvents: raycaster-intersected; dur: 1"
 		animation__endhover="property: scale; to: 0.4 0.4 0.4; startEvents: raycaster-intersected-cleared; dur: 1"
-        sound="src: #bing; volume: 0.6; poolSize: 10"
+        sound="src: #ping; volume: 0.6; poolSize: 10"
 		visible="false"
 		class= "cursor-listener"
 		select-egg
-    ></a-entity>
+    ></a-entity> -->
   </a-scene>
 </body>
 </html>

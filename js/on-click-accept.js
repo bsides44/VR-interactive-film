@@ -3,6 +3,10 @@ AFRAME.registerComponent('on-click-accept', {
         this.playSecondVideo = this.playSecondVideo.bind(this);
 
         this.el.addEventListener('click', this.playSecondVideo);
+        this.el.addEventListener('abuttondown', this.playSecondVideo);
+        this.el.addEventListener('triggerdown', this.playSecondVideo);
+        this.el.addEventListener('gripdown', this.playSecondVideo);
+        this.el.addEventListener('xbuttondown', this.playSecondVideo);
     },
     playSecondVideo: function() {
         // replace video source
@@ -30,6 +34,10 @@ AFRAME.registerComponent('on-click-accept', {
 
         // remove listeners
         this.el.removeEventListener('click', this.playSecondVideo);
+        this.el.removeEventListener('abuttondown', this.playSecondVideo);
+        this.el.removeEventListener('triggerdown', this.playSecondVideo);
+        this.el.removeEventListener('gripdown', this.playSecondVideo);
+        this.el.removeEventListener('xbuttondown', this.playSecondVideo);
     },
     appearButtons: function() {
         var nextButton = document.querySelector("#nextButton")

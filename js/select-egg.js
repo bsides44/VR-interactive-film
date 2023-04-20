@@ -5,9 +5,14 @@ AFRAME.registerComponent('select-egg', {
     },
     init: function () {      
         this.addToCount = this.addToCount.bind(this);
+        this.removeListeners = this.removeListeners.bind(this);
 
         this.el.addEventListener('click', this.addToCount);
-
+        this.el.addEventListener('abuttondown', this.addToCount);
+        this.el.addEventListener('triggerdown', this.addToCount);
+        this.el.addEventListener('gripdown', this.addToCount);
+        this.el.addEventListener('xbuttondown', this.addToCount);
+        this.el.addEventListener('removeListeners', this.removeListeners)
         // Catch new emitted count
         var sceneEl = document.querySelector("a-scene")
         sceneEl.addEventListener('setCount', (event) => {
@@ -60,5 +65,13 @@ AFRAME.registerComponent('select-egg', {
                 else if (oneOpacity == 1 && twoOpacity == 1 && threeOpacity != 1 && fourOpacity != 1) return eggIconThree.setAttribute('opacity', 1)
                 else if (oneOpacity == 1 && twoOpacity == 1 && threeOpacity == 1 && fourOpacity != 1) return eggIconFour.setAttribute('opacity', 1)
             }
+    },
+    removeListeners: function() {
+        this.el.removeEventListener('click', this.addToCount);
+        this.el.removeEventListener('abuttondown', this.addToCount);
+        this.el.removeEventListener('triggerdown', this.addToCount);
+        this.el.removeEventListener('gripdown', this.addToCount);
+        this.el.removeEventListener('xbuttondown', this.addToCount);
+        this.el.removeEventListener('removeListeners', this.removeListeners)
     }
 })
