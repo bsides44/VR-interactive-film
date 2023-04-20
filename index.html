@@ -64,11 +64,11 @@
 		<a-asset-item id="twoEgg" src="./assets/egg/spiral/scene.gltf" response-type="arraybuffer"></a-asset-item>
 		<a-asset-item id="threeEgg" src="./assets/egg/spot/scene.gltf" response-type="arraybuffer"></a-asset-item>
 		<a-asset-item id="fourEgg" src="./assets/egg/stripe/scene.gltf" response-type="arraybuffer"></a-asset-item>
-		<!-- <a-asset-item id="fiveEgg" src="./assets/egg/tone/scene.gltf" response-type="arraybuffer"></a-asset-item>
+		<a-asset-item id="fiveEgg" src="./assets/egg/tone/scene.gltf" response-type="arraybuffer"></a-asset-item>
 		<a-asset-item id="sixEgg" src="./assets/egg/zigzag/scene.gltf" response-type="arraybuffer"></a-asset-item>
 		<a-asset-item id="sevenEgg" src="./assets/egg/danny/scene.gltf" response-type="arraybuffer"></a-asset-item>
 		<a-asset-item id="eightEgg" src="./assets/egg/glow/scene.gltf" response-type="arraybuffer"></a-asset-item>
-		<a-asset-item id="nineEgg" src="./assets/egg/russia/scene.gltf" response-type="arraybuffer"></a-asset-item> -->
+		<a-asset-item id="nineEgg" src="./assets/egg/russia/scene.gltf" response-type="arraybuffer"></a-asset-item>
 
         <audio id="bing" src="./assets/magic-idea.mp3" preload="auto"></audio>
         <audio id="ping" src="./assets/magic-acquire.mp3" preload="auto"></audio>
@@ -79,7 +79,7 @@
     <!-- VIDEOS -->
     <a-videosphere id="videoPlayer" rotation="0 -70 0" src="#intro" visible="true">
     </a-videosphere>
-	<a-loader-progress-bar></a-loader-progress-bar>
+
     <!-- PREVIOUS BUTTON -->
     <a-box id="prevButton" color="blue" scale="0.3 0.3 0" width="1.4"
     position="-0.3 1.6 -1" visible="false" class="cursor-listener" sound="src: #purr; volume: 0.4"
@@ -110,11 +110,11 @@
 		width= "2.4"
 		lineHeight="0.1"
 		geometry="primitive: circle; radius: 1; segments: 64; thetaStart: 90; thetaLength:0"
-		animation="property: geometry.thetaLength; to: 60; dur: 500; easing: linear; loop: false"
+
 		animation__loaded="property: geometry.thetaLength; to: 360; dur: 500; easing: linear; loop: false; startEvents: firstVideoLoaded"
 		material="side: double; color: white"
     ></a-text>
-
+	<!-- animation="property: geometry.thetaLength; to: 60; dur: 500; easing: linear; loop: false" -->
 	<!-- EGG COUNTER -->
 	<a-camera>
 		<a-image id="eggIconOne" src="#eggStill"
@@ -269,7 +269,7 @@
 		class= "cursor-listener"
 		select-egg
 	></a-entity>
-	<!-- <a-entity
+	<a-entity
 		id="eggFive"
 		gltf-model="#fiveEgg"	
 		position="-4 3 1" 
@@ -335,7 +335,7 @@
 		visible="false"
 		class= "cursor-listener"
 		select-egg
-    ></a-entity> -->
+    ></a-entity>
   </a-scene>
 </body>
 </html>

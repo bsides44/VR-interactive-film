@@ -9,14 +9,16 @@ AFRAME.registerComponent('move-into-vr', {
             var boxArr = sceneEl.querySelectorAll('a-box')
             var imageArr = sceneEl.querySelectorAll('a-image')
             var entityArr = sceneEl.querySelectorAll('a-entity')
+            var welcomeText = document.querySelector('#welcomeText');
 
             boxArr.forEach(box => this.moveDown(box, 1))
             imageArr.forEach(image => this.moveDown(image, 0.5))
-            entityArr.forEach(entity => this.moveDown(entity, 1))
+            this.moveUp(document.querySelector('#eggCount'), 1.1)
+            entityArr.forEach(entity => this.moveDown(entity, 1.6))
 
-            welcomeText.setAttribute('position', "0 0 -1" )
+            this.moveDown(welcomeText, 1.6)
+            
             welcomeText.setAttribute('value', "Press any button\nTo start" )
-
             // add VR controllers
             leftHand.setAttribute('id', 'leftHand');
             leftHand.setAttribute('laser-controls', 'hand: left');
