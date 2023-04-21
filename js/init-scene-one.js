@@ -18,6 +18,8 @@ AFRAME.registerComponent('init-scene-one', {
     // Set welcome loader
     var intro = document.querySelector('#intro');
     var welcomeText = document.querySelector('#welcomeText');
+    var loadedText = document.querySelector('#loadedText');
+
 
     intro.addEventListener('progress', function() {
 		var percentLoaded = 0;
@@ -31,9 +33,11 @@ AFRAME.registerComponent('init-scene-one', {
     });
     // video loaded
     intro.addEventListener('loadeddata', () => {
+      	this.data.loaded = true
 		welcomeText.emit('firstVideoLoaded', null, true)
 		welcomeText.setAttribute('color', '#A10AE2')
-		this.data.loaded = true
+    	welcomeText.object3D.visible = false;
+    	loadedText.object3D.visible = true;
     });
 
   },

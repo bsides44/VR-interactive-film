@@ -38,23 +38,23 @@
     <a-assets >
         <video id="intro" preload="true" src="./assets/intro.mp4" autoplay="false" 
                           muted loop="false" crossOrigin="anonymous"></video>
-        <video id="eeOutdoor" preload="false" src="./assets/ee1.mp4" autoplay="false" 
+        <video id="eeOutdoor" preload="auto" src="./assets/ee1.mp4" autoplay="false" 
+                          muted loop="true" crossOrigin="anonymous"></video>
+        <video id="sing1" preload="auto" src="./assets/sing1.mp4" autoplay="false" 
                           muted loop="false" crossOrigin="anonymous"></video>
-        <video id="sing1" preload="false" src="./assets/sing1.mp4" autoplay="false" 
-                          muted loop="false" crossOrigin="anonymous"></video>
-        <video id="eeIndoorOne" preload="false" src="./assets/ee2_1.mp4" 
+        <video id="eeIndoorOne" preload="auto" src="./assets/ee2_1.mp4" 
                           autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
-        <video id="sing2" preload="false" src="./assets/sing2.mp4" autoplay="false" 
+        <video id="sing2" preload="auto" src="./assets/sing2.mp4" autoplay="false" 
                           muted loop="false" crossOrigin="anonymous"></video>
-        <video id="articulate" preload="false" src="./assets/articulate.mp4" 
+        <video id="articulate" preload="auto" src="./assets/articulate.mp4" 
                           autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
-        <video id="sing3" preload="false" src="./assets/sing3.mp4" autoplay="false" 
+        <video id="sing3" preload="auto" src="./assets/sing3.mp4" autoplay="false" 
                           muted loop="false" crossOrigin="anonymous"></video>
-        <video id="eeIndoorTwo" preload="false" src="./assets/ee2_2.mp4" 
+        <video id="eeIndoorTwo" preload="auto" src="./assets/ee2_2.mp4" 
                           autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
-        <video id="sing4" preload="false" src="./assets/sing4.mp4" autoplay="false" 
+        <video id="sing4" preload="auto" src="./assets/sing4.mp4" autoplay="false" 
                           muted loop="false" crossOrigin="anonymous"></video>
-        <video id="cheers" preload="false" src="./assets/cheers.mp4" 
+        <video id="cheers" preload="auto" src="./assets/cheers.mp4" 
                           autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
         
         <img id="eggStill" src="./assets/favicon-192.png">
@@ -76,6 +76,8 @@
 
     </a-assets>
 
+	<!-- loading too slow in vr -->
+	<!-- need to re edit videos and upload them to cloudflare -->
     <!-- VIDEOS -->
     <a-videosphere id="videoPlayer" rotation="0 -70 0" src="#intro" visible="true">
     </a-videosphere>
@@ -102,19 +104,31 @@
 
     <!-- OPENING TEXT -->
     <a-text id="welcomeText"
-		value="Sound on\nWait for load\n\nPhone/ Computer:\nDrag to explore\nClick or press\nto start\n\nFor VR\nClick VR\nThen press any button"
+		value="Sound on\n\nWait for load"
 		position= "0 1.6 -1"
 		align= "center"
 		color= "grey"
 		font= "dejavu"
 		width= "2.4"
 		lineHeight="0.1"
-		geometry="primitive: circle; radius: 1; segments: 64; thetaStart: 90; thetaLength:0"
-
+		geometry="primitive: circle; radius: 0.8; segments: 64; thetaStart: 90; thetaLength:0"
 		animation__loaded="property: geometry.thetaLength; to: 360; dur: 500; easing: linear; loop: false; startEvents: firstVideoLoaded"
 		material="side: double; color: white"
+		visible="true"
     ></a-text>
-	<!-- animation="property: geometry.thetaLength; to: 60; dur: 500; easing: linear; loop: false" -->
+	<a-text id="loadedText"
+		value="Phone or Computer:\nDrag to explore\nClick to start\n\nFor VR\nClick VR\nThen press any button"
+		position= "0 1.6 -1"
+		align= "center"
+		color= "#A10AE2"
+		font= "dejavu"
+		width= "2.4"
+		lineHeight="0.1"
+		geometry="primitive: circle; radius: 0.8; segments: 64; thetaStart: 90; thetaLength:360"
+		material="side: double; color: white"
+		visible="false"
+	></a-text>
+
 	<!-- EGG COUNTER -->
 	<a-camera>
 		<a-image id="eggIconOne" src="#eggStill"
