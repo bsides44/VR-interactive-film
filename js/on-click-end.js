@@ -5,6 +5,8 @@ AFRAME.registerComponent('on-click-end', {
         this.el.addEventListener('click', this.playLastVideo);
     },
     playLastVideo: function() {
+        console.log('click')
+
         // replace video source
         var videoPlayer = document.querySelector("#videoPlayer")
 		videoPlayer.getAttribute('material').src.play()

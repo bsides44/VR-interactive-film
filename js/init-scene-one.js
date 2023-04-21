@@ -17,9 +17,9 @@ AFRAME.registerComponent('init-scene-one', {
 
     // Set welcome loader
     var intro = document.querySelector('#intro');
+    var welcomeCircle = document.querySelector('#welcomeCircle');
     var welcomeText = document.querySelector('#welcomeText');
     var loadedText = document.querySelector('#loadedText');
-
 
     intro.addEventListener('progress', function() {
 		var percentLoaded = 0;
@@ -29,13 +29,12 @@ AFRAME.registerComponent('init-scene-one', {
 		if (buffered.length > 0 && buffered.end) {
 			percentLoaded = Math.round((buffered.end(0) / duration) * 100);
 		}
-		welcomeText.setAttribute('geometry', 'thetaLength', ((percentLoaded/100) * 360))
+		welcomeCircle.setAttribute('geometry', 'thetaLength', ((percentLoaded/100) * 360))
     });
     // video loaded
     intro.addEventListener('loadeddata', () => {
       	this.data.loaded = true
-		welcomeText.emit('firstVideoLoaded', null, true)
-		welcomeText.setAttribute('color', '#A10AE2')
+		welcomeCircle.emit('firstVideoLoaded', null, true)
     	welcomeText.object3D.visible = false;
     	loadedText.object3D.visible = true;
     });
@@ -44,10 +43,12 @@ AFRAME.registerComponent('init-scene-one', {
   onClick: function () {
 	if (this.data.loaded){
 		var videoPlayer = document.querySelector("#videoPlayer").getAttribute('material').src;
-		var welcomeText = document.querySelector("#welcomeText")
+		var welcomeCircle = document.querySelector('#welcomeCircle');
+		var loadedText = document.querySelector('#loadedText');
 
 		// Welcome text to disappear on first click
-		if (welcomeText) welcomeText.parentNode.removeChild(welcomeText);
+		if (welcomeCircle) welcomeCircle.parentNode.removeChild(welcomeCircle);
+		if (loadedText) loadedText.parentNode.removeChild(loadedText);
 
 		// Video to play on first click
 		if (videoPlayer) {
@@ -69,13 +70,13 @@ AFRAME.registerComponent('init-scene-one', {
   },
   appearChallenge: function () {  
     var challengeText = document.querySelector("#challengeText")
-    var acceptButton = document.querySelector("#acceptButton")
+    var startButton = document.querySelector("#startButton")
     var videoPlayer = document.querySelector("#videoPlayer")
 
     // Make challenge appear when video playback is at 5
     if (videoPlayer) {
       challengeText.object3D.visible = true;
-      acceptButton.object3D.visible = true;
+	  startButton.object3D.visible = true;
     }
   }
 });

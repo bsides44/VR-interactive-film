@@ -47,6 +47,7 @@ AFRAME.registerComponent('play-video', {
 		if (event.index === 9) {
 			document.querySelector("#victoryText").object3D.visible = true
 			setTimeout(() => {
+        document.querySelector("#victoryText").object3D.visible = false
 				document.querySelector("#friendsButton").object3D.visible = true
 			}, 2000);
 		}
@@ -74,14 +75,12 @@ AFRAME.registerComponent('play-video', {
 
         // new button text and play options
         if (event.buttonPrev) {
-          document.querySelector("#prevText").setAttribute('value', event.buttonPrev)
           prevButton.setAttribute("play-video", {currentEvent: event.index - 1})
           prevButton.object3D.visible = true;
         }
         
         // new button text and play options
         if (event.buttonNext) {
-          document.querySelector("#nextText").setAttribute('value', event.buttonNext)
           nextButton.setAttribute("play-video", {currentEvent: event.index + 1})
           nextButton.object3D.visible = true;
 		  nextButton.components.sound.playSound();

@@ -23,7 +23,7 @@ AFRAME.registerComponent('on-click-accept', {
 
         // make challenge disappear
         document.querySelector("#challengeText").object3D.visible = false
-        document.querySelector("#acceptButton").object3D.visible = false
+        document.querySelector("#startButton").object3D.visible = false
         
         // make egg counter appear
         document.querySelector("#eggCount").object3D.visible = true

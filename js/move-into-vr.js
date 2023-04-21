@@ -10,6 +10,8 @@ AFRAME.registerComponent('move-into-vr', {
             var imageArr = sceneEl.querySelectorAll('a-image')
             var entityArr = sceneEl.querySelectorAll('a-entity')
             var welcomeText = document.querySelector('#welcomeText');
+            var loadedText = document.querySelector('#loadedText');
+
 
             boxArr.forEach(box => this.moveDown(box, 1))
             imageArr.forEach(image => this.moveDown(image, 0.5))
@@ -18,7 +20,11 @@ AFRAME.registerComponent('move-into-vr', {
 
             this.moveDown(welcomeText, 1.6)
             
-            welcomeText.setAttribute('value', "Press any button\nTo start" )
+            if (welcomeText.getAttribute('visible') || loaded.getAttribute('visible')) {
+                welcome.object3D.visible = false
+                loadedText.object3D.visible = false
+            document.querySelector('#vrText').object3D.visible = true
+            }
             // add VR controllers
             leftHand.setAttribute('id', 'leftHand');
             leftHand.setAttribute('laser-controls', 'hand: left');
