@@ -21,7 +21,7 @@ AFRAME.registerComponent('egg-appear', {
         sceneEl.addEventListener('videoChanged', this.selectScene);
     },
     selectScene: function(event) {
-        this.resetIcons()
+        this.resetNewScene()
         if (event.detail.id == "#eeOutdoor") this.playOutdoor()
         if (event.detail.id == "#sing1") this.playSing1()
         if (event.detail.id == "#eeIndoorOne") this.playIndoorOne()
@@ -83,7 +83,7 @@ AFRAME.registerComponent('egg-appear', {
         document.querySelector("#eggSix").setAttribute('animation__endhover', 'property: scale; to: 0.25 0.25 0.25; startEvents: raycaster-intersected-cleared; dur: 1')
         this.setEggTimer("#eggSix", 3000);
     },
-    resetIcons: function() {
+    resetNewScene: function() {
         document.querySelector("#eggIconOne").object3D.visible = false
         document.querySelector("#eggIconTwo").object3D.visible = false
         document.querySelector("#eggIconThree").object3D.visible = false
@@ -91,6 +91,16 @@ AFRAME.registerComponent('egg-appear', {
         document.querySelector("#bonusIconOne").object3D.visible = false
         document.querySelector("#bonusIconTwo").object3D.visible = false
         document.querySelector("#bonusIconThree").object3D.visible = false
+        document.querySelector("#eggOne").object3D.visible = false
+        document.querySelector("#eggTwo").object3D.visible = false
+        document.querySelector("#eggThree").object3D.visible = false
+        document.querySelector("#eggFour").object3D.visible = false
+        document.querySelector("#eggFive").object3D.visible = false
+        document.querySelector("#eggSix").object3D.visible = false
+        document.querySelector("#eggSeven").object3D.visible = false
+        document.querySelector("#eggEight").object3D.visible = false
+        document.querySelector("#eggNine").object3D.visible = false
+
         this.data.eggTimeouts.forEach(timeout => clearTimeout(timeout))
     },
     eggCountIcon: function(numberOfEggs) {
@@ -191,6 +201,8 @@ AFRAME.registerComponent('egg-appear', {
     readyLastScene: function() {
         this.data.eggTimeouts.forEach(timeout => clearTimeout(timeout))
 
+        // var camera = document.querySelector("a-camera")
+        // camera.parentNode.removeChild(camera);
         document.querySelector("#eggOne").object3D.visible = false
         document.querySelector("#eggTwo").object3D.visible = false
         document.querySelector("#eggThree").object3D.visible = false

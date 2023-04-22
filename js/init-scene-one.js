@@ -21,7 +21,7 @@ AFRAME.registerComponent('init-scene-one', {
     var welcomeText = document.querySelector('#welcomeText');
     var loadedText = document.querySelector('#loadedText');
 
-    intro.addEventListener('progress', function() {
+    intro.addEventListener('progress', () => {
 		var percentLoaded = 0;
 		var duration = intro.duration;
 		var buffered = intro.buffered;
@@ -29,7 +29,7 @@ AFRAME.registerComponent('init-scene-one', {
 		if (buffered.length > 0 && buffered.end) {
 			percentLoaded = Math.round((buffered.end(0) / duration) * 100);
 		}
-		welcomeCircle.setAttribute('geometry', 'thetaLength', ((percentLoaded/100) * 360))
+		if (!this.data.loaded) welcomeCircle.setAttribute('geometry', 'thetaLength', ((percentLoaded/100) * 360))
     });
     // video loaded
     intro.addEventListener('loadeddata', () => {
@@ -55,6 +55,7 @@ AFRAME.registerComponent('init-scene-one', {
 			var vidSource = document.querySelector("#intro")
 			vidSource.muted = false
 			vidSource.play()
+
 			window.removeEventListener('click', this.onClick);
 			window.removeEventListener('abuttondown', this.onClick);
 			window.removeEventListener('triggerdown', this.onClick);
@@ -72,6 +73,9 @@ AFRAME.registerComponent('init-scene-one', {
     var challengeText = document.querySelector("#challengeText")
     var startButton = document.querySelector("#startButton")
     var videoPlayer = document.querySelector("#videoPlayer")
+
+	challengeText.setAttribute('class', "cursor-listener")
+	startButton.setAttribute('class', "cursor-listener")
 
     // Make challenge appear when video playback is at 5
     if (videoPlayer) {

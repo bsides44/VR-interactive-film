@@ -26,9 +26,10 @@ AFRAME.registerComponent('play-video', {
 			{index: 8, id: "#sing4", numberOfEggs: 3, buttonTimer: 4000, buttonPrev: "Look Indoors\nAgain", buttonNext: "End", rotation:"0 115 0" },
 			{index: 9, id: "#cheers", numberOfEggs: 0, buttonTimer: 0, buttonPrev: null, buttonNext: null, rotation:"0 160 0" },
 		]
+
 		//NB: #eeOutdoor handled from on-click-accept
 		var event = events[this.data.currentEvent]
-		
+
 		// emit playing event
 		this.el.emit('videoChanged', {id: event.id});
 
@@ -42,13 +43,18 @@ AFRAME.registerComponent('play-video', {
         // play video
         var vidSource = document.querySelector(event.id)
         vidSource.muted = false
+        console.log('vidSource', vidSource)
 
 		// last video handler
-		if (event.index === 9) {
-			document.querySelector("#victoryText").object3D.visible = true
+		if (event.index === 9) {      
+			var victoryText = document.querySelector("#victoryText")
+      var friendsButton = document.querySelector("#friendsButton")
+      victoryText.object3D.visible = true
 			setTimeout(() => {
-        document.querySelector("#victoryText").object3D.visible = false
-				document.querySelector("#friendsButton").object3D.visible = true
+        victoryText.setAttribute('on-click-end', '')
+        friendsButton.setAttribute('on-click-end', '')
+
+				friendsButton.object3D.visible = true
 			}, 2000);
 		}
 		else {
@@ -59,15 +65,12 @@ AFRAME.registerComponent('play-video', {
         document.querySelector("#nextButton").object3D.visible = false
         document.querySelector("#prevButton").object3D.visible = false
 
-        // set next buttons to appear. NB scene 2 buttons appear in on-click-accept
+        // set next buttons to appear. NB scene 2 buttons handled in on-click-accept
         if (event.buttonTimer >= 1) {
           setTimeout(() => {
             this.appearButtons(event)
         }, event.buttonTimer);
        }
-        
-        // remove listeners
-        // this.el.removeEventListener('click', this.playNextVideo);
     },
     appearButtons: function(event) {
         var prevButton = document.querySelector("#prevButton")
@@ -81,9 +84,13 @@ AFRAME.registerComponent('play-video', {
         
         // new button text and play options
         if (event.buttonNext) {
+          if (event.index === 8) {
+            nextButton.setAttribute('src', '#finishBtn')
+          }
           nextButton.setAttribute("play-video", {currentEvent: event.index + 1})
           nextButton.object3D.visible = true;
-		  nextButton.components.sound.playSound();
+		      nextButton.components.sound.playSound();
+          
         }
     },
 	removeListeners: function() {
