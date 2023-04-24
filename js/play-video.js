@@ -45,7 +45,7 @@ AFRAME.registerComponent('play-video', {
         vidSource.muted = false
 
 		// last video handler
-		if (event.index === 2) {      
+		if (event.index === 9) {      
 			var victoryText = document.querySelector("#victoryText")
       var friendsButton = document.querySelector("#friendsButton")
       victoryText.object3D.visible = true

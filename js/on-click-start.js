@@ -2,11 +2,11 @@ AFRAME.registerComponent('on-click-start', {
     init: function () {
         this.playSecondVideo = this.playSecondVideo.bind(this);
 
-        this.el.addEventListener('click', this.playSecondVideo);
-        this.el.addEventListener('abuttondown', this.playSecondVideo);
-        this.el.addEventListener('triggerdown', this.playSecondVideo);
-        this.el.addEventListener('gripdown', this.playSecondVideo);
-        this.el.addEventListener('xbuttondown', this.playSecondVideo);
+        window.addEventListener('click', this.playSecondVideo);
+        window.addEventListener('abuttondown', this.playSecondVideo);
+        window.addEventListener('triggerdown', this.playSecondVideo);
+        window.addEventListener('gripdown', this.playSecondVideo);
+        window.addEventListener('xbuttondown', this.playSecondVideo);
     },
     playSecondVideo: function() {
         var isVisible = this.el.object3D.visible
@@ -36,11 +36,11 @@ AFRAME.registerComponent('on-click-start', {
             }, 10000);
 
             // remove listeners
-            this.el.removeEventListener('click', this.playSecondVideo);
-            this.el.removeEventListener('abuttondown', this.playSecondVideo);
-            this.el.removeEventListener('triggerdown', this.playSecondVideo);
-            this.el.removeEventListener('gripdown', this.playSecondVideo);
-            this.el.removeEventListener('xbuttondown', this.playSecondVideo);
+            window.removeEventListener('click', this.playSecondVideo);
+            window.removeEventListener('abuttondown', this.playSecondVideo);
+            window.removeEventListener('triggerdown', this.playSecondVideo);
+            window.removeEventListener('gripdown', this.playSecondVideo);
+            window.removeEventListener('xbuttondown', this.playSecondVideo);
         }
     },
     appearButtons: function() {

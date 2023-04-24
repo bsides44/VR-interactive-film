@@ -65,7 +65,6 @@ AFRAME.registerComponent('init-scene-one', {
 				}
 			}
 		}, 12000);
-  
 	},
 	onClick: function () {
 		if (this.data.loaded){
