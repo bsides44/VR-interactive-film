@@ -16,8 +16,9 @@ AFRAME.registerComponent('init-scene-one', {
     window.addEventListener('xbuttondown', this.onClick);
 
     // Set welcome loader
-    var intro = document.querySelector('#intro');
-    var welcomeCircle = document.querySelector('#welcomeCircle');
+    var intro = document.querySelector('#eeOutdoor');
+    var welcomeCircle = document.querySelector('#welcomeCircle')
+
     var welcomeText = document.querySelector('#welcomeText');
     var loadedText = document.querySelector('#loadedText');
 
@@ -28,8 +29,11 @@ AFRAME.registerComponent('init-scene-one', {
 		// video loading
 		if (buffered.length > 0 && buffered.end) {
 			percentLoaded = Math.round((buffered.end(0) / duration) * 100);
+
 		}
-		if (!this.data.loaded) welcomeCircle.setAttribute('geometry', 'thetaLength', ((percentLoaded/100) * 360))
+		if (!this.data.loaded) {
+			welcomeCircle.setAttribute('geometry', 'thetaLength', ((percentLoaded/100) * 360))
+		}
     });
     // video loaded
     intro.addEventListener('loadeddata', () => {
@@ -39,20 +43,33 @@ AFRAME.registerComponent('init-scene-one', {
     	loadedText.object3D.visible = true;
     });
 
+	setTimeout(() => {
+		if (!this.data.loaded){
+			this.data.loaded = true
+			welcomeCircle.emit('firstVideoLoaded', null, true)
+			welcomeText.object3D.visible = false;
+			loadedText.object3D.visible = true;
+		}
+	}, 3000);
+
   },
   onClick: function () {
 	if (this.data.loaded){
 		var videoPlayer = document.querySelector("#videoPlayer").getAttribute('material').src;
 		var welcomeCircle = document.querySelector('#welcomeCircle');
 		var loadedText = document.querySelector('#loadedText');
+		var vrText = document.querySelector('#vrText');
+
 
 		// Welcome text to disappear on first click
 		if (welcomeCircle) welcomeCircle.parentNode.removeChild(welcomeCircle);
 		if (loadedText) loadedText.parentNode.removeChild(loadedText);
+		if (vrText) vrText.parentNode.removeChild(vrText);
 
 		// Video to play on first click
 		if (videoPlayer) {
-			var vidSource = document.querySelector("#intro")
+
+			var vidSource = document.querySelector("#eeOutdoor")
 			vidSource.muted = false
 			vidSource.play()
 
@@ -70,17 +87,14 @@ AFRAME.registerComponent('init-scene-one', {
 	}
   },
   appearChallenge: function () {  
-    var challengeText = document.querySelector("#challengeText")
-    var startButton = document.querySelector("#startButton")
+    var challengeText = document.getElementById("challengeText")
+    var startButton = document.getElementById("startButton")
     var videoPlayer = document.querySelector("#videoPlayer")
-
-	challengeText.setAttribute('class', "cursor-listener")
-	startButton.setAttribute('class', "cursor-listener")
 
     // Make challenge appear when video playback is at 5
     if (videoPlayer) {
-      challengeText.object3D.visible = true;
-	  startButton.object3D.visible = true;
+      challengeText.style.setProperty('visibility', 'visible')
+	  startButton.style.setProperty('visibility', 'visible')
     }
   }
 });

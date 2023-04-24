@@ -43,7 +43,6 @@ AFRAME.registerComponent('play-video', {
         // play video
         var vidSource = document.querySelector(event.id)
         vidSource.muted = false
-        console.log('vidSource', vidSource)
 
 		// last video handler
 		if (event.index === 9) {      
