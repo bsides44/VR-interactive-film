@@ -35,12 +35,12 @@
   move-into-vr
   init-scene-one
   >
-    <a-assets >
+    <a-assets>
         <video id="intro" preload="true" src="./assets/intro.mp4" autoplay="false" 
                           muted loop="false" crossorigin="anonymous"></video>
-        <video id="eeOutdoor" preload="true" src="./assets/ee1-blended.mp4" autoplay="false" 
+        <video id="eeOutdoor" preload="auto" src="./assets/ee1-blended.mp4" autoplay="false" 
                           muted loop="true" crossOrigin="anonymous"></video>
-         <!-- <video id="sing1" preload="auto" src="./assets/sing1-shorter.mp4" autoplay="false" 
+         <video id="sing1" preload="auto" src="./assets/sing1-shorter.mp4" autoplay="false" 
                           muted loop="false" crossOrigin="anonymous"></video>
        <video id="eeIndoorOne" preload="auto" src="./assets/ee2_1.mp4" 
                           autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
@@ -55,7 +55,7 @@
         <video id="sing4" preload="auto" src="./assets/sing4-shorter.mp4" autoplay="false" 
                           muted loop="false" crossOrigin="anonymous"></video>
         <video id="cheers" preload="auto" src="./assets/cheers.mp4" 
-                          autoplay="false" muted loop="false" crossOrigin="anonymous"></video> -->
+                          autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
         
         <img id="eggStill" src="./assets/favicon-192.png">
         <img id="redEggStill" src="./assets/redEggIcon.png">
@@ -118,7 +118,7 @@
 	sound="src: #purr; volume: 0.4"
 	></a-image>
 	<a-image id="vrText" src="#vrStartText"
-	position="0 0 -1"
+	position="0 1.6 -1"
 	visible= "false"
 	scale="1.3 1.3 1.3"
 	sound="src: #purr; volume: 0.4"
@@ -246,136 +246,121 @@
 		select-egg
     ></a-entity>
 	
-	<!-- <a-camera> -->
-		<!-- CHALLENGE TEXT -->
-		<!-- <a-image id="challengeText" src="#challengeText4"
-		position="1 1 -1"
-		visible= "true"
+	<!-- VR UI: Assets in scene as Camera interferes with raycaster -->
+	<!-- CHALLENGE TEXT -->
+	<a-image id="challengeText" src="#challengeText4"
+		position="0 1.6 -1"
+		visible= "false"
 		scale="1 1.3 1"
 		class= "cursor-listener"
 		on-click-start
-		></a-image>  -->
-		<!-- position="0 0 -0.1"
-		visible= "false"
-		scale="0.115 0.15 0.115" -->
-		<!-- <a-image id="startButton" 
+	></a-image> 
+	<a-image id="startButton" 
 		src="#startBtn"
-		position="1 -0.25 -1"
-		visible= "true"
-		scale="0.5 0.2 0.4"
+		position="0 1.375 -0.9"
+		visible= "false"
+		scale="0.4 0.15 0.4"
 		class= "cursor-listener"
-		button-hover="button: #startButton; scale: 0.5 0.2 0.4"
+		button-hover="button: #startButton; scale: 0.4 0.15 0.4"
 		on-click-start
-		></a-image> -->
-		<!-- position="0 -0.0295 -0.1"
-		visible= "false"
-		scale="0.05 0.02 0.04" -->
+	></a-image>
 
-		<!-- PREVIOUS BUTTON -->
-		<!-- <a-image id="prevButton" src="#backArrow"
-		position="-0.12 0.07 -0.1"
-		visible= "true"
-		scale="0.05 0.02 0.04"
+	<!-- PREVIOUS BUTTON -->
+	<a-image id="prevButton" src="#backArrow"
+		position="-1 1.6 -0.9"
+		visible= "false"
+		scale="0.6 0.25 1"
 		class="cursor-listener" 
 		sound="src: #purr; volume: 0.4"
-		button-hover="button: #prevButton; scale: 0.05 0.02 0.04"
+		button-hover="button: #prevButton; scale: 0.6 0.25 1"
 		play-video="currentEvent: 1"
-		></a-image>
-		 -->
-		<!-- NEXT BUTTON -->
-		<!-- <a-image id="nextButton" src="#nextArrow"
-		position="0.12 0.07 -0.1"
-		visible= "true"
-		scale="0.05 0.02 0.04"
+	></a-image>
+		
+	<!-- NEXT BUTTON -->
+	<a-image id="nextButton" src="#nextArrow"
+		position="1 1.6 -0.9"
+		visible= "false"
+		scale="0.6 0.25 1"
 		class="cursor-listener" 
 		sound="src: #purr; volume: 0.4"
-		button-hover="button: #nextButton; scale: 0.05 0.02 0.04"
-		play-video="currentEvent: 8"
-		></a-image> -->
+		button-hover="button: #nextButton; scale: 0.6 0.25 1"
+		play-video="currentEvent: 2"
+	></a-image>
 
-		<!-- HUD -->
-		<!-- <a-entity
-		position="0 0.08 -0.11"
-		geometry="primitive: plane; width: 20; height: 0.04"
-		material="color: white; opacity:0.1"
-		></a-entity> -->
-
-		<!-- EGG COUNTER -->
-		<!-- <a-image id="eggIconOne" src="#eggStill"
-		position="-0.135 1.098 -1.5"
+	<!-- EGG COUNTER -->
+	<a-image id="eggIconOne" src="#eggStill"
+		position="-0.1 2.335 -1"
 		visible= "false"
-		scale="0.15 0.15 0.15"
+		scale="0.1 0.1 0.1"
 		opacity="0.2"
-		></a-image>
-		<a-image id="eggIconTwo" src="#eggStill"
-		position="-0.275 1.098 -1.5"
+	></a-image>
+	<a-image id="eggIconTwo" src="#eggStill"
+		position="-0.2 2.335 -1"
 		visible= "false"
-		scale="0.15 0.15 0.15"
+		scale="0.1 0.1 0.1"
 		opacity="0.2"
-		></a-image>
-		<a-image id="eggIconThree" src="#eggStill"
-		position="-0.415 1.098 -1.5"
+	></a-image>
+	<a-image id="eggIconThree" src="#eggStill"
+		position="-0.3 2.335 -1"
 		visible= "false"
-		scale="0.15 0.15 0.15"
+		scale="0.1 0.1 0.1"
 		opacity="0.2"
-		></a-image>
-		<a-image id="eggIconFour" src="#eggStill"
-		position="-0.555 1.098 -1.5"
+	></a-image>
+	<a-image id="eggIconFour" src="#eggStill"
+		position="-0.4 2.335 -1"
 		visible= "false"
-		scale="0.15 0.15 0.15"
+		scale="0.1 0.1 0.1"
 		opacity="0.2"
-		></a-image>
-		<a-image id="bonusIconOne" src="#redEggStill"
-		position="-0.555 1.098 -1.5"
+	></a-image>
+	<a-image id="bonusIconOne" src="#redEggStill"
+		position="-0.4 2.335 -1"
 		visible= "false"
-		scale="0.15 0.15 0.15"
+		scale="0.1 0.1 0.1"
 		opacity="0.2"
-		></a-image>
-		<a-image id="bonusIconTwo" src="#redEggStill"
-		position="-0.695 1.098 -1.5"
+	></a-image>
+	<a-image id="bonusIconTwo" src="#redEggStill"
+		position="-0.5 2.335 -1"
 		visible= "false"
-		scale="0.15 0.15 0.15"
+		scale="0.1 0.1 0.1"
 		opacity="0.2"
-		></a-image>
-		<a-image id="bonusIconThree" src="#redEggStill"
-		position="-0.835 1.098 -1.5"
+	></a-image>
+	<a-image id="bonusIconThree" src="#redEggStill"
+		position="-0.6 2.335 -1"
 		visible= "false"
-		scale="0.15 0.15 0.15"
+		scale="0.1 0.1 0.1"
 		opacity="0.2"
-		></a-image> -->
-		<!-- EGG TEXT -->
-		<!-- <a-entity id="eggCount" text="value:0;
+	></a-image>
+	<!-- EGG TEXT -->
+	<a-entity id="eggCount" text="value:0;
 		align: center;
 		width:3;
 		color: pink;
 		font: dejavu;"
-		position="0 1.1 -1.5"
+		position="0 2.35 -1"
 		visible= "false"
 		sound="src: #bing; volume: 0.6; poolSize: 10"
-		></a-entity> -->
+	></a-entity>
 
-		<!-- VICTORY TEXT -->  
-		<!-- <a-image id="victoryText" 
+	<!-- VICTORY TEXT -->  
+	<a-image id="victoryText" 
 		src="#victoryText1"
-		position="0 0 -0.1"
+		position="0 1.4 -1"
 		visible= "false"
-		scale="0.115 0.15 0.115"
-		></a-image>
-		<a-image id="friendsButton" 
+		scale="1.2 1.6 1"
+	></a-image>
+	<a-image id="friendsButton" 
 		src="#victoryText2"
-		position="-0.003 -0.008 -0.099"
+		position="-0.03 1.38 -0.9"
 		visible= "false"
-		scale="0.08 0.0325 0.08"
+		scale="0.75 0.275 1"
 		class= "cursor-listener"
-		button-hover="button: #friendsButton; scale: 0.08 0.0325 0.08"
-		></a-image>-->
-<!-- </a-camera>   -->
+		button-hover="button: #friendsButton; scale: 0.75 0.275 1"
+	></a-image>
 
   </a-scene>
-   <!-- Attempt to move UI to html  -->
-   <!-- Buttons do not appear in VR -->
+   	<!-- DESKTOP UI: Responsive; Don't work in VR -->
 	<!-- CHALLENGE TEXT -->
-	<img id="challengeText" src="./assets/button/challengeText5.png"
+	<!-- <img id="challengeText" src="./assets/button/challengeText5.png"
 	style="position: fixed;
     top: 50px;
     left: calc(50% - 200px);
@@ -395,9 +380,9 @@
 	z-index: 9999999;"
 	class= "cursor-listener"
 	onclick="onClickStart()"
-	/>
+	/> -->
 	<!-- PREVIOUS BUTTON -->
-	<div id="#navButtons" 	
+	<!-- <div id="#navButtons" 	
 	style="position: absolute;
     bottom: 10px;
     left: calc(50% - 220px);
@@ -411,10 +396,10 @@
 		class="cursor-listener" 
 		sound="src: #purr; volume: 0.4"
 		onclick="playVideo(1)"
-		/>
+		/> -->
 		
 		<!-- NEXT BUTTON -->
-		<img id="nextButton" src="./assets/button/nextArrow.png"
+		<!-- <img id="nextButton" src="./assets/button/nextArrow.png"
 		style="width: 200px;
 		visibility: hidden;
 		z-index: 999999;
@@ -423,9 +408,9 @@
 		sound="src: #purr; volume: 0.4"
 		onclick="playVideo(8)"
 		/>
-	</div>
+	</div> -->
 	<!-- VICTORY TEXT -->  
-	<img id="victoryText" 
+	<!-- <img id="victoryText" 
 	src="./assets/button/victoryTextOne.png"
 	style="position: absolute;
     top: 50px;
@@ -444,93 +429,75 @@
 	z-index: 999999;"
 	class= "cursor-listener"
 	onclick="onClickEnd()"
-	/>
+	/> -->
 	<!-- EGG COUNTER -->
-	<img id="eggIconOne" src="./assets/favicon-192.png"
-	style="position: absolute;
-    top: 10px;
-    right: 41px;
-    width: 40px;
-	visibility: hidden;
-	z-index: 999999;
-	opacity: 0.2"
-	/>
-	<img id="eggIconTwo" src="./assets/favicon-192.png"
-	style="position: absolute;
-    top: 10px;
-    right: 75px;
-    width: 40px;
-	visibility: hidden;
-	z-index: 999999;
-	opacity: 0.2"
-	/>
-	<img id="eggIconThree" src="./assets/favicon-192.png"
-	style="position: absolute;
-    top: 10px;
-    right: 109px;
-    width: 40px;
-	visibility: hidden;
-	z-index: 999999;
-	opacity: 0.2"
-	/>
-	<img id="eggIconFour" src="./assets/favicon-192.png"
-	style="position: absolute;
-    top: 10px;
-    right: 144px;
-    width: 40px;
-	visibility: hidden;
-	z-index: 999999;
-	opacity: 0.2"
-	/>
-	<img id="bonusIconOne" src="./assets/redEggIcon.png"
-	style="position: absolute;
-    top: 10px;
-    right: 144px;
-    width: 40px;
-	visibility: hidden;
-	z-index: 999999;
-	opacity: 0.2"
-	/>
-	<img id="bonusIconTwo" src="./assets/redEggIcon.png"
-	style="position: absolute;
-    top: 10px;
-    right: 179px;
-    width: 40px;
-	visibility: hidden;
-	z-index: 999999;
-	opacity: 0.2"
-	/>
-	<img id="bonusIconThree" src="./assets/redEggIcon.png"
-	style="position: absolute;
-    top: 10px;
-    right: 213px;
-    width: 40px;
-	visibility: hidden;
-	z-index: 999999;
-	opacity: 0.2"
-	/>
-	<!-- EGG TEXT -->
-	<p id="eggCount"
-	style="position: absolute;
- 	top: -23px;
-    right: 8px;
-    visibility: hidden;
-	z-index: 999999;
-    font-size: 4em;
-    line-height: 0;
-	font-family: monospace;
-	color:darkmagenta"
-	sound="src: #bing; volume: 0.6; poolSize: 10">0</p>
+	<!-- <div id="eggCounter" style="visibility: hidden; z-index: 999999;">
+		<img id="eggIconOne" src="./assets/favicon-192.png"
+		style="position: absolute;
+		top: 10px;
+		right: 41px;
+		width: 40px;
+		opacity: 0.2"
+		/>
+		<img id="eggIconTwo" src="./assets/favicon-192.png"
+		style="position: absolute;
+		top: 10px;
+		right: 75px;
+		width: 40px;
+		opacity: 0.2"
+		/>
+		<img id="eggIconThree" src="./assets/favicon-192.png"
+		style="position: absolute;
+		top: 10px;
+		right: 109px;
+		width: 40px;
+		opacity: 0.2"
+		/>
+		<img id="eggIconFour" src="./assets/favicon-192.png"
+		style="position: absolute;
+		top: 10px;
+		right: 144px;
+		width: 40px;
+		opacity: 0.2"
+		/>
+		<img id="bonusIconOne" src="./assets/redEggIcon.png"
+		style="position: absolute;
+		top: 10px;
+		right: 144px;
+		width: 40px;
+		opacity: 0.2"
+		/>
+		<img id="bonusIconTwo" src="./assets/redEggIcon.png"
+		style="position: absolute;
+		top: 10px;
+		right: 179px;
+		width: 40px;
+		opacity: 0.2"
+		/>
+		<img id="bonusIconThree" src="./assets/redEggIcon.png"
+		style="position: absolute;
+		top: 10px;
+		right: 213px;
+		width: 40px;
+		opacity: 0.2"
+		/> -->
+		<!-- EGG TEXT -->
+		<!-- <p id="eggCount"
+		style="position: absolute;
+		top: -23px;
+		right: 8px;
+		font-size: 4em;
+		line-height: 0;
+		font-family: monospace;
+		color:darkmagenta"
+		sound="src: #bing; volume: 0.6; poolSize: 10">0</p>
+	</div>
 	<style>
 		#startButton:hover, #prevButton:hover, #nextButton:hover, #friendsButton:hover {
 			scale: 1.25 1.25
 		}
-		a-entity[htmlembed] {
-			z-index: 999999;
-    		display: block !important
-		}
-	</style>
-<script>
+	</style> -->
+<!-- <script>
 var currentVideo = "intro"
 var events = [
 			{index: 0, id: "#intro", numberOfEggs: 0, buttonTimer: 0, buttonPrev: null, buttonNext: null, rotation:"0 -70 0" },
@@ -654,7 +621,7 @@ var events = [
         // NB: video & text handled in play-video, eggs handled in egg-appear
  }
 
-</script>
+</script> -->
 
 </body>
 </html>

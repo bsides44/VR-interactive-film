@@ -45,14 +45,13 @@ AFRAME.registerComponent('play-video', {
         vidSource.muted = false
 
 		// last video handler
-		if (event.index === 9) {      
+		if (event.index === 2) {      
 			var victoryText = document.querySelector("#victoryText")
       var friendsButton = document.querySelector("#friendsButton")
       victoryText.object3D.visible = true
 			setTimeout(() => {
         victoryText.setAttribute('on-click-end', '')
         friendsButton.setAttribute('on-click-end', '')
-
 				friendsButton.object3D.visible = true
 			}, 2000);
 		}

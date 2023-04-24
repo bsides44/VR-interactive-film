@@ -19,10 +19,8 @@ AFRAME.registerComponent('egg-appear', {
 
         var sceneEl = document.querySelector("a-scene")
         sceneEl.addEventListener('videoChanged', this.selectScene);
-
     },
     selectScene: function(event) {
-
         this.resetNewScene()
         if (event.detail.id == "#eeOutdoor") this.playOutdoor()
         if (event.detail.id == "#sing1") this.playSing1()
@@ -35,7 +33,6 @@ AFRAME.registerComponent('egg-appear', {
         if (event.detail.id == "#cheers") this.readyLastScene()
     },
     playOutdoor: function () {
-
         this.eggCountIcon(6)
         this.setEggTimer("#eggOne", 8000);
         this.setEggTimer("#eggTwo", 12000);
@@ -87,13 +84,13 @@ AFRAME.registerComponent('egg-appear', {
         this.setEggTimer("#eggSix", 3000);
     },
     resetNewScene: function() {
-        document.getElementById("eggIconOne").style.setProperty('visibility', 'hidden')
-        document.getElementById("eggIconTwo").style.setProperty('visibility', 'hidden')
-        document.getElementById("eggIconThree").style.setProperty('visibility', 'hidden')
-        document.getElementById("eggIconFour").style.setProperty('visibility', 'hidden')
-        document.getElementById("bonusIconOne").style.setProperty('visibility', 'hidden')
-        document.getElementById("bonusIconTwo").style.setProperty('visibility', 'hidden')
-        document.getElementById("bonusIconThree").style.setProperty('visibility', 'hidden')
+        document.querySelector("#eggIconOne").object3D.visible = false
+        document.querySelector("#eggIconTwo").object3D.visible = false
+        document.querySelector("#eggIconThree").object3D.visible = false
+        document.querySelector("#eggIconFour").object3D.visible = false
+        document.querySelector("#bonusIconOne").object3D.visible = false
+        document.querySelector("#bonusIconTwo").object3D.visible = false
+        document.querySelector("#bonusIconThree").object3D.visible = false
         document.querySelector("#eggOne").object3D.visible = false
         document.querySelector("#eggTwo").object3D.visible = false
         document.querySelector("#eggThree").object3D.visible = false
@@ -107,35 +104,35 @@ AFRAME.registerComponent('egg-appear', {
         this.data.eggTimeouts.forEach(timeout => clearTimeout(timeout))
     },
     eggCountIcon: function(numberOfEggs) {
-        if (numberOfEggs === 1 ) this.setOpacity("eggIconOne")
+        if (numberOfEggs === 1 ) this.setOpacity("#eggIconOne")
         if (numberOfEggs === 2 ) {
-            this.setOpacity("eggIconOne")
-            this.setOpacity("eggIconTwo")
+            this.setOpacity("#eggIconOne")
+            this.setOpacity("#eggIconTwo")
         }
         if (numberOfEggs === 3 ) {
-            this.setOpacity("eggIconOne")
-            this.setOpacity("eggIconTwo")
-            this.setOpacity("eggIconThree")
+            this.setOpacity("#eggIconOne")
+            this.setOpacity("#eggIconTwo")
+            this.setOpacity("#eggIconThree")
         }
         if (numberOfEggs === 4 ) {
-            this.setOpacity("eggIconOne")
-            this.setOpacity("eggIconTwo")
-            this.setOpacity("eggIconThree")
-            this.setOpacity("eggIconFour")
+            this.setOpacity("#eggIconOne")
+            this.setOpacity("#eggIconTwo")
+            this.setOpacity("#eggIconThree")
+            this.setOpacity("#eggIconFour")
         }
         if (numberOfEggs === 6 ) {
-            this.setOpacity("eggIconOne")
-            this.setOpacity("eggIconTwo")
-            this.setOpacity("eggIconThree")
-            this.setOpacity("bonusIconOne")
-            this.setOpacity("bonusIconTwo")
-            this.setOpacity("bonusIconThree")
+            this.setOpacity("#eggIconOne")
+            this.setOpacity("#eggIconTwo")
+            this.setOpacity("#eggIconThree")
+            this.setOpacity("#bonusIconOne")
+            this.setOpacity("#bonusIconTwo")
+            this.setOpacity("#bonusIconThree")
         }
     },
     setOpacity: function (id) {
-        var icon = document.getElementById(id)
-        icon.style.setProperty('opacity', '0.2')
-        icon.style.setProperty('visibility', 'visible')
+        var icon = document.querySelector(id)
+        icon.setAttribute('opacity', '0.2')
+        icon.object3D.visible = true
     },
     setEggTimer: function (id, time) {
         this.data.eggTimeouts.push(setTimeout(() => { this.appearEgg(id)}, time))
@@ -150,62 +147,62 @@ AFRAME.registerComponent('egg-appear', {
         this.appearIcon(id)
     },
     appearIcon: function(id) {      
-        var eggIconOne = document.getElementById("eggIconOne")
-        var oneOpacity = getComputedStyle(eggIconOne).getPropertyValue('opacity')
-        var eggIconTwo = document.getElementById("eggIconTwo")
-        var twoOpacity = getComputedStyle(eggIconTwo).getPropertyValue('opacity')
-        var eggIconThree = document.getElementById("eggIconThree")
-        var threeOpacity= getComputedStyle(eggIconThree).getPropertyValue('opacity')
-        var eggIconFour = document.getElementById("eggIconFour")
-        var fourOpacity = getComputedStyle(eggIconFour).getPropertyValue('opacity')
-        var bonusIconOne = document.getElementById("bonusIconOne")
-        var bonusOpacityOne = getComputedStyle(bonusIconOne).getPropertyValue('opacity')
-        var bonusIconTwo = document.getElementById("bonusIconTwo")
-        var bonusOpacityTwo = getComputedStyle(bonusIconTwo).getPropertyValue('opacity')
-        var bonusIconThree = document.getElementById("bonusIconThree")
-        var bonusOpactiyThree= getComputedStyle(bonusIconThree).getPropertyValue('opacity')     
+        var eggIconOne = document.querySelector("#eggIconOne")
+        var oneOpacity = eggIconOne.getAttribute('opacity')
+        var eggIconTwo = document.querySelector("#eggIconTwo")
+        var twoOpacity = eggIconTwo.getAttribute('opacity')
+        var eggIconThree = document.querySelector("#eggIconThree")
+        var threeOpacity= eggIconThree.getAttribute('opacity')
+        var eggIconFour = document.querySelector("#eggIconFour")
+        var fourOpacity = eggIconFour.getAttribute('opacity')
+        var bonusIconOne = document.querySelector("#bonusIconOne")
+        var bonusOpacityOne = bonusIconOne.getAttribute('opacity')
+        var bonusIconTwo = document.querySelector("#bonusIconTwo")
+        var bonusOpacityTwo = bonusIconTwo.getAttribute('opacity')
+        var bonusIconThree = document.querySelector("#bonusIconThree")
+        var bonusOpactiyThree= bonusIconThree.getAttribute('opacity')     
         var dull = 0.2
         var bright = 0.5
 
         // Activate Bonus Icons
         if (id == "#eggSeven" || id == "#eggEight" || id == "#eggNine") {
-            if (bonusOpacityOne == dull && bonusOpacityTwo == dull && bonusOpactiyThree == dull) return bonusIconOne.style.setProperty('opacity', bright)
-            else if (bonusOpacityOne >= bright && bonusOpacityTwo == dull && bonusOpactiyThree == dull) return bonusIconTwo.style.setProperty('opacity', bright)
-            else if (bonusOpacityOne >= bright && bonusOpacityTwo >= bright && bonusOpactiyThree == dull) return bonusIconThree.style.setProperty('opacity', bright)
+            if (bonusOpacityOne == dull && bonusOpacityTwo == dull && bonusOpactiyThree == dull) return bonusIconOne.setAttribute('opacity', bright)
+            else if (bonusOpacityOne >= bright && bonusOpacityTwo == dull && bonusOpactiyThree == dull) return bonusIconTwo.setAttribute('opacity', bright)
+            else if (bonusOpacityOne >= bright && bonusOpacityTwo >= bright && bonusOpactiyThree == dull) return bonusIconThree.setAttribute('opacity', bright)
         }
         else {
             // Activate Regular icons
-
             if (oneOpacity == dull && 
                 twoOpacity == dull && 
                 threeOpacity == dull && 
                 fourOpacity == dull) {
-                    
-                return eggIconOne.style.setProperty('opacity', bright)
+                return eggIconOne.setAttribute('opacity', bright)
             }
             else if (oneOpacity >= bright && 
                 twoOpacity == dull && 
                 threeOpacity == dull  && 
                 fourOpacity == dull) {
-                return eggIconTwo.style.setProperty('opacity', bright)
+                return eggIconTwo.setAttribute('opacity', bright)
             }
             else if (oneOpacity >= bright && 
                 twoOpacity >= bright &&
                 threeOpacity == dull && 
                 fourOpacity == dull) {
-                return eggIconThree.style.setProperty('opacity', bright)
+                return eggIconThree.setAttribute('opacity', bright)
             }
             else if (oneOpacity >= bright && 
                 twoOpacity >= bright &&
                 threeOpacity >= bright && 
                 fourOpacity == dull) {
-                return eggIconFour.style.setProperty('opacity', bright)
+                return eggIconFour.setAttribute('opacity', bright)
             }
         }
     },
     readyLastScene: function() {
         this.data.eggTimeouts.forEach(timeout => clearTimeout(timeout))
 
+        // var camera = document.querySelector("a-camera")
+        // camera.parentNode.removeChild(camera);
         document.querySelector("#eggOne").object3D.visible = false
         document.querySelector("#eggTwo").object3D.visible = false
         document.querySelector("#eggThree").object3D.visible = false
@@ -216,7 +213,7 @@ AFRAME.registerComponent('egg-appear', {
         document.querySelector("#eggEight").object3D.visible = false
         document.querySelector("#eggNine").object3D.visible = false
         // make egg counter disappear
-		document.getElementById("eggCount").style.setProperty('visibility', 'visible')
+		document.querySelector("#eggCount").object3D.visible = false
         // remove listeners
         var sceneEl = document.querySelector("a-scene")
         sceneEl.removeEventListener('videoChanged', this.selectScene);

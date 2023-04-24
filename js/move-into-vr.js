@@ -6,43 +6,47 @@ AFRAME.registerComponent('move-into-vr', {
         window.addEventListener('enter-vr', () => {
             // move text and buttons down
             var sceneEl = document.querySelector('a-scene');
+            var imageArr = sceneEl.querySelectorAll('a-image')
             var entityArr = sceneEl.querySelectorAll('a-entity')
             var welcomeText = document.querySelector('#welcomeText');
             var loadedText = document.querySelector('#loadedText');
-            var vrText = document.querySelector('#vrText')
 
+            imageArr.forEach(image => this.moveDown(image, 1.6))
             entityArr.forEach(entity => this.moveDown(entity, 1.6))
+
+            this.moveDown(welcomeText, 1.6)
             
             if (welcomeText.getAttribute('visible') || loadedText.getAttribute('visible')) {
                 welcomeText.object3D.visible = false
                 loadedText.object3D.visible = false
-                vrText.object3D.visible = true
+                document.querySelector('#vrText').object3D.visible = true
             }
             // add VR controllers
             leftHand.setAttribute('id', 'leftHand');
             leftHand.setAttribute('laser-controls', 'hand: left');
             leftHand.setAttribute('raycaster', 'objects: .cursor-listener');
-            leftHand.setAttribute('raycaster', 'far:10000')
-
 
             sceneEl.appendChild(leftHand);
 
             rightHand.setAttribute('id', 'rightHand');
             rightHand.setAttribute('laser-controls', 'hand: right');
             rightHand.setAttribute('raycaster', 'objects: .cursor-listener');
-            rightHand.setAttribute('raycaster', 'far:10000')
-
 
             sceneEl.appendChild(rightHand);
         })
         window.addEventListener('exit-vr', () => {
             // move text and buttons back up
             var sceneEl = document.querySelector('a-scene');
+            var imageArr = sceneEl.querySelectorAll('a-image')
             var entityArr = sceneEl.querySelectorAll('a-entity')
             var welcomeText = document.querySelector('#welcomeText');
             var loadedText = document.querySelector('#loadedText');
+            var vrText = document.querySelector('#vrText');
 
+            imageArr.forEach(image => this.moveUp(image, 0.5))
             entityArr.forEach(entity => this.moveUp(entity, 1.6))
+
+            this.moveUp(welcomeText, 1.6)
             
             if (vrText.getAttribute('visible')) {
                 welcomeText.object3D.visible = true
