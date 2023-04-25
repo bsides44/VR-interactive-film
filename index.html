@@ -6,6 +6,7 @@
   <meta name="description" content="Interactive 360 video-based Easter egg game in web vr using aframe for webxr">
   <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+  <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
   <link rel="icon" href="./assets/favicon-16.png" sizes="16x16">
   <link rel="icon" href="./assets/favicon-32.png" sizes="32x32">
   <link rel="icon" href="./assets/favicon-64.png" sizes="64x64">
@@ -28,7 +29,18 @@
     background-color: white;
   }
 </style>
-
+<!-- <script>
+	var url = "https://customer-bik02y7ots3q72u3.cloudflarestream.com/44659080bbd5fc321c45ac7d5a0bbfc8/manifest/video.mpd";
+	var player = dashjs.MediaPlayer().create();
+	player.initialize(document.querySelector("#videoPlayer"), url, true);
+	player.updateSettings({
+            debug: {logLevel: 5},
+            streaming: {cacheInitSegments: true}
+        });
+        player.preload();
+	console.log()
+	player.setQualityFor('video', 4)
+</script> -->
 <body>
   <a-scene id="scene" loading-screen="dotsColor: black; backgroundColor: white"  shadow="enabled; autoUpdate: true" renderer="antialias: true"
   webxr="referenceSpaceType: local"  
@@ -36,26 +48,27 @@
   init-scene-one
   >
     <a-assets>
-        <video id="intro" preload="true" src="./assets/intro.mp4" autoplay="false" 
-                          muted loop="false" crossorigin="anonymous"></video>
-        <video id="eeOutdoor" preload="auto" src="./assets/ee1-blended.mp4" autoplay="false" 
-                          muted loop="true" crossOrigin="anonymous"></video>
-         <video id="sing1" preload="auto" src="./assets/sing1-shorter.mp4" autoplay="false" 
-                          muted loop="false" crossOrigin="anonymous"></video>
-       <video id="eeIndoorOne" preload="auto" src="./assets/ee2_1.mp4" 
-                          autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
-        <video id="sing2" preload="auto" src="./assets/sing2.mp4" autoplay="false" 
-                          muted loop="false" crossOrigin="anonymous"></video>
-        <video id="articulate" preload="auto" src="./assets/articulate.mp4" 
-                          autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
-        <video id="sing3" preload="auto" src="./assets/sing3.mp4" autoplay="false" 
-                          muted loop="false" crossOrigin="anonymous"></video>
-        <video id="eeIndoorTwo" preload="auto" src="./assets/ee2-2-shorter.mp4" 
-                          autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
-        <video id="sing4" preload="auto" src="./assets/sing4-shorter.mp4" autoplay="false" 
-                          muted loop="false" crossOrigin="anonymous"></video>
-        <video id="cheers" preload="auto" src="./assets/cheers.mp4" 
-                          autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
+		<!-- http://cdn.dashjs.org/latest/jsdoc/module-MediaPlayer.html#setConfig__anchor -->
+        <video id="intro" preload="true" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/44659080bbd5fc321c45ac7d5a0bbfc8/manifest/video.mpd" autoplay="false" 
+                          muted loop="false" crossorigin="anonymous" data-dashjs-player=""></video>
+        <video id="eeOutdoor" preload="true" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/ab4018f023d3dd8961d605e109aa14ce/manifest/video.mpd" autoplay="false" 
+                          muted loop="true" crossOrigin="anonymous" data-dashjs-player=""></video>
+         <video id="sing1" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/a5cdbc2472e46b8ff1427422425b2ca2/manifest/video.mpd" autoplay="false" 
+                          muted loop="false" crossOrigin="anonymous" data-dashjs-player=""></video>
+       <video id="eeIndoorOne" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/495170cd33d36effd907f239a7f3b41b/manifest/video.mpd" 
+                          autoplay="false" muted loop="false" crossOrigin="anonymous" data-dashjs-player=""></video>
+        <video id="sing2" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/23dee2f490f137ddda25d890a4bee6d6/manifest/video.mpd" autoplay="false" 
+                          muted loop="false" crossOrigin="anonymous" data-dashjs-player=""></video>
+        <video id="articulate" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/658d6516a5a2142e1ee14b03ab96acff/manifest/video.mpd" 
+                          autoplay="false" muted loop="false" crossOrigin="anonymous" data-dashjs-player=""></video>
+        <video id="sing3" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/1491dbe97f88c1ee1b5725dcef100eeb/manifest/video.mpd" autoplay="false" 
+                          muted loop="false" crossOrigin="anonymous" data-dashjs-player=""></video>
+        <video id="eeIndoorTwo" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/f444ad885af757058515717b86af07e8/manifest/video.mpd" 
+                          autoplay="false" muted loop="false" crossOrigin="anonymous" data-dashjs-player=""></video>
+        <video id="sing4" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/377b9823d7a35b1d567e69f67f53dae5/manifest/video.mpd" autoplay="false" 
+                          muted loop="false" crossOrigin="anonymous" data-dashjs-player=""></video>
+        <video id="cheers" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/2d75e4046d8f114a9f831626a99a4479/manifest/video.mpd" 
+                          autoplay="false" muted loop="false" crossOrigin="anonymous" data-dashjs-player=""></video>
         
         <img id="eggStill" src="./assets/favicon-192.png">
         <img id="redEggStill" src="./assets/redEggIcon.png">
@@ -86,8 +99,6 @@
 
     </a-assets>
 
-	<!-- loading too slow in vr -->
-	<!-- need to re edit videos and upload them to cloudflare -->
     <!-- VIDEOS -->
     <a-videosphere id="videoPlayer" rotation="0 -70 0" src="#intro" visible="true">
     </a-videosphere>
@@ -358,5 +369,6 @@
 	></a-image>
 
   </a-scene>
+  <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
 </body>
 </html>

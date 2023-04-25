@@ -25,7 +25,7 @@ AFRAME.registerComponent('init-scene-one', {
 		var welcomeText = document.querySelector('#welcomeText');
 		var loadedText = document.querySelector('#loadedText');
 		var vrText = document.querySelector('#vrText');
-	
+		
 		intro.addEventListener('progress', () => {
 			var percentLoaded = 0;
 			var duration = intro.duration;
@@ -49,10 +49,13 @@ AFRAME.registerComponent('init-scene-one', {
 		});
 
 		intro.addEventListener('timeout', (e) => {
-			console.log('timeout', e)
+			console.log('timeout')
+			console.log(e)
+
 		})
 		intro.addEventListener('error', (e) => {
-			console.log('error', e)
+			console.log('error')
+			console.log(e)
 		})
 
 	  setTimeout(() => {
