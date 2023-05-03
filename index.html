@@ -29,44 +29,49 @@
     background-color: white;
   }
 </style>
-<!-- <script>
-	var url = "https://customer-bik02y7ots3q72u3.cloudflarestream.com/44659080bbd5fc321c45ac7d5a0bbfc8/manifest/video.mpd";
-	var player = dashjs.MediaPlayer().create();
-	player.initialize(document.querySelector("#videoPlayer"), url, true);
-	player.updateSettings({
-            debug: {logLevel: 5},
-            streaming: {cacheInitSegments: true}
-        });
-        player.preload();
-	console.log()
-	player.setQualityFor('video', 4)
-</script> -->
+<script>
+	AFRAME.registerComponent('check-quality', {
+    init: function() {
+		var url = "https://customer-bik02y7ots3q72u3.cloudflarestream.com/44659080bbd5fc321c45ac7d5a0bbfc8/manifest/video.mpd";
+		var player = dashjs.MediaPlayer().create();
+		player.initialize(document.querySelector("#videoPlayer"), url, true);
+		player.updateSettings({
+				debug: {logLevel: 5},
+				streaming: {cacheInitSegments: true}
+			});
+			player.preload();
+
+		player.setQualityFor('video', 4)
+	}
+})
+
+</script>
 <body>
   <a-scene id="scene" loading-screen="dotsColor: black; backgroundColor: white"  shadow="enabled; autoUpdate: true" renderer="antialias: true"
   webxr="referenceSpaceType: local"  
   move-into-vr
   init-scene-one
   >
-    <a-assets>
+    <a-assets timeout="3000">
 		<!-- http://cdn.dashjs.org/latest/jsdoc/module-MediaPlayer.html#setConfig__anchor -->
         <video id="intro" preload="true" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/44659080bbd5fc321c45ac7d5a0bbfc8/manifest/video.mpd" autoplay="false" 
                           muted loop="false" crossorigin="anonymous" data-dashjs-player=""></video>
         <video id="eeOutdoor" preload="true" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/ab4018f023d3dd8961d605e109aa14ce/manifest/video.mpd" autoplay="false" 
                           muted loop="true" crossOrigin="anonymous" data-dashjs-player=""></video>
-         <video id="sing1" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/a5cdbc2472e46b8ff1427422425b2ca2/manifest/video.mpd" autoplay="false" 
-                          muted loop="false" crossOrigin="anonymous" data-dashjs-player=""></video>
+         <video id="sing1" preload="true" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/a5cdbc2472e46b8ff1427422425b2ca2/manifest/video.mpd" autoplay="false" 
+                          muted loop="true" crossOrigin="anonymous" data-dashjs-player=""></video>
        <video id="eeIndoorOne" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/495170cd33d36effd907f239a7f3b41b/manifest/video.mpd" 
-                          autoplay="false" muted loop="false" crossOrigin="anonymous" data-dashjs-player=""></video>
+                          autoplay="false" muted loop="true" crossOrigin="anonymous" data-dashjs-player=""></video>
         <video id="sing2" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/23dee2f490f137ddda25d890a4bee6d6/manifest/video.mpd" autoplay="false" 
-                          muted loop="false" crossOrigin="anonymous" data-dashjs-player=""></video>
+                          muted loop="true" crossOrigin="anonymous" data-dashjs-player=""></video>
         <video id="articulate" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/658d6516a5a2142e1ee14b03ab96acff/manifest/video.mpd" 
-                          autoplay="false" muted loop="false" crossOrigin="anonymous" data-dashjs-player=""></video>
+                          autoplay="false" muted loop="true" crossOrigin="anonymous" data-dashjs-player=""></video>
         <video id="sing3" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/1491dbe97f88c1ee1b5725dcef100eeb/manifest/video.mpd" autoplay="false" 
-                          muted loop="false" crossOrigin="anonymous" data-dashjs-player=""></video>
+                          muted loop="true" crossOrigin="anonymous" data-dashjs-player=""></video>
         <video id="eeIndoorTwo" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/f444ad885af757058515717b86af07e8/manifest/video.mpd" 
-                          autoplay="false" muted loop="false" crossOrigin="anonymous" data-dashjs-player=""></video>
+                          autoplay="false" muted loop="true" crossOrigin="anonymous" data-dashjs-player=""></video>
         <video id="sing4" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/377b9823d7a35b1d567e69f67f53dae5/manifest/video.mpd" autoplay="false" 
-                          muted loop="false" crossOrigin="anonymous" data-dashjs-player=""></video>
+                          muted loop="true" crossOrigin="anonymous" data-dashjs-player=""></video>
         <video id="cheers" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/2d75e4046d8f114a9f831626a99a4479/manifest/video.mpd" 
                           autoplay="false" muted loop="false" crossOrigin="anonymous" data-dashjs-player=""></video>
         
@@ -100,7 +105,7 @@
     </a-assets>
 
     <!-- VIDEOS -->
-    <a-videosphere id="videoPlayer" rotation="0 -70 0" src="#intro" visible="true">
+    <a-videosphere id="videoPlayer" rotation="0 -70 0" src="#intro" visible="true" check-quality>
     </a-videosphere>
 
     <!-- CONTROLS -->
@@ -218,10 +223,10 @@
 	<a-entity
         id="eggSeven"
         gltf-model="#sevenEgg"	
-		position="-0.8 1.8 -1" 
+		position="-0.8 1 -1" 
 		rotation="0 -55 0"
 		scale="4 4 4"
-        animation="property: position; to: -0.8 1.81 -1; dur: 300; easing: easeInOutElastic; loop: true"
+        animation="property: position; to: -0.8 1.01 -1; dur: 300; easing: easeInOutElastic; loop: true"
 		animation__hover="property: scale; to: 8 8 8; startEvents: raycaster-intersected; dur: 1"
 		animation__endhover="property: scale; to: 4 4 4; startEvents: raycaster-intersected-cleared; dur: 1"
         sound="src: #ping; volume: 0.6; poolSize: 10"
