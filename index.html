@@ -6,7 +6,6 @@
   <meta name="description" content="Interactive 360 video-based Easter egg game in web vr using aframe for webxr">
   <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-  <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
   <link rel="icon" href="./assets/favicon-16.png" sizes="16x16">
   <link rel="icon" href="./assets/favicon-32.png" sizes="32x32">
   <link rel="icon" href="./assets/favicon-64.png" sizes="64x64">
@@ -29,34 +28,6 @@
     background-color: white;
   }
 </style>
-<!-- <script>
-	AFRAME.registerComponent('check-quality', {
-    init: function() {
-console.log("check-quality")
-
-		var url = "https://customer-bik02y7ots3q72u3.cloudflarestream.com/44659080bbd5fc321c45ac7d5a0bbfc8/manifest/video.mpd";
-console.log("0")
-
-		var player = dashjs.MediaPlayer().create();
-console.log("1")
-
-		player.initialize(document.querySelector("#intro"), url, true);
-console.log("c2")
-
-		player.updateSettings({
-				debug: {logLevel: 5},
-				streaming: {cacheInitSegments: true}
-			});
-console.log("3")
-
-			player.preload();
-
-console.log(">>> quality", player.getQualityFor('video'))
-		player.setQualityFor('video', 4)
-	}
-})
-
-</script> -->
 <body>
   <a-scene id="scene" loading-screen="dotsColor: black; backgroundColor: white"  shadow="enabled; autoUpdate: true" renderer="antialias: true"
   webxr="referenceSpaceType: local"  
@@ -64,28 +35,16 @@ console.log(">>> quality", player.getQualityFor('video'))
   init-scene-one
   >
     <a-assets timeout="3000">
-		<!-- http://cdn.dashjs.org/latest/jsdoc/module-MediaPlayer.html#setConfig__anchor -->
-		<!-- https://customer-bik02y7ots3q72u3.cloudflarestream.com/44659080bbd5fc321c45ac7d5a0bbfc8/manifest/video.mpd -->
-        <video id="intro" preload="true" quality="4" src="https://cdn.tangerinium.nz/Mono_Pico.mp4" autoplay="false" 
-                          muted loop="false" crossOrigin="anonymous" data-dashjs-player=""></video>
-        <video id="eeOutdoor" preload="true" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/ab4018f023d3dd8961d605e109aa14ce/manifest/video.mpd" autoplay="false" 
-                          muted loop="true" crossOrigin="anonymous" data-dashjs-player=""></video>
-         <video id="sing1" preload="true" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/a5cdbc2472e46b8ff1427422425b2ca2/manifest/video.mpd" autoplay="false" 
-                          muted loop="true" crossOrigin="anonymous" data-dashjs-player=""></video>
-       <video id="eeIndoorOne" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/495170cd33d36effd907f239a7f3b41b/manifest/video.mpd" 
-                          autoplay="false" muted loop="true" crossOrigin="anonymous" data-dashjs-player=""></video>
-        <video id="sing2" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/23dee2f490f137ddda25d890a4bee6d6/manifest/video.mpd" autoplay="false" 
-                          muted loop="true" crossOrigin="anonymous" data-dashjs-player=""></video>
-        <video id="articulate" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/658d6516a5a2142e1ee14b03ab96acff/manifest/video.mpd" 
-                          autoplay="false" muted loop="true" crossOrigin="anonymous" data-dashjs-player=""></video>
-        <video id="sing3" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/1491dbe97f88c1ee1b5725dcef100eeb/manifest/video.mpd" autoplay="false" 
-                          muted loop="true" crossOrigin="anonymous" data-dashjs-player=""></video>
-        <video id="eeIndoorTwo" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/f444ad885af757058515717b86af07e8/manifest/video.mpd" 
-                          autoplay="false" muted loop="true" crossOrigin="anonymous" data-dashjs-player=""></video>
-        <video id="sing4" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/377b9823d7a35b1d567e69f67f53dae5/manifest/video.mpd" autoplay="false" 
-                          muted loop="true" crossOrigin="anonymous" data-dashjs-player=""></video>
-        <video id="cheers" preload="auto" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/2d75e4046d8f114a9f831626a99a4479/manifest/video.mpd" 
-                          autoplay="false" muted loop="false" crossOrigin="anonymous" data-dashjs-player=""></video>
+        <video id="intro" preload="true" src="https://cdn.tangerinium.nz/intro-265.mp4" autoplay="true" muted loop="false" crossOrigin="anonymous" ></video>
+        <video id="eeOutdoor" preload="true" src="https://cdn.tangerinium.nz/ee1-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous" ></video>
+        <video id="sing1" preload="true" src="https://cdn.tangerinium.nz/sing1-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous" ></video>
+       	<video id="eeIndoorOne" preload="auto" src="https://cdn.tangerinium.nz/ee21-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous" ></video>
+        <video id="sing2" preload="auto" src="https://cdn.tangerinium.nz/ee22-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous" ></video>
+        <video id="articulate" preload="auto" src="https://cdn.tangerinium.nz/articulate-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous" ></video>
+        <video id="sing3" preload="auto" src="https://cdn.tangerinium.nz/sing3-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous" ></video>
+        <video id="eeIndoorTwo" preload="auto" src="https://cdn.tangerinium.nz/ee22-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous" ></video>
+        <video id="sing4" preload="auto" src="https://cdn.tangerinium.nz/sing4-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous" ></video>
+        <video id="cheers" preload="auto" src="https://cdn.tangerinium.nz/cheers-265.mp4" autoplay="false" muted loop="false" crossOrigin="anonymous" ></video>
         
         <img id="eggStill" src="./assets/favicon-192.png">
         <img id="redEggStill" src="./assets/redEggIcon.png">
