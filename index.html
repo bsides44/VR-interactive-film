@@ -29,24 +29,34 @@
     background-color: white;
   }
 </style>
-<script>
+<!-- <script>
 	AFRAME.registerComponent('check-quality', {
     init: function() {
+console.log("check-quality")
+
 		var url = "https://customer-bik02y7ots3q72u3.cloudflarestream.com/44659080bbd5fc321c45ac7d5a0bbfc8/manifest/video.mpd";
+console.log("0")
+
 		var player = dashjs.MediaPlayer().create();
-		player.initialize(document.querySelector("#videoPlayer"), url, true);
+console.log("1")
+
+		player.initialize(document.querySelector("#intro"), url, true);
+console.log("c2")
+
 		player.updateSettings({
 				debug: {logLevel: 5},
 				streaming: {cacheInitSegments: true}
 			});
+console.log("3")
+
 			player.preload();
 
+console.log(">>> quality", player.getQualityFor('video'))
 		player.setQualityFor('video', 4)
-		console.log('quality', player.getQualityFor('video'))
 	}
 })
 
-</script>
+</script> -->
 <body>
   <a-scene id="scene" loading-screen="dotsColor: black; backgroundColor: white"  shadow="enabled; autoUpdate: true" renderer="antialias: true"
   webxr="referenceSpaceType: local"  
@@ -55,8 +65,9 @@
   >
     <a-assets timeout="3000">
 		<!-- http://cdn.dashjs.org/latest/jsdoc/module-MediaPlayer.html#setConfig__anchor -->
-        <video id="intro" preload="true" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/44659080bbd5fc321c45ac7d5a0bbfc8/manifest/video.mpd" autoplay="false" 
-                          muted loop="false" crossorigin="anonymous" data-dashjs-player=""></video>
+		<!-- https://customer-bik02y7ots3q72u3.cloudflarestream.com/44659080bbd5fc321c45ac7d5a0bbfc8/manifest/video.mpd -->
+        <video id="intro" preload="true" quality="4" src="https://cdn.tangerinium.nz/Mono_Pico.mp4" autoplay="false" 
+                          muted loop="false" crossOrigin="anonymous" data-dashjs-player=""></video>
         <video id="eeOutdoor" preload="true" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/ab4018f023d3dd8961d605e109aa14ce/manifest/video.mpd" autoplay="false" 
                           muted loop="true" crossOrigin="anonymous" data-dashjs-player=""></video>
          <video id="sing1" preload="true" quality="4" src="https://customer-bik02y7ots3q72u3.cloudflarestream.com/a5cdbc2472e46b8ff1427422425b2ca2/manifest/video.mpd" autoplay="false" 
@@ -106,7 +117,7 @@
     </a-assets>
 
     <!-- VIDEOS -->
-    <a-videosphere id="videoPlayer" rotation="0 -70 0" src="#intro" visible="true" check-quality>
+    <a-videosphere id="videoPlayer" rotation="0 -70 0" src="#intro" visible="true" >
     </a-videosphere>
 
     <!-- CONTROLS -->
