@@ -10,19 +10,23 @@ AFRAME.registerComponent('on-click-start', {
     },
     playSecondVideo: function() {
         var isVisible = this.el.object3D.visible
+        var secondVidId = "#eeOutdoor"
+        // reduce number of vids for device performance
+        var isMobile = AFRAME.utils.device.isMobile()
+        if (isMobile) secondVidId = "#eeIndoorOne"
 
         if (isVisible) {
             // replace video source
             var videoPlayer = document.querySelector("#videoPlayer")
-            videoPlayer.setAttribute("src", "#eeOutdoor");
+            videoPlayer.setAttribute("src", secondVidId);
 
             // play video
-            var vidSource = document.querySelector("#eeOutdoor")
+            var vidSource = document.querySelector(secondVidId)
             vidSource.muted = false
             vidSource.play()
     
             // emit playing event
-            this.el.emit('videoChanged', {id: "#eeOutdoor"});
+            this.el.emit('videoChanged', {id: secondVidId});
 
             // make challenge disappear
             document.querySelector("#challengeText").object3D.visible = false
