@@ -67,7 +67,7 @@ AFRAME.registerComponent('init-scene-one', {
 					loadedText.object3D.visible = true;
 				}
 			}
-		}, 12000);
+		}, 9000);
 	},
 	onClick: function () {
 		if (this.data.loaded){
