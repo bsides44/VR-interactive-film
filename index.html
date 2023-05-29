@@ -30,19 +30,45 @@
 </style>
 
 <body>
-	<a-scene id="scene" loading-screen="dotsColor: black; backgroundColor: white" shadow="enabled; autoUpdate: true" renderer="antialias: true" webxr="referenceSpaceType: local" move-into-vr init-scene-one>
-		<a-assets timeout="3000">
-			<!-- https://cdn.tangerinium.nz/ -->
-			<video id="intro" preload="true" src="https://cdn.tangerinium.nz/intro-265.mp4" autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
-			<video id="eeOutdoor" preload="auto" src="https://cdn.tangerinium.nz/ee1-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous"></video>
-			<video id="sing1" preload="auto" src="https://cdn.tangerinium.nz/sing1-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous"></video>
-			<video id="eeIndoorOne" preload="auto" src="https://cdn.tangerinium.nz/ee21-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous"></video>
-			<video id="sing2" preload="auto" src="https://cdn.tangerinium.nz/sing2-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous"></video>
-			<video id="articulate" preload="auto" src="https://cdn.tangerinium.nz/articulate-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous"></video>
-			<video id="sing3" preload="auto" src="https://cdn.tangerinium.nz/sing3-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous"></video>
-			<video id="eeIndoorTwo" preload="auto" src="https://cdn.tangerinium.nz/ee22-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous"></video>
-			<video id="sing4" preload="auto" src="https://cdn.tangerinium.nz/sing4-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous"></video>
-			<video id="cheers" preload="auto" src="https://cdn.tangerinium.nz/cheers-265.mp4" autoplay="false" muted loop="false" crossOrigin="anonymous"></video>
+  <a-scene id="scene" loading-screen="dotsColor: black; backgroundColor: white"  shadow="enabled; autoUpdate: true" renderer="antialias: true"
+  webxr="referenceSpaceType: local"  
+  move-into-vr
+  init-scene-one
+  >
+    <a-assets timeout="3000">
+        <video id="intro" preload="true" src="https://cdn.tangerinium.nz/intro-265.mp4" autoplay="false" muted loop="false" crossOrigin="anonymous" ></video>
+        <video id="eeOutdoor" preload="auto" src="https://cdn.tangerinium.nz/ee1-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous" ></video>
+        <video id="sing1" preload="auto" src="https://cdn.tangerinium.nz/sing1-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous" ></video>
+       	<video id="eeIndoorOne" preload="auto" src="https://cdn.tangerinium.nz/ee21-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous" ></video>
+        <video id="sing2" preload="auto" src="https://cdn.tangerinium.nz/sing2-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous" ></video>
+        <video id="articulate" preload="auto" src="https://cdn.tangerinium.nz/articulate-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous" ></video>
+        <video id="sing3" preload="auto" src="https://cdn.tangerinium.nz/sing3-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous" ></video>
+        <video id="eeIndoorTwo" preload="auto" src="https://cdn.tangerinium.nz/ee22-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous" ></video>
+        <video id="sing4" preload="auto" src="https://cdn.tangerinium.nz/sing4-265.mp4" autoplay="false" muted loop="true" crossOrigin="anonymous" ></video>
+        <video id="cheers" preload="auto" src="https://cdn.tangerinium.nz/cheers-265.mp4" autoplay="false" muted loop="false" crossOrigin="anonymous" ></video>
+        
+        <img id="eggStill" src="./assets/favicon-192.png">
+        <img id="redEggStill" src="./assets/redEggIcon.png">
+		<img id="challengeText4" src="./assets/button/challengeText5.png">
+		<img id="startBtn" src="./assets/button/startBtn.png">
+        <img id="nextArrow" src="./assets/button/nextArrow.png">
+        <img id="backArrow" src="./assets/button/backArrow.png">
+        <img id="startText" src="./assets/button/startText.png">
+        <img id="victoryText2" src="./assets/button/friends.png">
+        <img id="victoryText1" src="./assets/button/victoryTextOne.png">
+        <img id="vrStartText" src="./assets/button/vrStartText.png">
+        <img id="welcomeImg" src="./assets/button/welcomeText.png">
+        <img id="finishBtn" src="./assets/button/finishBtn.png">
+		
+        <a-asset-item id="oneEgg" src="./assets/egg/mono/scene.gltf"></a-asset-item>
+		<a-asset-item id="twoEgg" src="./assets/egg/spiral/scene.gltf"></a-asset-item>
+		<a-asset-item id="threeEgg" src="./assets/egg/spot/scene.gltf"></a-asset-item>
+		<a-asset-item id="fourEgg" src="./assets/egg/stripe/scene.gltf"></a-asset-item>
+		<a-asset-item id="fiveEgg" src="./assets/egg/tone/scene.gltf"></a-asset-item>
+		<a-asset-item id="sixEgg" src="./assets/egg/zigzag/scene.gltf"></a-asset-item>
+		<a-asset-item id="sevenEgg" src="./assets/egg/danny/scene.gltf"></a-asset-item>
+		<a-asset-item id="eightEgg" src="./assets/egg/glow/scene.gltf"></a-asset-item>
+		<a-asset-item id="nineEgg" src="./assets/egg/russia/scene.gltf"></a-asset-item>
 
 			<img id="eggStill" src="./assets/favicon-192.png">
 			<img id="redEggStill" src="./assets/redEggIcon.png">
